@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "fern-vocode"
+version = "0.0.2"
+description = ""
+readme = "README.md"
+authors = []
+packages = [
+    { include = "vocode", from = "src"}
+]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+pydantic = "^1.9.2"
+httpx = "0.23.3"
+
+[tool.poetry.dev-dependencies]
+mypy = "0.971"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
