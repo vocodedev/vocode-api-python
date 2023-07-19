@@ -10,7 +10,6 @@ import pydantic
 from ...core.api_error import ApiError
 from ...core.jsonable_encoder import jsonable_encoder
 from ...core.remove_none_from_headers import remove_none_from_headers
-from ...environment import VocodeEnvironment
 from ...errors.unprocessable_entity_error import UnprocessableEntityError
 from ...types.agent import Agent
 from ...types.agent_params import AgentParams
@@ -19,14 +18,14 @@ from ...types.http_validation_error import HttpValidationError
 
 
 class AgentsClient:
-    def __init__(self, *, environment: VocodeEnvironment = VocodeEnvironment.PRODUCTION, token: str):
+    def __init__(self, *, environment: str, token: str):
         self._environment = environment
         self._token = token
 
     def get_agent(self, *, id: str) -> Agent:
         _response = httpx.request(
             "GET",
-            urllib.parse.urljoin(f"{self._environment.value}/", "v1/agents"),
+            urllib.parse.urljoin(f"{self._environment}/", "v1/agents"),
             params={"id": id},
             headers=remove_none_from_headers(
                 {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
@@ -46,7 +45,7 @@ class AgentsClient:
     def list_agents(self) -> typing.List[Agent]:
         _response = httpx.request(
             "GET",
-            urllib.parse.urljoin(f"{self._environment.value}/", "v1/agents/list"),
+            urllib.parse.urljoin(f"{self._environment}/", "v1/agents/list"),
             headers=remove_none_from_headers(
                 {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
             ),
@@ -63,7 +62,7 @@ class AgentsClient:
     def create_agent(self, *, request: AgentParams) -> Agent:
         _response = httpx.request(
             "POST",
-            urllib.parse.urljoin(f"{self._environment.value}/", "v1/agents/create"),
+            urllib.parse.urljoin(f"{self._environment}/", "v1/agents/create"),
             json=jsonable_encoder(request),
             headers=remove_none_from_headers(
                 {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
@@ -83,7 +82,7 @@ class AgentsClient:
     def update_agent(self, *, id: str, request: AgentUpdateParams) -> Agent:
         _response = httpx.request(
             "POST",
-            urllib.parse.urljoin(f"{self._environment.value}/", "v1/agents/update"),
+            urllib.parse.urljoin(f"{self._environment}/", "v1/agents/update"),
             params={"id": id},
             json=jsonable_encoder(request),
             headers=remove_none_from_headers(
@@ -103,7 +102,7 @@ class AgentsClient:
 
 
 class AsyncAgentsClient:
-    def __init__(self, *, environment: VocodeEnvironment = VocodeEnvironment.PRODUCTION, token: str):
+    def __init__(self, *, environment: str, token: str):
         self._environment = environment
         self._token = token
 
@@ -111,7 +110,7 @@ class AsyncAgentsClient:
         async with httpx.AsyncClient() as _client:
             _response = await _client.request(
                 "GET",
-                urllib.parse.urljoin(f"{self._environment.value}/", "v1/agents"),
+                urllib.parse.urljoin(f"{self._environment}/", "v1/agents"),
                 params={"id": id},
                 headers=remove_none_from_headers(
                     {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
@@ -132,7 +131,7 @@ class AsyncAgentsClient:
         async with httpx.AsyncClient() as _client:
             _response = await _client.request(
                 "GET",
-                urllib.parse.urljoin(f"{self._environment.value}/", "v1/agents/list"),
+                urllib.parse.urljoin(f"{self._environment}/", "v1/agents/list"),
                 headers=remove_none_from_headers(
                     {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
                 ),
@@ -150,7 +149,7 @@ class AsyncAgentsClient:
         async with httpx.AsyncClient() as _client:
             _response = await _client.request(
                 "POST",
-                urllib.parse.urljoin(f"{self._environment.value}/", "v1/agents/create"),
+                urllib.parse.urljoin(f"{self._environment}/", "v1/agents/create"),
                 json=jsonable_encoder(request),
                 headers=remove_none_from_headers(
                     {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
@@ -171,7 +170,7 @@ class AsyncAgentsClient:
         async with httpx.AsyncClient() as _client:
             _response = await _client.request(
                 "POST",
-                urllib.parse.urljoin(f"{self._environment.value}/", "v1/agents/update"),
+                urllib.parse.urljoin(f"{self._environment}/", "v1/agents/update"),
                 params={"id": id},
                 json=jsonable_encoder(request),
                 headers=remove_none_from_headers(

@@ -2,7 +2,7 @@
 
 import typing
 
-from .action_config import ActionConfig
+from .empty_action_config import EmptyActionConfig
 from .undefined import Undefined
 
-EndConversationActionUpdateParamsConfig = typing.Union[ActionConfig, Undefined]
+EndConversationActionUpdateParamsConfig = typing.Union[EmptyActionConfig, Undefined]

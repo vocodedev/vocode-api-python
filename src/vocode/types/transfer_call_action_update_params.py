@@ -7,14 +7,12 @@ import pydantic
 
 from ..core.datetime_utils import serialize_datetime
 from .action_type import ActionType
-from .empty_action_config import EmptyActionConfig
+from .transfer_call_action_update_params_config import TransferCallActionUpdateParamsConfig
 
 
-class DtmfAction(pydantic.BaseModel):
-    id: str
-    user_id: str
-    type: typing.Optional[ActionType]
-    config: typing.Optional[EmptyActionConfig]
+class TransferCallActionUpdateParams(pydantic.BaseModel):
+    type: ActionType
+    config: typing.Optional[TransferCallActionUpdateParamsConfig]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

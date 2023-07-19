@@ -2,7 +2,7 @@
 
 import typing
 
-from .action_config import ActionConfig
+from .empty_action_config import EmptyActionConfig
 from .undefined import Undefined
 
-DtmfActionUpdateParamsConfig = typing.Union[ActionConfig, Undefined]
+DtmfActionUpdateParamsConfig = typing.Union[EmptyActionConfig, Undefined]

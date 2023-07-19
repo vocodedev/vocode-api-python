@@ -1,6 +1,6 @@
 [tool.poetry]
-name = "fern-vocode"
-version = "0.0.4"
+name = "vocode-api"
+version = "0.0.5-alpha.1"
 description = ""
 readme = "README.md"
 authors = []

@@ -8,7 +8,9 @@ import pydantic
 from ..core.datetime_utils import serialize_datetime
 
 
-class ActionConfig(pydantic.BaseModel):
+class TransferCallConfig(pydantic.BaseModel):
+    phone_number: str
+
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
         return super().json(**kwargs_with_defaults)

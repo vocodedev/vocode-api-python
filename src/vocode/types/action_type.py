@@ -13,11 +13,17 @@ class ActionType(str, enum.Enum):
 
     ACTION_END_CONVERSATION = "action_end_conversation"
     ACTION_DTMF = "action_dtmf"
+    ACTION_TRANSFER_CALL = "action_transfer_call"
 
     def visit(
-        self, action_end_conversation: typing.Callable[[], T_Result], action_dtmf: typing.Callable[[], T_Result]
+        self,
+        action_end_conversation: typing.Callable[[], T_Result],
+        action_dtmf: typing.Callable[[], T_Result],
+        action_transfer_call: typing.Callable[[], T_Result],
     ) -> T_Result:
         if self is ActionType.ACTION_END_CONVERSATION:
             return action_end_conversation()
         if self is ActionType.ACTION_DTMF:
             return action_dtmf()
+        if self is ActionType.ACTION_TRANSFER_CALL:
+            return action_transfer_call()

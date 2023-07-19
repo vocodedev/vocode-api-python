@@ -20,6 +20,8 @@ class Call(pydantic.BaseModel):
     transcript: typing.Optional[str]
     recording_url: typing.Optional[str]
     status: CallStatus
+    error_message: typing.Optional[str]
+    recording_available: typing.Optional[bool]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

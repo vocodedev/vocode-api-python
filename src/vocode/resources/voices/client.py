@@ -10,7 +10,6 @@ import pydantic
 from ...core.api_error import ApiError
 from ...core.jsonable_encoder import jsonable_encoder
 from ...core.remove_none_from_headers import remove_none_from_headers
-from ...environment import VocodeEnvironment
 from ...errors.unprocessable_entity_error import UnprocessableEntityError
 from ...types.create_voice_request import CreateVoiceRequest
 from ...types.create_voice_response import CreateVoiceResponse
@@ -22,14 +21,14 @@ from ...types.update_voice_response import UpdateVoiceResponse
 
 
 class VoicesClient:
-    def __init__(self, *, environment: VocodeEnvironment = VocodeEnvironment.PRODUCTION, token: str):
+    def __init__(self, *, environment: str, token: str):
         self._environment = environment
         self._token = token
 
     def get_voice(self, *, id: str) -> GetVoiceResponse:
         _response = httpx.request(
             "GET",
-            urllib.parse.urljoin(f"{self._environment.value}/", "v1/voices"),
+            urllib.parse.urljoin(f"{self._environment}/", "v1/voices"),
             params={"id": id},
             headers=remove_none_from_headers(
                 {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
@@ -49,7 +48,7 @@ class VoicesClient:
     def list_voices(self) -> typing.List[ListVoicesResponseItem]:
         _response = httpx.request(
             "GET",
-            urllib.parse.urljoin(f"{self._environment.value}/", "v1/voices/list"),
+            urllib.parse.urljoin(f"{self._environment}/", "v1/voices/list"),
             headers=remove_none_from_headers(
                 {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
             ),
@@ -66,7 +65,7 @@ class VoicesClient:
     def create_voice(self, *, request: CreateVoiceRequest) -> CreateVoiceResponse:
         _response = httpx.request(
             "POST",
-            urllib.parse.urljoin(f"{self._environment.value}/", "v1/voices/create"),
+            urllib.parse.urljoin(f"{self._environment}/", "v1/voices/create"),
             json=jsonable_encoder(request),
             headers=remove_none_from_headers(
                 {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
@@ -86,7 +85,7 @@ class VoicesClient:
     def update_voice(self, *, id: str, request: UpdateVoiceRequestBody) -> UpdateVoiceResponse:
         _response = httpx.request(
             "POST",
-            urllib.parse.urljoin(f"{self._environment.value}/", "v1/voices/update"),
+            urllib.parse.urljoin(f"{self._environment}/", "v1/voices/update"),
             params={"id": id},
             json=jsonable_encoder(request),
             headers=remove_none_from_headers(
@@ -106,7 +105,7 @@ class VoicesClient:
 
 
 class AsyncVoicesClient:
-    def __init__(self, *, environment: VocodeEnvironment = VocodeEnvironment.PRODUCTION, token: str):
+    def __init__(self, *, environment: str, token: str):
         self._environment = environment
         self._token = token
 
@@ -114,7 +113,7 @@ class AsyncVoicesClient:
         async with httpx.AsyncClient() as _client:
             _response = await _client.request(
                 "GET",
-                urllib.parse.urljoin(f"{self._environment.value}/", "v1/voices"),
+                urllib.parse.urljoin(f"{self._environment}/", "v1/voices"),
                 params={"id": id},
                 headers=remove_none_from_headers(
                     {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
@@ -135,7 +134,7 @@ class AsyncVoicesClient:
         async with httpx.AsyncClient() as _client:
             _response = await _client.request(
                 "GET",
-                urllib.parse.urljoin(f"{self._environment.value}/", "v1/voices/list"),
+                urllib.parse.urljoin(f"{self._environment}/", "v1/voices/list"),
                 headers=remove_none_from_headers(
                     {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
                 ),
@@ -153,7 +152,7 @@ class AsyncVoicesClient:
         async with httpx.AsyncClient() as _client:
             _response = await _client.request(
                 "POST",
-                urllib.parse.urljoin(f"{self._environment.value}/", "v1/voices/create"),
+                urllib.parse.urljoin(f"{self._environment}/", "v1/voices/create"),
                 json=jsonable_encoder(request),
                 headers=remove_none_from_headers(
                     {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
@@ -174,7 +173,7 @@ class AsyncVoicesClient:
         async with httpx.AsyncClient() as _client:
             _response = await _client.request(
                 "POST",
-                urllib.parse.urljoin(f"{self._environment.value}/", "v1/voices/update"),
+                urllib.parse.urljoin(f"{self._environment}/", "v1/voices/update"),
                 params={"id": id},
                 json=jsonable_encoder(request),
                 headers=remove_none_from_headers(

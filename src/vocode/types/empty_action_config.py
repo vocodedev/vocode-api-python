@@ -6,16 +6,9 @@ import typing
 import pydantic
 
 from ..core.datetime_utils import serialize_datetime
-from .action_type import ActionType
-from .empty_action_config import EmptyActionConfig
 
 
-class DtmfAction(pydantic.BaseModel):
-    id: str
-    user_id: str
-    type: typing.Optional[ActionType]
-    config: typing.Optional[EmptyActionConfig]
-
+class EmptyActionConfig(pydantic.BaseModel):
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
         return super().json(**kwargs_with_defaults)

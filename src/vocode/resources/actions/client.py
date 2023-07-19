@@ -10,7 +10,6 @@ import pydantic
 from ...core.api_error import ApiError
 from ...core.jsonable_encoder import jsonable_encoder
 from ...core.remove_none_from_headers import remove_none_from_headers
-from ...environment import VocodeEnvironment
 from ...errors.unprocessable_entity_error import UnprocessableEntityError
 from ...types.create_action_request import CreateActionRequest
 from ...types.create_action_response import CreateActionResponse
@@ -22,14 +21,14 @@ from ...types.update_action_response import UpdateActionResponse
 
 
 class ActionsClient:
-    def __init__(self, *, environment: VocodeEnvironment = VocodeEnvironment.PRODUCTION, token: str):
+    def __init__(self, *, environment: str, token: str):
         self._environment = environment
         self._token = token
 
     def get_action(self, *, id: str) -> GetActionResponse:
         _response = httpx.request(
             "GET",
-            urllib.parse.urljoin(f"{self._environment.value}/", "v1/actions"),
+            urllib.parse.urljoin(f"{self._environment}/", "v1/actions"),
             params={"id": id},
             headers=remove_none_from_headers(
                 {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
@@ -49,7 +48,7 @@ class ActionsClient:
     def list_actions(self) -> typing.List[ListActionsResponseItem]:
         _response = httpx.request(
             "GET",
-            urllib.parse.urljoin(f"{self._environment.value}/", "v1/actions/list"),
+            urllib.parse.urljoin(f"{self._environment}/", "v1/actions/list"),
             headers=remove_none_from_headers(
                 {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
             ),
@@ -66,7 +65,7 @@ class ActionsClient:
     def create_action(self, *, request: CreateActionRequest) -> CreateActionResponse:
         _response = httpx.request(
             "POST",
-            urllib.parse.urljoin(f"{self._environment.value}/", "v1/actions/create"),
+            urllib.parse.urljoin(f"{self._environment}/", "v1/actions/create"),
             json=jsonable_encoder(request),
             headers=remove_none_from_headers(
                 {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
@@ -86,7 +85,7 @@ class ActionsClient:
     def update_action(self, *, id: str, request: UpdateActionRequestBody) -> UpdateActionResponse:
         _response = httpx.request(
             "POST",
-            urllib.parse.urljoin(f"{self._environment.value}/", "v1/actions/update"),
+            urllib.parse.urljoin(f"{self._environment}/", "v1/actions/update"),
             params={"id": id},
             json=jsonable_encoder(request),
             headers=remove_none_from_headers(
@@ -106,7 +105,7 @@ class ActionsClient:
 
 
 class AsyncActionsClient:
-    def __init__(self, *, environment: VocodeEnvironment = VocodeEnvironment.PRODUCTION, token: str):
+    def __init__(self, *, environment: str, token: str):
         self._environment = environment
         self._token = token
 
@@ -114,7 +113,7 @@ class AsyncActionsClient:
         async with httpx.AsyncClient() as _client:
             _response = await _client.request(
                 "GET",
-                urllib.parse.urljoin(f"{self._environment.value}/", "v1/actions"),
+                urllib.parse.urljoin(f"{self._environment}/", "v1/actions"),
                 params={"id": id},
                 headers=remove_none_from_headers(
                     {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
@@ -135,7 +134,7 @@ class AsyncActionsClient:
         async with httpx.AsyncClient() as _client:
             _response = await _client.request(
                 "GET",
-                urllib.parse.urljoin(f"{self._environment.value}/", "v1/actions/list"),
+                urllib.parse.urljoin(f"{self._environment}/", "v1/actions/list"),
                 headers=remove_none_from_headers(
                     {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
                 ),
@@ -153,7 +152,7 @@ class AsyncActionsClient:
         async with httpx.AsyncClient() as _client:
             _response = await _client.request(
                 "POST",
-                urllib.parse.urljoin(f"{self._environment.value}/", "v1/actions/create"),
+                urllib.parse.urljoin(f"{self._environment}/", "v1/actions/create"),
                 json=jsonable_encoder(request),
                 headers=remove_none_from_headers(
                     {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
@@ -174,7 +173,7 @@ class AsyncActionsClient:
         async with httpx.AsyncClient() as _client:
             _response = await _client.request(
                 "POST",
-                urllib.parse.urljoin(f"{self._environment.value}/", "v1/actions/update"),
+                urllib.parse.urljoin(f"{self._environment}/", "v1/actions/update"),
                 params={"id": id},
                 json=jsonable_encoder(request),
                 headers=remove_none_from_headers(

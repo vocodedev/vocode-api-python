@@ -4,5 +4,6 @@ import typing
 
 from .dtmf_action import DtmfAction
 from .end_conversation_action import EndConversationAction
+from .transfer_call_action import TransferCallAction
 
-UpdateActionResponse = typing.Union[EndConversationAction, DtmfAction]
+UpdateActionResponse = typing.Union[TransferCallAction, EndConversationAction, DtmfAction]
