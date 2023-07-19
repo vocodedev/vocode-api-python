@@ -10,6 +10,7 @@ import pydantic
 from ...core.api_error import ApiError
 from ...core.jsonable_encoder import jsonable_encoder
 from ...core.remove_none_from_headers import remove_none_from_headers
+from ...environment import VocodeEnvironment
 from ...errors.unprocessable_entity_error import UnprocessableEntityError
 from ...types.http_validation_error import HttpValidationError
 from ...types.webhook import Webhook
@@ -18,14 +19,14 @@ from ...types.webhook_update_params import WebhookUpdateParams
 
 
 class WebhooksClient:
-    def __init__(self, *, environment: str, token: str):
+    def __init__(self, *, environment: VocodeEnvironment = VocodeEnvironment.PRODUCTION, token: str):
         self._environment = environment
         self._token = token
 
     def get_webhook(self, *, id: str) -> Webhook:
         _response = httpx.request(
             "GET",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/webhooks"),
+            urllib.parse.urljoin(f"{self._environment.value}/", "v1/webhooks"),
             params={"id": id},
             headers=remove_none_from_headers(
                 {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
@@ -45,7 +46,7 @@ class WebhooksClient:
     def list_webhooks(self) -> typing.List[Webhook]:
         _response = httpx.request(
             "GET",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/webhooks/list"),
+            urllib.parse.urljoin(f"{self._environment.value}/", "v1/webhooks/list"),
             headers=remove_none_from_headers(
                 {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
             ),
@@ -62,7 +63,7 @@ class WebhooksClient:
     def create_webhook(self, *, request: WebhookParams) -> Webhook:
         _response = httpx.request(
             "POST",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/webhooks/create"),
+            urllib.parse.urljoin(f"{self._environment.value}/", "v1/webhooks/create"),
             json=jsonable_encoder(request),
             headers=remove_none_from_headers(
                 {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
@@ -82,7 +83,7 @@ class WebhooksClient:
     def update_webhook(self, *, id: str, request: WebhookUpdateParams) -> Webhook:
         _response = httpx.request(
             "POST",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/webhooks/update"),
+            urllib.parse.urljoin(f"{self._environment.value}/", "v1/webhooks/update"),
             params={"id": id},
             json=jsonable_encoder(request),
             headers=remove_none_from_headers(
@@ -102,7 +103,7 @@ class WebhooksClient:
 
 
 class AsyncWebhooksClient:
-    def __init__(self, *, environment: str, token: str):
+    def __init__(self, *, environment: VocodeEnvironment = VocodeEnvironment.PRODUCTION, token: str):
         self._environment = environment
         self._token = token
 
@@ -110,7 +111,7 @@ class AsyncWebhooksClient:
         async with httpx.AsyncClient() as _client:
             _response = await _client.request(
                 "GET",
-                urllib.parse.urljoin(f"{self._environment}/", "v1/webhooks"),
+                urllib.parse.urljoin(f"{self._environment.value}/", "v1/webhooks"),
                 params={"id": id},
                 headers=remove_none_from_headers(
                     {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
@@ -131,7 +132,7 @@ class AsyncWebhooksClient:
         async with httpx.AsyncClient() as _client:
             _response = await _client.request(
                 "GET",
-                urllib.parse.urljoin(f"{self._environment}/", "v1/webhooks/list"),
+                urllib.parse.urljoin(f"{self._environment.value}/", "v1/webhooks/list"),
                 headers=remove_none_from_headers(
                     {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
                 ),
@@ -149,7 +150,7 @@ class AsyncWebhooksClient:
         async with httpx.AsyncClient() as _client:
             _response = await _client.request(
                 "POST",
-                urllib.parse.urljoin(f"{self._environment}/", "v1/webhooks/create"),
+                urllib.parse.urljoin(f"{self._environment.value}/", "v1/webhooks/create"),
                 json=jsonable_encoder(request),
                 headers=remove_none_from_headers(
                     {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
@@ -170,7 +171,7 @@ class AsyncWebhooksClient:
         async with httpx.AsyncClient() as _client:
             _response = await _client.request(
                 "POST",
-                urllib.parse.urljoin(f"{self._environment}/", "v1/webhooks/update"),
+                urllib.parse.urljoin(f"{self._environment.value}/", "v1/webhooks/update"),
                 params={"id": id},
                 json=jsonable_encoder(request),
                 headers=remove_none_from_headers(
