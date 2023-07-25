@@ -6,4 +6,4 @@ from .azure_voice import AzureVoice
 from .eleven_labs_voice import ElevenLabsVoice
 from .rime_voice import RimeVoice
 
-AgentVoice = typing.Union[str, AzureVoice, RimeVoice, ElevenLabsVoice]
+AgentVoice = typing.Union[AzureVoice, RimeVoice, ElevenLabsVoice]

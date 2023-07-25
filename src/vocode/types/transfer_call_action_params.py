@@ -6,20 +6,13 @@ import typing
 import pydantic
 
 from ..core.datetime_utils import serialize_datetime
-from .agent import Agent
-from .call_status import CallStatus
+from .action_type import ActionType
+from .transfer_call_config import TransferCallConfig
 
 
-class Call(pydantic.BaseModel):
-    id: str
-    user_id: str
-    status: typing.Optional[CallStatus]
-    error_message: typing.Optional[str]
-    recording_available: typing.Optional[bool]
-    transcript: typing.Optional[str]
-    to_number: str
-    from_number: str
-    agent: Agent
+class TransferCallActionParams(pydantic.BaseModel):
+    type: ActionType
+    config: TransferCallConfig
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

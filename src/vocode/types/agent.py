@@ -8,7 +8,7 @@ import pydantic
 from ..core.datetime_utils import serialize_datetime
 from .agent_actions_item import AgentActionsItem
 from .agent_voice import AgentVoice
-from .agent_webhook import AgentWebhook
+from .webhook import Webhook
 
 
 class Agent(pydantic.BaseModel):
@@ -18,7 +18,7 @@ class Agent(pydantic.BaseModel):
     actions: typing.List[AgentActionsItem]
     voice: AgentVoice
     initial_message: typing.Optional[str]
-    webhook: typing.Optional[AgentWebhook]
+    webhook: typing.Optional[Webhook]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

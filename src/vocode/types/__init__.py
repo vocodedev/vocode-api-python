@@ -17,7 +17,6 @@ from .agent_update_params_prompt import AgentUpdateParamsPrompt
 from .agent_update_params_voice import AgentUpdateParamsVoice
 from .agent_update_params_webhook import AgentUpdateParamsWebhook
 from .agent_voice import AgentVoice
-from .agent_webhook import AgentWebhook
 from .azure_voice import AzureVoice
 from .azure_voice_params import AzureVoiceParams
 from .azure_voice_update_params import AzureVoiceUpdateParams
@@ -25,7 +24,6 @@ from .azure_voice_update_params_pitch import AzureVoiceUpdateParamsPitch
 from .azure_voice_update_params_rate import AzureVoiceUpdateParamsRate
 from .azure_voice_update_params_voice_name import AzureVoiceUpdateParamsVoiceName
 from .call import Call
-from .call_agent import CallAgent
 from .call_status import CallStatus
 from .create_action_request import CreateActionRequest
 from .create_action_response import CreateActionResponse
@@ -55,14 +53,17 @@ from .http_method import HttpMethod
 from .http_validation_error import HttpValidationError
 from .list_actions_response_item import ListActionsResponseItem
 from .list_voices_response_item import ListVoicesResponseItem
+from .normalized_agent import NormalizedAgent
+from .normalized_call import NormalizedCall
+from .normalized_phone_number import NormalizedPhoneNumber
 from .phone_number import PhoneNumber
-from .phone_number_inbound_agent import PhoneNumberInboundAgent
 from .plan_type import PlanType
 from .rime_voice import RimeVoice
 from .rime_voice_params import RimeVoiceParams
 from .rime_voice_update_params import RimeVoiceUpdateParams
 from .rime_voice_update_params_speaker import RimeVoiceUpdateParamsSpeaker
 from .transfer_call_action import TransferCallAction
+from .transfer_call_action_params import TransferCallActionParams
 from .transfer_call_action_update_params import TransferCallActionUpdateParams
 from .transfer_call_action_update_params_config import TransferCallActionUpdateParamsConfig
 from .transfer_call_config import TransferCallConfig
@@ -99,7 +100,6 @@ __all__ = [
     "AgentUpdateParamsVoice",
     "AgentUpdateParamsWebhook",
     "AgentVoice",
-    "AgentWebhook",
     "AzureVoice",
     "AzureVoiceParams",
     "AzureVoiceUpdateParams",
@@ -107,7 +107,6 @@ __all__ = [
     "AzureVoiceUpdateParamsRate",
     "AzureVoiceUpdateParamsVoiceName",
     "Call",
-    "CallAgent",
     "CallStatus",
     "CreateActionRequest",
     "CreateActionResponse",
@@ -137,14 +136,17 @@ __all__ = [
     "HttpValidationError",
     "ListActionsResponseItem",
     "ListVoicesResponseItem",
+    "NormalizedAgent",
+    "NormalizedCall",
+    "NormalizedPhoneNumber",
     "PhoneNumber",
-    "PhoneNumberInboundAgent",
     "PlanType",
     "RimeVoice",
     "RimeVoiceParams",
     "RimeVoiceUpdateParams",
     "RimeVoiceUpdateParamsSpeaker",
     "TransferCallAction",
+    "TransferCallActionParams",
     "TransferCallActionUpdateParams",
     "TransferCallActionUpdateParamsConfig",
     "TransferCallConfig",

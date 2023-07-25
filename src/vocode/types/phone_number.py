@@ -6,15 +6,15 @@ import typing
 import pydantic
 
 from ..core.datetime_utils import serialize_datetime
-from .phone_number_inbound_agent import PhoneNumberInboundAgent
+from .agent import Agent
 
 
 class PhoneNumber(pydantic.BaseModel):
     id: str
     user_id: str
+    active: typing.Optional[bool]
+    inbound_agent: Agent
     number: str
-    active: bool
-    inbound_agent: PhoneNumberInboundAgent
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

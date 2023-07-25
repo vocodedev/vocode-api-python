@@ -6,4 +6,4 @@ from .dtmf_action import DtmfAction
 from .end_conversation_action import EndConversationAction
 from .transfer_call_action import TransferCallAction
 
-AgentActionsItem = typing.Union[str, TransferCallAction, EndConversationAction, DtmfAction]
+AgentActionsItem = typing.Union[TransferCallAction, EndConversationAction, DtmfAction]
