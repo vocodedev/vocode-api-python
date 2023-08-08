@@ -12,14 +12,22 @@ from ...core.jsonable_encoder import jsonable_encoder
 from ...core.remove_none_from_headers import remove_none_from_headers
 from ...errors.unprocessable_entity_error import UnprocessableEntityError
 from ...types.agent import Agent
-from ...types.agent_params import AgentParams
+from ...types.agent_params_actions_item import AgentParamsActionsItem
+from ...types.agent_params_vector_database import AgentParamsVectorDatabase
+from ...types.agent_params_voice import AgentParamsVoice
+from ...types.agent_params_webhook import AgentParamsWebhook
 from ...types.agent_update_params import AgentUpdateParams
 from ...types.http_validation_error import HttpValidationError
-from ...types.normalized_agent import NormalizedAgent
+from ...types.interrupt_sensitivity import InterruptSensitivity
+from ...types.language import Language
+from ...types.page import Page
+
+# this is used as the default value for optional parameters
+OMIT = typing.cast(typing.Any, ...)
 
 
 class AgentsClient:
-    def __init__(self, *, environment: str, token: str):
+    def __init__(self, *, environment: str, token: typing.Optional[str] = None):
         self._environment = environment
         self._token = token
 
@@ -43,28 +51,55 @@ class AgentsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def list_agents(self) -> typing.List[NormalizedAgent]:
+    def list_agents(self, *, page: typing.Optional[int] = None, size: typing.Optional[int] = None) -> Page:
         _response = httpx.request(
             "GET",
             urllib.parse.urljoin(f"{self._environment}/", "v1/agents/list"),
+            params={"page": page, "size": size},
             headers=remove_none_from_headers(
                 {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
             ),
             timeout=60,
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(typing.List[NormalizedAgent], _response.json())  # type: ignore
+            return pydantic.parse_obj_as(Page, _response.json())  # type: ignore
+        if _response.status_code == 422:
+            raise UnprocessableEntityError(pydantic.parse_obj_as(HttpValidationError, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def create_agent(self, *, request: AgentParams) -> Agent:
+    def create_agent(
+        self,
+        *,
+        prompt: str,
+        language: typing.Optional[Language] = OMIT,
+        actions: typing.Optional[typing.List[AgentParamsActionsItem]] = OMIT,
+        voice: AgentParamsVoice,
+        initial_message: typing.Optional[str] = OMIT,
+        webhook: typing.Optional[AgentParamsWebhook] = OMIT,
+        vector_database: typing.Optional[AgentParamsVectorDatabase] = OMIT,
+        interrupt_sensitivity: typing.Optional[InterruptSensitivity] = OMIT,
+    ) -> Agent:
+        _request: typing.Dict[str, typing.Any] = {"prompt": prompt, "voice": voice}
+        if language is not OMIT:
+            _request["language"] = language
+        if actions is not OMIT:
+            _request["actions"] = actions
+        if initial_message is not OMIT:
+            _request["initial_message"] = initial_message
+        if webhook is not OMIT:
+            _request["webhook"] = webhook
+        if vector_database is not OMIT:
+            _request["vector_database"] = vector_database
+        if interrupt_sensitivity is not OMIT:
+            _request["interrupt_sensitivity"] = interrupt_sensitivity
         _response = httpx.request(
             "POST",
             urllib.parse.urljoin(f"{self._environment}/", "v1/agents/create"),
-            json=jsonable_encoder(request),
+            json=jsonable_encoder(_request),
             headers=remove_none_from_headers(
                 {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
             ),
@@ -103,7 +138,7 @@ class AgentsClient:
 
 
 class AsyncAgentsClient:
-    def __init__(self, *, environment: str, token: str):
+    def __init__(self, *, environment: str, token: typing.Optional[str] = None):
         self._environment = environment
         self._token = token
 
@@ -128,30 +163,57 @@ class AsyncAgentsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def list_agents(self) -> typing.List[NormalizedAgent]:
+    async def list_agents(self, *, page: typing.Optional[int] = None, size: typing.Optional[int] = None) -> Page:
         async with httpx.AsyncClient() as _client:
             _response = await _client.request(
                 "GET",
                 urllib.parse.urljoin(f"{self._environment}/", "v1/agents/list"),
+                params={"page": page, "size": size},
                 headers=remove_none_from_headers(
                     {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
                 ),
                 timeout=60,
             )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(typing.List[NormalizedAgent], _response.json())  # type: ignore
+            return pydantic.parse_obj_as(Page, _response.json())  # type: ignore
+        if _response.status_code == 422:
+            raise UnprocessableEntityError(pydantic.parse_obj_as(HttpValidationError, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def create_agent(self, *, request: AgentParams) -> Agent:
+    async def create_agent(
+        self,
+        *,
+        prompt: str,
+        language: typing.Optional[Language] = OMIT,
+        actions: typing.Optional[typing.List[AgentParamsActionsItem]] = OMIT,
+        voice: AgentParamsVoice,
+        initial_message: typing.Optional[str] = OMIT,
+        webhook: typing.Optional[AgentParamsWebhook] = OMIT,
+        vector_database: typing.Optional[AgentParamsVectorDatabase] = OMIT,
+        interrupt_sensitivity: typing.Optional[InterruptSensitivity] = OMIT,
+    ) -> Agent:
+        _request: typing.Dict[str, typing.Any] = {"prompt": prompt, "voice": voice}
+        if language is not OMIT:
+            _request["language"] = language
+        if actions is not OMIT:
+            _request["actions"] = actions
+        if initial_message is not OMIT:
+            _request["initial_message"] = initial_message
+        if webhook is not OMIT:
+            _request["webhook"] = webhook
+        if vector_database is not OMIT:
+            _request["vector_database"] = vector_database
+        if interrupt_sensitivity is not OMIT:
+            _request["interrupt_sensitivity"] = interrupt_sensitivity
         async with httpx.AsyncClient() as _client:
             _response = await _client.request(
                 "POST",
                 urllib.parse.urljoin(f"{self._environment}/", "v1/agents/create"),
-                json=jsonable_encoder(request),
+                json=jsonable_encoder(_request),
                 headers=remove_none_from_headers(
                     {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
                 ),

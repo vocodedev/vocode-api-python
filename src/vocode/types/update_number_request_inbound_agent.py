@@ -3,5 +3,6 @@
 import typing
 
 from .agent_update_params import AgentUpdateParams
+from .undefined import Undefined
 
-UpdateNumberRequestInboundAgent = typing.Union[str, AgentUpdateParams]
+UpdateNumberRequestInboundAgent = typing.Union[str, AgentUpdateParams, Undefined]

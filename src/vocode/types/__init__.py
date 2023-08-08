@@ -3,8 +3,8 @@
 from .action_type import ActionType
 from .agent import Agent
 from .agent_actions_item import AgentActionsItem
-from .agent_params import AgentParams
 from .agent_params_actions_item import AgentParamsActionsItem
+from .agent_params_vector_database import AgentParamsVectorDatabase
 from .agent_params_voice import AgentParamsVoice
 from .agent_params_webhook import AgentParamsWebhook
 from .agent_update_params import AgentUpdateParams
@@ -13,7 +13,10 @@ from .agent_update_params_actions_agent_update_params_actions_item import (
     AgentUpdateParamsActionsAgentUpdateParamsActionsItem,
 )
 from .agent_update_params_initial_message import AgentUpdateParamsInitialMessage
+from .agent_update_params_interrupt_sensitivity import AgentUpdateParamsInterruptSensitivity
+from .agent_update_params_language import AgentUpdateParamsLanguage
 from .agent_update_params_prompt import AgentUpdateParamsPrompt
+from .agent_update_params_vector_database import AgentUpdateParamsVectorDatabase
 from .agent_update_params_voice import AgentUpdateParamsVoice
 from .agent_update_params_webhook import AgentUpdateParamsWebhook
 from .agent_voice import AgentVoice
@@ -27,6 +30,11 @@ from .call import Call
 from .call_status import CallStatus
 from .create_action_request import CreateActionRequest
 from .create_action_response import CreateActionResponse
+from .create_call_agent_params import CreateCallAgentParams
+from .create_call_agent_params_actions_item import CreateCallAgentParamsActionsItem
+from .create_call_agent_params_vector_database import CreateCallAgentParamsVectorDatabase
+from .create_call_agent_params_voice import CreateCallAgentParamsVoice
+from .create_call_agent_params_webhook import CreateCallAgentParamsWebhook
 from .create_call_request_agent import CreateCallRequestAgent
 from .create_voice_request import CreateVoiceRequest
 from .create_voice_response import CreateVoiceResponse
@@ -51,12 +59,16 @@ from .get_action_response import GetActionResponse
 from .get_voice_response import GetVoiceResponse
 from .http_method import HttpMethod
 from .http_validation_error import HttpValidationError
-from .list_actions_response_item import ListActionsResponseItem
-from .list_voices_response_item import ListVoicesResponseItem
-from .normalized_agent import NormalizedAgent
-from .normalized_call import NormalizedCall
-from .normalized_phone_number import NormalizedPhoneNumber
+from .interrupt_sensitivity import InterruptSensitivity
+from .language import Language
+from .page import Page
 from .phone_number import PhoneNumber
+from .pinecone_vector_database import PineconeVectorDatabase
+from .pinecone_vector_database_params import PineconeVectorDatabaseParams
+from .pinecone_vector_database_update_params import PineconeVectorDatabaseUpdateParams
+from .pinecone_vector_database_update_params_api_environment import PineconeVectorDatabaseUpdateParamsApiEnvironment
+from .pinecone_vector_database_update_params_api_key import PineconeVectorDatabaseUpdateParamsApiKey
+from .pinecone_vector_database_update_params_index import PineconeVectorDatabaseUpdateParamsIndex
 from .plan_type import PlanType
 from .rime_voice import RimeVoice
 from .rime_voice_params import RimeVoiceParams
@@ -71,11 +83,13 @@ from .undefined import Undefined
 from .update_action_request_body import UpdateActionRequestBody
 from .update_action_response import UpdateActionResponse
 from .update_number_request_inbound_agent import UpdateNumberRequestInboundAgent
+from .update_number_request_label import UpdateNumberRequestLabel
 from .update_voice_request_body import UpdateVoiceRequestBody
 from .update_voice_response import UpdateVoiceResponse
 from .usage import Usage
 from .validation_error import ValidationError
 from .validation_error_loc_item import ValidationErrorLocItem
+from .vector_database_type import VectorDatabaseType
 from .voice_type import VoiceType
 from .webhook import Webhook
 from .webhook_params import WebhookParams
@@ -88,15 +102,18 @@ __all__ = [
     "ActionType",
     "Agent",
     "AgentActionsItem",
-    "AgentParams",
     "AgentParamsActionsItem",
+    "AgentParamsVectorDatabase",
     "AgentParamsVoice",
     "AgentParamsWebhook",
     "AgentUpdateParams",
     "AgentUpdateParamsActions",
     "AgentUpdateParamsActionsAgentUpdateParamsActionsItem",
     "AgentUpdateParamsInitialMessage",
+    "AgentUpdateParamsInterruptSensitivity",
+    "AgentUpdateParamsLanguage",
     "AgentUpdateParamsPrompt",
+    "AgentUpdateParamsVectorDatabase",
     "AgentUpdateParamsVoice",
     "AgentUpdateParamsWebhook",
     "AgentVoice",
@@ -110,6 +127,11 @@ __all__ = [
     "CallStatus",
     "CreateActionRequest",
     "CreateActionResponse",
+    "CreateCallAgentParams",
+    "CreateCallAgentParamsActionsItem",
+    "CreateCallAgentParamsVectorDatabase",
+    "CreateCallAgentParamsVoice",
+    "CreateCallAgentParamsWebhook",
     "CreateCallRequestAgent",
     "CreateVoiceRequest",
     "CreateVoiceResponse",
@@ -134,12 +156,16 @@ __all__ = [
     "GetVoiceResponse",
     "HttpMethod",
     "HttpValidationError",
-    "ListActionsResponseItem",
-    "ListVoicesResponseItem",
-    "NormalizedAgent",
-    "NormalizedCall",
-    "NormalizedPhoneNumber",
+    "InterruptSensitivity",
+    "Language",
+    "Page",
     "PhoneNumber",
+    "PineconeVectorDatabase",
+    "PineconeVectorDatabaseParams",
+    "PineconeVectorDatabaseUpdateParams",
+    "PineconeVectorDatabaseUpdateParamsApiEnvironment",
+    "PineconeVectorDatabaseUpdateParamsApiKey",
+    "PineconeVectorDatabaseUpdateParamsIndex",
     "PlanType",
     "RimeVoice",
     "RimeVoiceParams",
@@ -154,11 +180,13 @@ __all__ = [
     "UpdateActionRequestBody",
     "UpdateActionResponse",
     "UpdateNumberRequestInboundAgent",
+    "UpdateNumberRequestLabel",
     "UpdateVoiceRequestBody",
     "UpdateVoiceResponse",
     "Usage",
     "ValidationError",
     "ValidationErrorLocItem",
+    "VectorDatabaseType",
     "VoiceType",
     "Webhook",
     "WebhookParams",

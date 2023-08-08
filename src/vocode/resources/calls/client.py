@@ -14,25 +14,28 @@ from ...errors.unprocessable_entity_error import UnprocessableEntityError
 from ...types.call import Call
 from ...types.create_call_request_agent import CreateCallRequestAgent
 from ...types.http_validation_error import HttpValidationError
-from ...types.normalized_call import NormalizedCall
+from ...types.page import Page
 
 
 class CallsClient:
-    def __init__(self, *, environment: str, token: str):
+    def __init__(self, *, environment: str, token: typing.Optional[str] = None):
         self._environment = environment
         self._token = token
 
-    def list_calls(self) -> typing.List[NormalizedCall]:
+    def list_calls(self, *, page: typing.Optional[int] = None, size: typing.Optional[int] = None) -> Page:
         _response = httpx.request(
             "GET",
             urllib.parse.urljoin(f"{self._environment}/", "v1/calls/list"),
+            params={"page": page, "size": size},
             headers=remove_none_from_headers(
                 {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
             ),
             timeout=60,
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(typing.List[NormalizedCall], _response.json())  # type: ignore
+            return pydantic.parse_obj_as(Page, _response.json())  # type: ignore
+        if _response.status_code == 422:
+            raise UnprocessableEntityError(pydantic.parse_obj_as(HttpValidationError, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:
@@ -121,22 +124,25 @@ class CallsClient:
 
 
 class AsyncCallsClient:
-    def __init__(self, *, environment: str, token: str):
+    def __init__(self, *, environment: str, token: typing.Optional[str] = None):
         self._environment = environment
         self._token = token
 
-    async def list_calls(self) -> typing.List[NormalizedCall]:
+    async def list_calls(self, *, page: typing.Optional[int] = None, size: typing.Optional[int] = None) -> Page:
         async with httpx.AsyncClient() as _client:
             _response = await _client.request(
                 "GET",
                 urllib.parse.urljoin(f"{self._environment}/", "v1/calls/list"),
+                params={"page": page, "size": size},
                 headers=remove_none_from_headers(
                     {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
                 ),
                 timeout=60,
             )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(typing.List[NormalizedCall], _response.json())  # type: ignore
+            return pydantic.parse_obj_as(Page, _response.json())  # type: ignore
+        if _response.status_code == 422:
+            raise UnprocessableEntityError(pydantic.parse_obj_as(HttpValidationError, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:

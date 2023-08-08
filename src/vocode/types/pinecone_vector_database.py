@@ -6,14 +6,16 @@ import typing
 import pydantic
 
 from ..core.datetime_utils import serialize_datetime
+from .vector_database_type import VectorDatabaseType
 
 
-class NormalizedPhoneNumber(pydantic.BaseModel):
+class PineconeVectorDatabase(pydantic.BaseModel):
     id: str
     user_id: str
-    active: typing.Optional[bool]
-    inbound_agent: str
-    number: str
+    type: typing.Optional[VectorDatabaseType]
+    index: str
+    api_key: str
+    api_environment: str
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

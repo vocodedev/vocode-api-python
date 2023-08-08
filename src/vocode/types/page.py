@@ -6,17 +6,13 @@ import typing
 import pydantic
 
 from ..core.datetime_utils import serialize_datetime
-from .agent_params_actions_item import AgentParamsActionsItem
-from .agent_params_voice import AgentParamsVoice
-from .agent_params_webhook import AgentParamsWebhook
 
 
-class AgentParams(pydantic.BaseModel):
-    prompt: str
-    actions: typing.Optional[typing.List[AgentParamsActionsItem]]
-    voice: AgentParamsVoice
-    initial_message: typing.Optional[str]
-    webhook: typing.Optional[AgentParamsWebhook]
+class Page(pydantic.BaseModel):
+    items: typing.List[typing.Any]
+    page: int
+    size: int
+    has_more: bool
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

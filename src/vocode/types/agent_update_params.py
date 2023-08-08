@@ -8,17 +8,23 @@ import pydantic
 from ..core.datetime_utils import serialize_datetime
 from .agent_update_params_actions import AgentUpdateParamsActions
 from .agent_update_params_initial_message import AgentUpdateParamsInitialMessage
+from .agent_update_params_interrupt_sensitivity import AgentUpdateParamsInterruptSensitivity
+from .agent_update_params_language import AgentUpdateParamsLanguage
 from .agent_update_params_prompt import AgentUpdateParamsPrompt
+from .agent_update_params_vector_database import AgentUpdateParamsVectorDatabase
 from .agent_update_params_voice import AgentUpdateParamsVoice
 from .agent_update_params_webhook import AgentUpdateParamsWebhook
 
 
 class AgentUpdateParams(pydantic.BaseModel):
     prompt: typing.Optional[AgentUpdateParamsPrompt]
+    language: typing.Optional[AgentUpdateParamsLanguage]
     actions: typing.Optional[AgentUpdateParamsActions]
     voice: typing.Optional[AgentUpdateParamsVoice]
     initial_message: typing.Optional[AgentUpdateParamsInitialMessage]
     webhook: typing.Optional[AgentUpdateParamsWebhook]
+    vector_database: typing.Optional[AgentUpdateParamsVectorDatabase]
+    interrupt_sensitivity: typing.Optional[AgentUpdateParamsInterruptSensitivity]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

@@ -12,13 +12,14 @@ from ...core.jsonable_encoder import jsonable_encoder
 from ...core.remove_none_from_headers import remove_none_from_headers
 from ...errors.unprocessable_entity_error import UnprocessableEntityError
 from ...types.http_validation_error import HttpValidationError
+from ...types.page import Page
 from ...types.webhook import Webhook
 from ...types.webhook_params import WebhookParams
 from ...types.webhook_update_params import WebhookUpdateParams
 
 
 class WebhooksClient:
-    def __init__(self, *, environment: str, token: str):
+    def __init__(self, *, environment: str, token: typing.Optional[str] = None):
         self._environment = environment
         self._token = token
 
@@ -42,17 +43,20 @@ class WebhooksClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def list_webhooks(self) -> typing.List[Webhook]:
+    def list_webhooks(self, *, page: typing.Optional[int] = None, size: typing.Optional[int] = None) -> Page:
         _response = httpx.request(
             "GET",
             urllib.parse.urljoin(f"{self._environment}/", "v1/webhooks/list"),
+            params={"page": page, "size": size},
             headers=remove_none_from_headers(
                 {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
             ),
             timeout=60,
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(typing.List[Webhook], _response.json())  # type: ignore
+            return pydantic.parse_obj_as(Page, _response.json())  # type: ignore
+        if _response.status_code == 422:
+            raise UnprocessableEntityError(pydantic.parse_obj_as(HttpValidationError, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:
@@ -102,7 +106,7 @@ class WebhooksClient:
 
 
 class AsyncWebhooksClient:
-    def __init__(self, *, environment: str, token: str):
+    def __init__(self, *, environment: str, token: typing.Optional[str] = None):
         self._environment = environment
         self._token = token
 
@@ -127,18 +131,21 @@ class AsyncWebhooksClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def list_webhooks(self) -> typing.List[Webhook]:
+    async def list_webhooks(self, *, page: typing.Optional[int] = None, size: typing.Optional[int] = None) -> Page:
         async with httpx.AsyncClient() as _client:
             _response = await _client.request(
                 "GET",
                 urllib.parse.urljoin(f"{self._environment}/", "v1/webhooks/list"),
+                params={"page": page, "size": size},
                 headers=remove_none_from_headers(
                     {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
                 ),
                 timeout=60,
             )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(typing.List[Webhook], _response.json())  # type: ignore
+            return pydantic.parse_obj_as(Page, _response.json())  # type: ignore
+        if _response.status_code == 422:
+            raise UnprocessableEntityError(pydantic.parse_obj_as(HttpValidationError, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:

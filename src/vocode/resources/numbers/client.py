@@ -12,27 +12,34 @@ from ...core.jsonable_encoder import jsonable_encoder
 from ...core.remove_none_from_headers import remove_none_from_headers
 from ...errors.unprocessable_entity_error import UnprocessableEntityError
 from ...types.http_validation_error import HttpValidationError
-from ...types.normalized_phone_number import NormalizedPhoneNumber
+from ...types.page import Page
 from ...types.phone_number import PhoneNumber
 from ...types.update_number_request_inbound_agent import UpdateNumberRequestInboundAgent
+from ...types.update_number_request_label import UpdateNumberRequestLabel
+
+# this is used as the default value for optional parameters
+OMIT = typing.cast(typing.Any, ...)
 
 
 class NumbersClient:
-    def __init__(self, *, environment: str, token: str):
+    def __init__(self, *, environment: str, token: typing.Optional[str] = None):
         self._environment = environment
         self._token = token
 
-    def list_numbers(self) -> typing.List[NormalizedPhoneNumber]:
+    def list_numbers(self, *, page: typing.Optional[int] = None, size: typing.Optional[int] = None) -> Page:
         _response = httpx.request(
             "GET",
             urllib.parse.urljoin(f"{self._environment}/", "v1/numbers/list"),
+            params={"page": page, "size": size},
             headers=remove_none_from_headers(
                 {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
             ),
             timeout=60,
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(typing.List[NormalizedPhoneNumber], _response.json())  # type: ignore
+            return pydantic.parse_obj_as(Page, _response.json())  # type: ignore
+        if _response.status_code == 422:
+            raise UnprocessableEntityError(pydantic.parse_obj_as(HttpValidationError, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:
@@ -76,12 +83,23 @@ class NumbersClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def update_number(self, *, phone_number: str, inbound_agent: UpdateNumberRequestInboundAgent) -> PhoneNumber:
+    def update_number(
+        self,
+        *,
+        phone_number: str,
+        label: typing.Optional[UpdateNumberRequestLabel] = OMIT,
+        inbound_agent: typing.Optional[UpdateNumberRequestInboundAgent] = OMIT,
+    ) -> PhoneNumber:
+        _request: typing.Dict[str, typing.Any] = {}
+        if label is not OMIT:
+            _request["label"] = label
+        if inbound_agent is not OMIT:
+            _request["inbound_agent"] = inbound_agent
         _response = httpx.request(
             "POST",
             urllib.parse.urljoin(f"{self._environment}/", "v1/numbers/update"),
             params={"phone_number": phone_number},
-            json=jsonable_encoder({"inbound_agent": inbound_agent}),
+            json=jsonable_encoder(_request),
             headers=remove_none_from_headers(
                 {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
             ),
@@ -119,22 +137,25 @@ class NumbersClient:
 
 
 class AsyncNumbersClient:
-    def __init__(self, *, environment: str, token: str):
+    def __init__(self, *, environment: str, token: typing.Optional[str] = None):
         self._environment = environment
         self._token = token
 
-    async def list_numbers(self) -> typing.List[NormalizedPhoneNumber]:
+    async def list_numbers(self, *, page: typing.Optional[int] = None, size: typing.Optional[int] = None) -> Page:
         async with httpx.AsyncClient() as _client:
             _response = await _client.request(
                 "GET",
                 urllib.parse.urljoin(f"{self._environment}/", "v1/numbers/list"),
+                params={"page": page, "size": size},
                 headers=remove_none_from_headers(
                     {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
                 ),
                 timeout=60,
             )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(typing.List[NormalizedPhoneNumber], _response.json())  # type: ignore
+            return pydantic.parse_obj_as(Page, _response.json())  # type: ignore
+        if _response.status_code == 422:
+            raise UnprocessableEntityError(pydantic.parse_obj_as(HttpValidationError, _response.json()))  # type: ignore
         try:
             _response_json = _response.json()
         except JSONDecodeError:
@@ -180,13 +201,24 @@ class AsyncNumbersClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def update_number(self, *, phone_number: str, inbound_agent: UpdateNumberRequestInboundAgent) -> PhoneNumber:
+    async def update_number(
+        self,
+        *,
+        phone_number: str,
+        label: typing.Optional[UpdateNumberRequestLabel] = OMIT,
+        inbound_agent: typing.Optional[UpdateNumberRequestInboundAgent] = OMIT,
+    ) -> PhoneNumber:
+        _request: typing.Dict[str, typing.Any] = {}
+        if label is not OMIT:
+            _request["label"] = label
+        if inbound_agent is not OMIT:
+            _request["inbound_agent"] = inbound_agent
         async with httpx.AsyncClient() as _client:
             _response = await _client.request(
                 "POST",
                 urllib.parse.urljoin(f"{self._environment}/", "v1/numbers/update"),
                 params={"phone_number": phone_number},
-                json=jsonable_encoder({"inbound_agent": inbound_agent}),
+                json=jsonable_encoder(_request),
                 headers=remove_none_from_headers(
                     {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
                 ),

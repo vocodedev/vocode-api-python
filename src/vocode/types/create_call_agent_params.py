@@ -6,24 +6,22 @@ import typing
 import pydantic
 
 from ..core.datetime_utils import serialize_datetime
-from .agent_actions_item import AgentActionsItem
-from .agent_voice import AgentVoice
+from .create_call_agent_params_actions_item import CreateCallAgentParamsActionsItem
+from .create_call_agent_params_vector_database import CreateCallAgentParamsVectorDatabase
+from .create_call_agent_params_voice import CreateCallAgentParamsVoice
+from .create_call_agent_params_webhook import CreateCallAgentParamsWebhook
 from .interrupt_sensitivity import InterruptSensitivity
 from .language import Language
-from .pinecone_vector_database import PineconeVectorDatabase
-from .webhook import Webhook
 
 
-class Agent(pydantic.BaseModel):
-    id: str
-    user_id: str
+class CreateCallAgentParams(pydantic.BaseModel):
     prompt: str
     language: typing.Optional[Language]
-    actions: typing.List[AgentActionsItem]
-    voice: AgentVoice
+    actions: typing.Optional[typing.List[CreateCallAgentParamsActionsItem]]
+    voice: typing.Optional[CreateCallAgentParamsVoice]
     initial_message: typing.Optional[str]
-    webhook: typing.Optional[Webhook]
-    vector_database: typing.Optional[PineconeVectorDatabase]
+    webhook: typing.Optional[CreateCallAgentParamsWebhook]
+    vector_database: typing.Optional[CreateCallAgentParamsVectorDatabase]
     interrupt_sensitivity: typing.Optional[InterruptSensitivity]
 
     def json(self, **kwargs: typing.Any) -> str:

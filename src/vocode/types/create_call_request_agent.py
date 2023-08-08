@@ -2,6 +2,6 @@
 
 import typing
 
-from .agent_params import AgentParams
+from .create_call_agent_params import CreateCallAgentParams
 
-CreateCallRequestAgent = typing.Union[str, AgentParams]
+CreateCallRequestAgent = typing.Union[str, CreateCallAgentParams]

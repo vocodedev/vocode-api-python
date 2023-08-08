@@ -6,16 +6,17 @@ import typing
 import pydantic
 
 from ..core.datetime_utils import serialize_datetime
+from .pinecone_vector_database_update_params_api_environment import PineconeVectorDatabaseUpdateParamsApiEnvironment
+from .pinecone_vector_database_update_params_api_key import PineconeVectorDatabaseUpdateParamsApiKey
+from .pinecone_vector_database_update_params_index import PineconeVectorDatabaseUpdateParamsIndex
+from .vector_database_type import VectorDatabaseType
 
 
-class NormalizedAgent(pydantic.BaseModel):
-    id: str
-    user_id: str
-    prompt: str
-    actions: typing.List[str]
-    voice: str
-    initial_message: typing.Optional[str]
-    webhook: typing.Optional[str]
+class PineconeVectorDatabaseUpdateParams(pydantic.BaseModel):
+    type: VectorDatabaseType
+    index: typing.Optional[PineconeVectorDatabaseUpdateParamsIndex]
+    api_key: typing.Optional[PineconeVectorDatabaseUpdateParamsApiKey]
+    api_environment: typing.Optional[PineconeVectorDatabaseUpdateParamsApiEnvironment]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

@@ -6,19 +6,14 @@ import typing
 import pydantic
 
 from ..core.datetime_utils import serialize_datetime
-from .call_status import CallStatus
+from .vector_database_type import VectorDatabaseType
 
 
-class NormalizedCall(pydantic.BaseModel):
-    id: str
-    user_id: str
-    status: typing.Optional[CallStatus]
-    error_message: typing.Optional[str]
-    recording_available: typing.Optional[bool]
-    transcript: typing.Optional[str]
-    to_number: str
-    from_number: str
-    agent: str
+class PineconeVectorDatabaseParams(pydantic.BaseModel):
+    type: VectorDatabaseType
+    index: str
+    api_key: str
+    api_environment: str
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

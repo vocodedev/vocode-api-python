@@ -13,6 +13,7 @@ class PhoneNumber(pydantic.BaseModel):
     id: str
     user_id: str
     active: typing.Optional[bool]
+    label: typing.Optional[str]
     inbound_agent: Agent
     number: str
 
