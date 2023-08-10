@@ -19,7 +19,7 @@ from ...types.webhook_update_params import WebhookUpdateParams
 
 
 class WebhooksClient:
-    def __init__(self, *, environment: str, token: typing.Optional[str] = None):
+    def __init__(self, *, environment: str, token: str):
         self._environment = environment
         self._token = token
 
@@ -106,7 +106,7 @@ class WebhooksClient:
 
 
 class AsyncWebhooksClient:
-    def __init__(self, *, environment: str, token: typing.Optional[str] = None):
+    def __init__(self, *, environment: str, token: str):
         self._environment = environment
         self._token = token
 

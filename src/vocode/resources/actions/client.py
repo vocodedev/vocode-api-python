@@ -21,7 +21,7 @@ from ...types.update_action_response import UpdateActionResponse
 
 
 class ActionsClient:
-    def __init__(self, *, environment: str, token: typing.Optional[str] = None):
+    def __init__(self, *, environment: str, token: str):
         self._environment = environment
         self._token = token
 
@@ -108,7 +108,7 @@ class ActionsClient:
 
 
 class AsyncActionsClient:
-    def __init__(self, *, environment: str, token: typing.Optional[str] = None):
+    def __init__(self, *, environment: str, token: str):
         self._environment = environment
         self._token = token
 

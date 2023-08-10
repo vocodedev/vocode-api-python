@@ -18,7 +18,7 @@ from ...types.page import Page
 
 
 class CallsClient:
-    def __init__(self, *, environment: str, token: typing.Optional[str] = None):
+    def __init__(self, *, environment: str, token: str):
         self._environment = environment
         self._token = token
 
@@ -124,7 +124,7 @@ class CallsClient:
 
 
 class AsyncCallsClient:
-    def __init__(self, *, environment: str, token: typing.Optional[str] = None):
+    def __init__(self, *, environment: str, token: str):
         self._environment = environment
         self._token = token
 

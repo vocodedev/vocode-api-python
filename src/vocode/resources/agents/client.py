@@ -27,7 +27,7 @@ OMIT = typing.cast(typing.Any, ...)
 
 
 class AgentsClient:
-    def __init__(self, *, environment: str, token: typing.Optional[str] = None):
+    def __init__(self, *, environment: str, token: str):
         self._environment = environment
         self._token = token
 
@@ -138,7 +138,7 @@ class AgentsClient:
 
 
 class AsyncAgentsClient:
-    def __init__(self, *, environment: str, token: typing.Optional[str] = None):
+    def __init__(self, *, environment: str, token: str):
         self._environment = environment
         self._token = token
 

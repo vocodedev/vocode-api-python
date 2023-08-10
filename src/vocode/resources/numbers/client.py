@@ -22,7 +22,7 @@ OMIT = typing.cast(typing.Any, ...)
 
 
 class NumbersClient:
-    def __init__(self, *, environment: str, token: typing.Optional[str] = None):
+    def __init__(self, *, environment: str, token: str):
         self._environment = environment
         self._token = token
 
@@ -137,7 +137,7 @@ class NumbersClient:
 
 
 class AsyncNumbersClient:
-    def __init__(self, *, environment: str, token: typing.Optional[str] = None):
+    def __init__(self, *, environment: str, token: str):
         self._environment = environment
         self._token = token
 

@@ -21,7 +21,7 @@ from ...types.update_voice_response import UpdateVoiceResponse
 
 
 class VoicesClient:
-    def __init__(self, *, environment: str, token: typing.Optional[str] = None):
+    def __init__(self, *, environment: str, token: str):
         self._environment = environment
         self._token = token
 
@@ -108,7 +108,7 @@ class VoicesClient:
 
 
 class AsyncVoicesClient:
-    def __init__(self, *, environment: str, token: typing.Optional[str] = None):
+    def __init__(self, *, environment: str, token: str):
         self._environment = environment
         self._token = token
 
