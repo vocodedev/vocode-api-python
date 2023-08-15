@@ -6,6 +6,6 @@ from .dtmf_action_update_params import DtmfActionUpdateParams
 from .end_conversation_action_update_params import EndConversationActionUpdateParams
 from .transfer_call_action_update_params import TransferCallActionUpdateParams
 
-AgentUpdateParamsActionsAgentUpdateParamsActionsItem = typing.Union[
+AgentUpdateParamsActionsItem = typing.Union[
     str, TransferCallActionUpdateParams, EndConversationActionUpdateParams, DtmfActionUpdateParams
 ]

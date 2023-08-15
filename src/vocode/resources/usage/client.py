@@ -3,26 +3,23 @@
 import urllib.parse
 from json.decoder import JSONDecodeError
 
-import httpx
 import pydantic
 
 from ...core.api_error import ApiError
-from ...core.remove_none_from_headers import remove_none_from_headers
+from ...core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ...types.usage import Usage
 
 
 class UsageClient:
-    def __init__(self, *, environment: str, token: str):
+    def __init__(self, *, environment: str, client_wrapper: SyncClientWrapper):
         self._environment = environment
-        self._token = token
+        self._client_wrapper = client_wrapper
 
     def get_usage(self) -> Usage:
-        _response = httpx.request(
+        _response = self._client_wrapper.httpx_client.request(
             "GET",
             urllib.parse.urljoin(f"{self._environment}/", "v1/usage"),
-            headers=remove_none_from_headers(
-                {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
-            ),
+            headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
         if 200 <= _response.status_code < 300:
@@ -35,20 +32,17 @@ class UsageClient:
 
 
 class AsyncUsageClient:
-    def __init__(self, *, environment: str, token: str):
+    def __init__(self, *, environment: str, client_wrapper: AsyncClientWrapper):
         self._environment = environment
-        self._token = token
+        self._client_wrapper = client_wrapper
 
     async def get_usage(self) -> Usage:
-        async with httpx.AsyncClient() as _client:
-            _response = await _client.request(
-                "GET",
-                urllib.parse.urljoin(f"{self._environment}/", "v1/usage"),
-                headers=remove_none_from_headers(
-                    {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
-                ),
-                timeout=60,
-            )
+        _response = await self._client_wrapper.httpx_client.request(
+            "GET",
+            urllib.parse.urljoin(f"{self._environment}/", "v1/usage"),
+            headers=self._client_wrapper.get_headers(),
+            timeout=60,
+        )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(Usage, _response.json())  # type: ignore
         try:

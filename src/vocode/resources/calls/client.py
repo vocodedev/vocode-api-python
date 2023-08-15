@@ -4,36 +4,43 @@ import typing
 import urllib.parse
 from json.decoder import JSONDecodeError
 
-import httpx
 import pydantic
 
 from ...core.api_error import ApiError
+from ...core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ...core.jsonable_encoder import jsonable_encoder
-from ...core.remove_none_from_headers import remove_none_from_headers
+from ...core.remove_none_from_dict import remove_none_from_dict
 from ...errors.unprocessable_entity_error import UnprocessableEntityError
 from ...types.call import Call
+from ...types.call_page import CallPage
 from ...types.create_call_request_agent import CreateCallRequestAgent
 from ...types.http_validation_error import HttpValidationError
-from ...types.page import Page
+
+# this is used as the default value for optional parameters
+OMIT = typing.cast(typing.Any, ...)
 
 
 class CallsClient:
-    def __init__(self, *, environment: str, token: str):
+    def __init__(self, *, environment: str, client_wrapper: SyncClientWrapper):
         self._environment = environment
-        self._token = token
+        self._client_wrapper = client_wrapper
 
-    def list_calls(self, *, page: typing.Optional[int] = None, size: typing.Optional[int] = None) -> Page:
-        _response = httpx.request(
+    def list_calls(self, *, page: typing.Optional[int] = None, size: typing.Optional[int] = None) -> CallPage:
+        """
+        Parameters:
+            - page: typing.Optional[int].
+
+            - size: typing.Optional[int].
+        """
+        _response = self._client_wrapper.httpx_client.request(
             "GET",
             urllib.parse.urljoin(f"{self._environment}/", "v1/calls/list"),
-            params={"page": page, "size": size},
-            headers=remove_none_from_headers(
-                {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
-            ),
+            params=remove_none_from_dict({"page": page, "size": size}),
+            headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(Page, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(CallPage, _response.json())  # type: ignore
         if _response.status_code == 422:
             raise UnprocessableEntityError(pydantic.parse_obj_as(HttpValidationError, _response.json()))  # type: ignore
         try:
@@ -43,13 +50,15 @@ class CallsClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     def get_call(self, *, id: str) -> Call:
-        _response = httpx.request(
+        """
+        Parameters:
+            - id: str.
+        """
+        _response = self._client_wrapper.httpx_client.request(
             "GET",
             urllib.parse.urljoin(f"{self._environment}/", "v1/calls"),
-            params={"id": id},
-            headers=remove_none_from_headers(
-                {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
-            ),
+            params=remove_none_from_dict({"id": id}),
+            headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
         if 200 <= _response.status_code < 300:
@@ -63,13 +72,15 @@ class CallsClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     def end_call(self, *, id: str) -> Call:
-        _response = httpx.request(
+        """
+        Parameters:
+            - id: str.
+        """
+        _response = self._client_wrapper.httpx_client.request(
             "POST",
             urllib.parse.urljoin(f"{self._environment}/", "v1/calls/end"),
-            params={"id": id},
-            headers=remove_none_from_headers(
-                {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
-            ),
+            params=remove_none_from_dict({"id": id}),
+            headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
         if 200 <= _response.status_code < 300:
@@ -83,13 +94,19 @@ class CallsClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     def create_call(self, *, from_number: str, to_number: str, agent: CreateCallRequestAgent) -> Call:
-        _response = httpx.request(
+        """
+        Parameters:
+            - from_number: str.
+
+            - to_number: str.
+
+            - agent: CreateCallRequestAgent.
+        """
+        _response = self._client_wrapper.httpx_client.request(
             "POST",
             urllib.parse.urljoin(f"{self._environment}/", "v1/calls/create"),
             json=jsonable_encoder({"from_number": from_number, "to_number": to_number, "agent": agent}),
-            headers=remove_none_from_headers(
-                {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
-            ),
+            headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
         if 200 <= _response.status_code < 300:
@@ -103,13 +120,15 @@ class CallsClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     def recording(self, *, id: str) -> typing.Any:
-        _response = httpx.request(
+        """
+        Parameters:
+            - id: str.
+        """
+        _response = self._client_wrapper.httpx_client.request(
             "GET",
             urllib.parse.urljoin(f"{self._environment}/", "v1/calls/recording"),
-            params={"id": id},
-            headers=remove_none_from_headers(
-                {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
-            ),
+            params=remove_none_from_dict({"id": id}),
+            headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
         if 200 <= _response.status_code < 300:
@@ -124,23 +143,26 @@ class CallsClient:
 
 
 class AsyncCallsClient:
-    def __init__(self, *, environment: str, token: str):
+    def __init__(self, *, environment: str, client_wrapper: AsyncClientWrapper):
         self._environment = environment
-        self._token = token
+        self._client_wrapper = client_wrapper
 
-    async def list_calls(self, *, page: typing.Optional[int] = None, size: typing.Optional[int] = None) -> Page:
-        async with httpx.AsyncClient() as _client:
-            _response = await _client.request(
-                "GET",
-                urllib.parse.urljoin(f"{self._environment}/", "v1/calls/list"),
-                params={"page": page, "size": size},
-                headers=remove_none_from_headers(
-                    {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
-                ),
-                timeout=60,
-            )
+    async def list_calls(self, *, page: typing.Optional[int] = None, size: typing.Optional[int] = None) -> CallPage:
+        """
+        Parameters:
+            - page: typing.Optional[int].
+
+            - size: typing.Optional[int].
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "GET",
+            urllib.parse.urljoin(f"{self._environment}/", "v1/calls/list"),
+            params=remove_none_from_dict({"page": page, "size": size}),
+            headers=self._client_wrapper.get_headers(),
+            timeout=60,
+        )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(Page, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(CallPage, _response.json())  # type: ignore
         if _response.status_code == 422:
             raise UnprocessableEntityError(pydantic.parse_obj_as(HttpValidationError, _response.json()))  # type: ignore
         try:
@@ -150,16 +172,17 @@ class AsyncCallsClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     async def get_call(self, *, id: str) -> Call:
-        async with httpx.AsyncClient() as _client:
-            _response = await _client.request(
-                "GET",
-                urllib.parse.urljoin(f"{self._environment}/", "v1/calls"),
-                params={"id": id},
-                headers=remove_none_from_headers(
-                    {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
-                ),
-                timeout=60,
-            )
+        """
+        Parameters:
+            - id: str.
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "GET",
+            urllib.parse.urljoin(f"{self._environment}/", "v1/calls"),
+            params=remove_none_from_dict({"id": id}),
+            headers=self._client_wrapper.get_headers(),
+            timeout=60,
+        )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(Call, _response.json())  # type: ignore
         if _response.status_code == 422:
@@ -171,16 +194,17 @@ class AsyncCallsClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     async def end_call(self, *, id: str) -> Call:
-        async with httpx.AsyncClient() as _client:
-            _response = await _client.request(
-                "POST",
-                urllib.parse.urljoin(f"{self._environment}/", "v1/calls/end"),
-                params={"id": id},
-                headers=remove_none_from_headers(
-                    {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
-                ),
-                timeout=60,
-            )
+        """
+        Parameters:
+            - id: str.
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "POST",
+            urllib.parse.urljoin(f"{self._environment}/", "v1/calls/end"),
+            params=remove_none_from_dict({"id": id}),
+            headers=self._client_wrapper.get_headers(),
+            timeout=60,
+        )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(Call, _response.json())  # type: ignore
         if _response.status_code == 422:
@@ -192,16 +216,21 @@ class AsyncCallsClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     async def create_call(self, *, from_number: str, to_number: str, agent: CreateCallRequestAgent) -> Call:
-        async with httpx.AsyncClient() as _client:
-            _response = await _client.request(
-                "POST",
-                urllib.parse.urljoin(f"{self._environment}/", "v1/calls/create"),
-                json=jsonable_encoder({"from_number": from_number, "to_number": to_number, "agent": agent}),
-                headers=remove_none_from_headers(
-                    {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
-                ),
-                timeout=60,
-            )
+        """
+        Parameters:
+            - from_number: str.
+
+            - to_number: str.
+
+            - agent: CreateCallRequestAgent.
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "POST",
+            urllib.parse.urljoin(f"{self._environment}/", "v1/calls/create"),
+            json=jsonable_encoder({"from_number": from_number, "to_number": to_number, "agent": agent}),
+            headers=self._client_wrapper.get_headers(),
+            timeout=60,
+        )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(Call, _response.json())  # type: ignore
         if _response.status_code == 422:
@@ -213,16 +242,17 @@ class AsyncCallsClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     async def recording(self, *, id: str) -> typing.Any:
-        async with httpx.AsyncClient() as _client:
-            _response = await _client.request(
-                "GET",
-                urllib.parse.urljoin(f"{self._environment}/", "v1/calls/recording"),
-                params={"id": id},
-                headers=remove_none_from_headers(
-                    {"Authorization": f"Bearer {self._token}" if self._token is not None else None}
-                ),
-                timeout=60,
-            )
+        """
+        Parameters:
+            - id: str.
+        """
+        _response = await self._client_wrapper.httpx_client.request(
+            "GET",
+            urllib.parse.urljoin(f"{self._environment}/", "v1/calls/recording"),
+            params=remove_none_from_dict({"id": id}),
+            headers=self._client_wrapper.get_headers(),
+            timeout=60,
+        )
         if 200 <= _response.status_code < 300:
             return pydantic.parse_obj_as(typing.Any, _response.json())  # type: ignore
         if _response.status_code == 422:

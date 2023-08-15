@@ -4,6 +4,7 @@ import typing
 
 from .azure_voice import AzureVoice
 from .eleven_labs_voice import ElevenLabsVoice
+from .play_ht_voice import PlayHtVoice
 from .rime_voice import RimeVoice
 
-UpdateVoiceResponse = typing.Union[AzureVoice, RimeVoice, ElevenLabsVoice]
+UpdateVoiceResponse = typing.Union[AzureVoice, RimeVoice, ElevenLabsVoice, PlayHtVoice]

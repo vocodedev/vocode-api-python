@@ -7,4 +7,4 @@ from .eleven_labs_voice import ElevenLabsVoice
 from .play_ht_voice import PlayHtVoice
 from .rime_voice import RimeVoice
 
-AgentVoice = typing.Union[AzureVoice, RimeVoice, ElevenLabsVoice, PlayHtVoice]
+VoicePageItemsItem = typing.Union[AzureVoice, RimeVoice, ElevenLabsVoice, PlayHtVoice]

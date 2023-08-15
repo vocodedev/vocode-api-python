@@ -2,9 +2,7 @@
 
 import typing
 
-from .agent_update_params_actions_agent_update_params_actions_item import (
-    AgentUpdateParamsActionsAgentUpdateParamsActionsItem,
-)
+from .agent_update_params_actions_item import AgentUpdateParamsActionsItem
 from .undefined import Undefined
 
-AgentUpdateParamsActions = typing.Union[typing.List[AgentUpdateParamsActionsAgentUpdateParamsActionsItem], Undefined]
+AgentUpdateParamsActions = typing.Union[typing.List[AgentUpdateParamsActionsItem], Undefined]

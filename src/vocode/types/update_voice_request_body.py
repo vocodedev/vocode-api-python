@@ -4,6 +4,9 @@ import typing
 
 from .azure_voice_update_params import AzureVoiceUpdateParams
 from .eleven_labs_voice_update_params import ElevenLabsVoiceUpdateParams
+from .play_ht_voice_update_params import PlayHtVoiceUpdateParams
 from .rime_voice_update_params import RimeVoiceUpdateParams
 
-UpdateVoiceRequestBody = typing.Union[AzureVoiceUpdateParams, RimeVoiceUpdateParams, ElevenLabsVoiceUpdateParams]
+UpdateVoiceRequestBody = typing.Union[
+    AzureVoiceUpdateParams, RimeVoiceUpdateParams, ElevenLabsVoiceUpdateParams, PlayHtVoiceUpdateParams
+]

@@ -6,23 +6,22 @@ import typing
 import pydantic
 
 from ..core.datetime_utils import serialize_datetime
-from .agent import Agent
-from .call_status import CallStatus
+from .interrupt_sensitivity import InterruptSensitivity
+from .language import Language
+from .normalized_agent_vector_database import NormalizedAgentVectorDatabase
 
 
-class Call(pydantic.BaseModel):
+class NormalizedAgent(pydantic.BaseModel):
     id: str
     user_id: str
-    status: typing.Optional[CallStatus]
-    error_message: typing.Optional[str]
-    recording_available: typing.Optional[bool]
-    transcript: typing.Optional[str]
-    to_number: str
-    from_number: str
-    agent: Agent
-    agent_phone_number: str
-    start_time: typing.Optional[dt.datetime]
-    end_time: typing.Optional[dt.datetime]
+    prompt: str
+    language: typing.Optional[Language]
+    actions: typing.List[str]
+    voice: str
+    initial_message: typing.Optional[str]
+    webhook: typing.Optional[str]
+    vector_database: typing.Optional[NormalizedAgentVectorDatabase]
+    interrupt_sensitivity: typing.Optional[InterruptSensitivity]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

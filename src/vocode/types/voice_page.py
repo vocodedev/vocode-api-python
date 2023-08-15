@@ -6,10 +6,11 @@ import typing
 import pydantic
 
 from ..core.datetime_utils import serialize_datetime
+from .voice_page_items_item import VoicePageItemsItem
 
 
-class Page(pydantic.BaseModel):
-    items: typing.List[typing.Any]
+class VoicePage(pydantic.BaseModel):
+    items: typing.List[VoicePageItemsItem]
     page: int
     size: int
     has_more: bool
