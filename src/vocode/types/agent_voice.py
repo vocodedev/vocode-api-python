@@ -17,6 +17,7 @@ class AgentVoice_VoiceAzure(AzureVoice):
 
     class Config:
         frozen = True
+        smart_union = True
         allow_population_by_field_name = True
 
 
@@ -25,6 +26,7 @@ class AgentVoice_VoiceRime(RimeVoice):
 
     class Config:
         frozen = True
+        smart_union = True
         allow_population_by_field_name = True
 
 
@@ -33,6 +35,7 @@ class AgentVoice_VoiceElevenLabs(ElevenLabsVoice):
 
     class Config:
         frozen = True
+        smart_union = True
         allow_population_by_field_name = True
 
 
@@ -41,6 +44,7 @@ class AgentVoice_VoicePlayHt(PlayHtVoice):
 
     class Config:
         frozen = True
+        smart_union = True
         allow_population_by_field_name = True
 
 

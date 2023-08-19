@@ -17,6 +17,7 @@ class AgentParamsVoiceOne_VoiceAzure(AzureVoiceParams):
 
     class Config:
         frozen = True
+        smart_union = True
         allow_population_by_field_name = True
 
 
@@ -25,6 +26,7 @@ class AgentParamsVoiceOne_VoiceRime(RimeVoiceParams):
 
     class Config:
         frozen = True
+        smart_union = True
         allow_population_by_field_name = True
 
 
@@ -33,6 +35,7 @@ class AgentParamsVoiceOne_VoiceElevenLabs(ElevenLabsVoiceParams):
 
     class Config:
         frozen = True
+        smart_union = True
         allow_population_by_field_name = True
 
 
@@ -41,6 +44,7 @@ class AgentParamsVoiceOne_VoicePlayHt(PlayHtVoiceParams):
 
     class Config:
         frozen = True
+        smart_union = True
         allow_population_by_field_name = True
 
 

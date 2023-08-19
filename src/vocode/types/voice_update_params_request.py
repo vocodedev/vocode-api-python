@@ -17,6 +17,7 @@ class VoiceUpdateParamsRequest_VoiceAzure(AzureVoiceUpdateParams):
 
     class Config:
         frozen = True
+        smart_union = True
         allow_population_by_field_name = True
 
 
@@ -25,6 +26,7 @@ class VoiceUpdateParamsRequest_VoiceRime(RimeVoiceUpdateParams):
 
     class Config:
         frozen = True
+        smart_union = True
         allow_population_by_field_name = True
 
 
@@ -33,6 +35,7 @@ class VoiceUpdateParamsRequest_VoiceElevenLabs(ElevenLabsVoiceUpdateParams):
 
     class Config:
         frozen = True
+        smart_union = True
         allow_population_by_field_name = True
 
 
@@ -41,6 +44,7 @@ class VoiceUpdateParamsRequest_VoicePlayHt(PlayHtVoiceUpdateParams):
 
     class Config:
         frozen = True
+        smart_union = True
         allow_population_by_field_name = True
 
 

@@ -16,6 +16,7 @@ class ActionPageItemsItem_ActionTransferCall(TransferCallAction):
 
     class Config:
         frozen = True
+        smart_union = True
         allow_population_by_field_name = True
 
 
@@ -24,6 +25,7 @@ class ActionPageItemsItem_ActionEndConversation(EndConversationAction):
 
     class Config:
         frozen = True
+        smart_union = True
         allow_population_by_field_name = True
 
 
@@ -32,6 +34,7 @@ class ActionPageItemsItem_ActionDtmf(DtmfAction):
 
     class Config:
         frozen = True
+        smart_union = True
         allow_population_by_field_name = True
 
 

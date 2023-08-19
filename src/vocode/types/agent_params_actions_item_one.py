@@ -16,6 +16,7 @@ class AgentParamsActionsItemOne_ActionTransferCall(TransferCallActionParams):
 
     class Config:
         frozen = True
+        smart_union = True
         allow_population_by_field_name = True
 
 
@@ -24,6 +25,7 @@ class AgentParamsActionsItemOne_ActionEndConversation(EndConversationActionParam
 
     class Config:
         frozen = True
+        smart_union = True
         allow_population_by_field_name = True
 
 
@@ -32,6 +34,7 @@ class AgentParamsActionsItemOne_ActionDtmf(DtmfActionParams):
 
     class Config:
         frozen = True
+        smart_union = True
         allow_population_by_field_name = True
 
 
