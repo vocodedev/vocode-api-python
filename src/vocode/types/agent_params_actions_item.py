@@ -2,8 +2,6 @@
 
 import typing
 
-from .dtmf_action_params import DtmfActionParams
-from .end_conversation_action_params import EndConversationActionParams
-from .transfer_call_action_params import TransferCallActionParams
+from .agent_params_actions_item_one import AgentParamsActionsItemOne
 
-AgentParamsActionsItem = typing.Union[str, TransferCallActionParams, EndConversationActionParams, DtmfActionParams]
+AgentParamsActionsItem = typing.Union[str, AgentParamsActionsItemOne]

@@ -6,11 +6,9 @@ import typing
 import pydantic
 
 from ..core.datetime_utils import serialize_datetime
-from .voice_type import VoiceType
 
 
 class AzureVoiceParams(pydantic.BaseModel):
-    type: VoiceType
     voice_name: str
     pitch: typing.Optional[int]
     rate: typing.Optional[int]

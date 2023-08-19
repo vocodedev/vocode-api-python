@@ -2,12 +2,7 @@
 
 import typing
 
-from .azure_voice_update_params import AzureVoiceUpdateParams
-from .eleven_labs_voice_update_params import ElevenLabsVoiceUpdateParams
-from .play_ht_voice_update_params import PlayHtVoiceUpdateParams
-from .rime_voice_update_params import RimeVoiceUpdateParams
+from .agent_update_params_voice_one import AgentUpdateParamsVoiceOne
 from .undefined import Undefined
 
-AgentUpdateParamsVoice = typing.Union[
-    str, AzureVoiceUpdateParams, RimeVoiceUpdateParams, ElevenLabsVoiceUpdateParams, PlayHtVoiceUpdateParams, Undefined
-]
+AgentUpdateParamsVoice = typing.Union[str, AgentUpdateParamsVoiceOne, Undefined]

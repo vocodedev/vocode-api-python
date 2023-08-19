@@ -12,36 +12,33 @@ from ...core.jsonable_encoder import jsonable_encoder
 from ...core.remove_none_from_dict import remove_none_from_dict
 from ...errors.unprocessable_entity_error import UnprocessableEntityError
 from ...types.action_page import ActionPage
-from ...types.create_action_request import CreateActionRequest
-from ...types.create_action_response import CreateActionResponse
-from ...types.get_action_response import GetActionResponse
+from ...types.action_params_request import ActionParamsRequest
+from ...types.action_response_model import ActionResponseModel
+from ...types.action_update_params_request import ActionUpdateParamsRequest
 from ...types.http_validation_error import HttpValidationError
-from ...types.update_action_request_body import UpdateActionRequestBody
-from ...types.update_action_response import UpdateActionResponse
 
 # this is used as the default value for optional parameters
 OMIT = typing.cast(typing.Any, ...)
 
 
 class ActionsClient:
-    def __init__(self, *, environment: str, client_wrapper: SyncClientWrapper):
-        self._environment = environment
+    def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    def get_action(self, *, id: str) -> GetActionResponse:
+    def get_action(self, *, id: str) -> ActionResponseModel:
         """
         Parameters:
             - id: str.
         """
         _response = self._client_wrapper.httpx_client.request(
             "GET",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/actions"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/actions"),
             params=remove_none_from_dict({"id": id}),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(GetActionResponse, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(ActionResponseModel, _response.json())  # type: ignore
         if _response.status_code == 422:
             raise UnprocessableEntityError(pydantic.parse_obj_as(HttpValidationError, _response.json()))  # type: ignore
         try:
@@ -59,7 +56,7 @@ class ActionsClient:
         """
         _response = self._client_wrapper.httpx_client.request(
             "GET",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/actions/list"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/actions/list"),
             params=remove_none_from_dict({"page": page, "size": size}),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
@@ -74,20 +71,20 @@ class ActionsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def create_action(self, *, request: CreateActionRequest) -> CreateActionResponse:
+    def create_action(self, *, request: ActionParamsRequest) -> ActionResponseModel:
         """
         Parameters:
-            - request: CreateActionRequest.
+            - request: ActionParamsRequest.
         """
         _response = self._client_wrapper.httpx_client.request(
             "POST",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/actions/create"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/actions/create"),
             json=jsonable_encoder(request),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(CreateActionResponse, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(ActionResponseModel, _response.json())  # type: ignore
         if _response.status_code == 422:
             raise UnprocessableEntityError(pydantic.parse_obj_as(HttpValidationError, _response.json()))  # type: ignore
         try:
@@ -96,23 +93,23 @@ class ActionsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def update_action(self, *, id: str, request: UpdateActionRequestBody) -> UpdateActionResponse:
+    def update_action(self, *, id: str, request: ActionUpdateParamsRequest) -> ActionResponseModel:
         """
         Parameters:
             - id: str.
 
-            - request: UpdateActionRequestBody.
+            - request: ActionUpdateParamsRequest.
         """
         _response = self._client_wrapper.httpx_client.request(
             "POST",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/actions/update"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/actions/update"),
             params=remove_none_from_dict({"id": id}),
             json=jsonable_encoder(request),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(UpdateActionResponse, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(ActionResponseModel, _response.json())  # type: ignore
         if _response.status_code == 422:
             raise UnprocessableEntityError(pydantic.parse_obj_as(HttpValidationError, _response.json()))  # type: ignore
         try:
@@ -123,24 +120,23 @@ class ActionsClient:
 
 
 class AsyncActionsClient:
-    def __init__(self, *, environment: str, client_wrapper: AsyncClientWrapper):
-        self._environment = environment
+    def __init__(self, *, client_wrapper: AsyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    async def get_action(self, *, id: str) -> GetActionResponse:
+    async def get_action(self, *, id: str) -> ActionResponseModel:
         """
         Parameters:
             - id: str.
         """
         _response = await self._client_wrapper.httpx_client.request(
             "GET",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/actions"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/actions"),
             params=remove_none_from_dict({"id": id}),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(GetActionResponse, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(ActionResponseModel, _response.json())  # type: ignore
         if _response.status_code == 422:
             raise UnprocessableEntityError(pydantic.parse_obj_as(HttpValidationError, _response.json()))  # type: ignore
         try:
@@ -158,7 +154,7 @@ class AsyncActionsClient:
         """
         _response = await self._client_wrapper.httpx_client.request(
             "GET",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/actions/list"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/actions/list"),
             params=remove_none_from_dict({"page": page, "size": size}),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
@@ -173,20 +169,20 @@ class AsyncActionsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def create_action(self, *, request: CreateActionRequest) -> CreateActionResponse:
+    async def create_action(self, *, request: ActionParamsRequest) -> ActionResponseModel:
         """
         Parameters:
-            - request: CreateActionRequest.
+            - request: ActionParamsRequest.
         """
         _response = await self._client_wrapper.httpx_client.request(
             "POST",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/actions/create"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/actions/create"),
             json=jsonable_encoder(request),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(CreateActionResponse, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(ActionResponseModel, _response.json())  # type: ignore
         if _response.status_code == 422:
             raise UnprocessableEntityError(pydantic.parse_obj_as(HttpValidationError, _response.json()))  # type: ignore
         try:
@@ -195,23 +191,23 @@ class AsyncActionsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def update_action(self, *, id: str, request: UpdateActionRequestBody) -> UpdateActionResponse:
+    async def update_action(self, *, id: str, request: ActionUpdateParamsRequest) -> ActionResponseModel:
         """
         Parameters:
             - id: str.
 
-            - request: UpdateActionRequestBody.
+            - request: ActionUpdateParamsRequest.
         """
         _response = await self._client_wrapper.httpx_client.request(
             "POST",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/actions/update"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/actions/update"),
             params=remove_none_from_dict({"id": id}),
             json=jsonable_encoder(request),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(UpdateActionResponse, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(ActionResponseModel, _response.json())  # type: ignore
         if _response.status_code == 422:
             raise UnprocessableEntityError(pydantic.parse_obj_as(HttpValidationError, _response.json()))  # type: ignore
         try:

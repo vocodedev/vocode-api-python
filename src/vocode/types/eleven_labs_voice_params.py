@@ -6,11 +6,9 @@ import typing
 import pydantic
 
 from ..core.datetime_utils import serialize_datetime
-from .voice_type import VoiceType
 
 
 class ElevenLabsVoiceParams(pydantic.BaseModel):
-    type: VoiceType
     voice_id: str
     stability: typing.Optional[float]
     similarity_boost: typing.Optional[float]

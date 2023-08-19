@@ -22,8 +22,7 @@ OMIT = typing.cast(typing.Any, ...)
 
 
 class NumbersClient:
-    def __init__(self, *, environment: str, client_wrapper: SyncClientWrapper):
-        self._environment = environment
+    def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
     def list_numbers(self, *, page: typing.Optional[int] = None, size: typing.Optional[int] = None) -> PhoneNumberPage:
@@ -35,7 +34,7 @@ class NumbersClient:
         """
         _response = self._client_wrapper.httpx_client.request(
             "GET",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/numbers/list"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/numbers/list"),
             params=remove_none_from_dict({"page": page, "size": size}),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
@@ -57,7 +56,7 @@ class NumbersClient:
         """
         _response = self._client_wrapper.httpx_client.request(
             "GET",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/numbers"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/numbers"),
             params=remove_none_from_dict({"phone_number": phone_number}),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
@@ -75,7 +74,7 @@ class NumbersClient:
     def buy_number(self) -> PhoneNumber:
         _response = self._client_wrapper.httpx_client.request(
             "POST",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/numbers/buy"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/numbers/buy"),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
@@ -109,7 +108,7 @@ class NumbersClient:
             _request["inbound_agent"] = inbound_agent
         _response = self._client_wrapper.httpx_client.request(
             "POST",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/numbers/update"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/numbers/update"),
             params=remove_none_from_dict({"phone_number": phone_number}),
             json=jsonable_encoder(_request),
             headers=self._client_wrapper.get_headers(),
@@ -132,7 +131,7 @@ class NumbersClient:
         """
         _response = self._client_wrapper.httpx_client.request(
             "POST",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/numbers/cancel"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/numbers/cancel"),
             params=remove_none_from_dict({"phone_number": phone_number}),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
@@ -149,8 +148,7 @@ class NumbersClient:
 
 
 class AsyncNumbersClient:
-    def __init__(self, *, environment: str, client_wrapper: AsyncClientWrapper):
-        self._environment = environment
+    def __init__(self, *, client_wrapper: AsyncClientWrapper):
         self._client_wrapper = client_wrapper
 
     async def list_numbers(
@@ -164,7 +162,7 @@ class AsyncNumbersClient:
         """
         _response = await self._client_wrapper.httpx_client.request(
             "GET",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/numbers/list"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/numbers/list"),
             params=remove_none_from_dict({"page": page, "size": size}),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
@@ -186,7 +184,7 @@ class AsyncNumbersClient:
         """
         _response = await self._client_wrapper.httpx_client.request(
             "GET",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/numbers"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/numbers"),
             params=remove_none_from_dict({"phone_number": phone_number}),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
@@ -204,7 +202,7 @@ class AsyncNumbersClient:
     async def buy_number(self) -> PhoneNumber:
         _response = await self._client_wrapper.httpx_client.request(
             "POST",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/numbers/buy"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/numbers/buy"),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
@@ -238,7 +236,7 @@ class AsyncNumbersClient:
             _request["inbound_agent"] = inbound_agent
         _response = await self._client_wrapper.httpx_client.request(
             "POST",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/numbers/update"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/numbers/update"),
             params=remove_none_from_dict({"phone_number": phone_number}),
             json=jsonable_encoder(_request),
             headers=self._client_wrapper.get_headers(),
@@ -261,7 +259,7 @@ class AsyncNumbersClient:
         """
         _response = await self._client_wrapper.httpx_client.request(
             "POST",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/numbers/cancel"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/numbers/cancel"),
             params=remove_none_from_dict({"phone_number": phone_number}),
             headers=self._client_wrapper.get_headers(),
             timeout=60,

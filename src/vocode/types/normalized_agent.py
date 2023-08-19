@@ -22,6 +22,7 @@ class NormalizedAgent(pydantic.BaseModel):
     webhook: typing.Optional[str]
     vector_database: typing.Optional[NormalizedAgentVectorDatabase]
     interrupt_sensitivity: typing.Optional[InterruptSensitivity]
+    context_endpoint: typing.Optional[str]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

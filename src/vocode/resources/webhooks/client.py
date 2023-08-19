@@ -22,8 +22,7 @@ OMIT = typing.cast(typing.Any, ...)
 
 
 class WebhooksClient:
-    def __init__(self, *, environment: str, client_wrapper: SyncClientWrapper):
-        self._environment = environment
+    def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
     def get_webhook(self, *, id: str) -> Webhook:
@@ -33,7 +32,7 @@ class WebhooksClient:
         """
         _response = self._client_wrapper.httpx_client.request(
             "GET",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/webhooks"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/webhooks"),
             params=remove_none_from_dict({"id": id}),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
@@ -57,7 +56,7 @@ class WebhooksClient:
         """
         _response = self._client_wrapper.httpx_client.request(
             "GET",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/webhooks/list"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/webhooks/list"),
             params=remove_none_from_dict({"page": page, "size": size}),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
@@ -79,7 +78,7 @@ class WebhooksClient:
         """
         _response = self._client_wrapper.httpx_client.request(
             "POST",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/webhooks/create"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/webhooks/create"),
             json=jsonable_encoder(request),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
@@ -103,7 +102,7 @@ class WebhooksClient:
         """
         _response = self._client_wrapper.httpx_client.request(
             "POST",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/webhooks/update"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/webhooks/update"),
             params=remove_none_from_dict({"id": id}),
             json=jsonable_encoder(request),
             headers=self._client_wrapper.get_headers(),
@@ -121,8 +120,7 @@ class WebhooksClient:
 
 
 class AsyncWebhooksClient:
-    def __init__(self, *, environment: str, client_wrapper: AsyncClientWrapper):
-        self._environment = environment
+    def __init__(self, *, client_wrapper: AsyncClientWrapper):
         self._client_wrapper = client_wrapper
 
     async def get_webhook(self, *, id: str) -> Webhook:
@@ -132,7 +130,7 @@ class AsyncWebhooksClient:
         """
         _response = await self._client_wrapper.httpx_client.request(
             "GET",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/webhooks"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/webhooks"),
             params=remove_none_from_dict({"id": id}),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
@@ -158,7 +156,7 @@ class AsyncWebhooksClient:
         """
         _response = await self._client_wrapper.httpx_client.request(
             "GET",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/webhooks/list"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/webhooks/list"),
             params=remove_none_from_dict({"page": page, "size": size}),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
@@ -180,7 +178,7 @@ class AsyncWebhooksClient:
         """
         _response = await self._client_wrapper.httpx_client.request(
             "POST",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/webhooks/create"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/webhooks/create"),
             json=jsonable_encoder(request),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
@@ -204,7 +202,7 @@ class AsyncWebhooksClient:
         """
         _response = await self._client_wrapper.httpx_client.request(
             "POST",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/webhooks/update"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/webhooks/update"),
             params=remove_none_from_dict({"id": id}),
             json=jsonable_encoder(request),
             headers=self._client_wrapper.get_headers(),

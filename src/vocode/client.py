@@ -16,37 +16,31 @@ from .resources.webhooks.client import AsyncWebhooksClient, WebhooksClient
 
 class Vocode:
     def __init__(
-        self,
-        *,
-        environment: str,
-        token: typing.Union[str, typing.Callable[[], str]],
-        timeout: typing.Optional[float] = 60
+        self, *, base_url: str, token: typing.Union[str, typing.Callable[[], str]], timeout: typing.Optional[float] = 60
     ):
-        self._environment = environment
-        self._client_wrapper = SyncClientWrapper(token=token, httpx_client=httpx.Client(timeout=timeout))
-        self.numbers = NumbersClient(environment=environment, client_wrapper=self._client_wrapper)
-        self.calls = CallsClient(environment=environment, client_wrapper=self._client_wrapper)
-        self.usage = UsageClient(environment=environment, client_wrapper=self._client_wrapper)
-        self.actions = ActionsClient(environment=environment, client_wrapper=self._client_wrapper)
-        self.agents = AgentsClient(environment=environment, client_wrapper=self._client_wrapper)
-        self.voices = VoicesClient(environment=environment, client_wrapper=self._client_wrapper)
-        self.webhooks = WebhooksClient(environment=environment, client_wrapper=self._client_wrapper)
+        self._client_wrapper = SyncClientWrapper(
+            base_url=base_url, token=token, httpx_client=httpx.Client(timeout=timeout)
+        )
+        self.numbers = NumbersClient(client_wrapper=self._client_wrapper)
+        self.calls = CallsClient(client_wrapper=self._client_wrapper)
+        self.usage = UsageClient(client_wrapper=self._client_wrapper)
+        self.actions = ActionsClient(client_wrapper=self._client_wrapper)
+        self.agents = AgentsClient(client_wrapper=self._client_wrapper)
+        self.voices = VoicesClient(client_wrapper=self._client_wrapper)
+        self.webhooks = WebhooksClient(client_wrapper=self._client_wrapper)
 
 
 class AsyncVocode:
     def __init__(
-        self,
-        *,
-        environment: str,
-        token: typing.Union[str, typing.Callable[[], str]],
-        timeout: typing.Optional[float] = 60
+        self, *, base_url: str, token: typing.Union[str, typing.Callable[[], str]], timeout: typing.Optional[float] = 60
     ):
-        self._environment = environment
-        self._client_wrapper = AsyncClientWrapper(token=token, httpx_client=httpx.AsyncClient(timeout=timeout))
-        self.numbers = AsyncNumbersClient(environment=environment, client_wrapper=self._client_wrapper)
-        self.calls = AsyncCallsClient(environment=environment, client_wrapper=self._client_wrapper)
-        self.usage = AsyncUsageClient(environment=environment, client_wrapper=self._client_wrapper)
-        self.actions = AsyncActionsClient(environment=environment, client_wrapper=self._client_wrapper)
-        self.agents = AsyncAgentsClient(environment=environment, client_wrapper=self._client_wrapper)
-        self.voices = AsyncVoicesClient(environment=environment, client_wrapper=self._client_wrapper)
-        self.webhooks = AsyncWebhooksClient(environment=environment, client_wrapper=self._client_wrapper)
+        self._client_wrapper = AsyncClientWrapper(
+            base_url=base_url, token=token, httpx_client=httpx.AsyncClient(timeout=timeout)
+        )
+        self.numbers = AsyncNumbersClient(client_wrapper=self._client_wrapper)
+        self.calls = AsyncCallsClient(client_wrapper=self._client_wrapper)
+        self.usage = AsyncUsageClient(client_wrapper=self._client_wrapper)
+        self.actions = AsyncActionsClient(client_wrapper=self._client_wrapper)
+        self.agents = AsyncAgentsClient(client_wrapper=self._client_wrapper)
+        self.voices = AsyncVoicesClient(client_wrapper=self._client_wrapper)
+        self.webhooks = AsyncWebhooksClient(client_wrapper=self._client_wrapper)

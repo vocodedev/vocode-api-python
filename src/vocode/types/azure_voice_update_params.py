@@ -9,11 +9,9 @@ from ..core.datetime_utils import serialize_datetime
 from .azure_voice_update_params_pitch import AzureVoiceUpdateParamsPitch
 from .azure_voice_update_params_rate import AzureVoiceUpdateParamsRate
 from .azure_voice_update_params_voice_name import AzureVoiceUpdateParamsVoiceName
-from .voice_type import VoiceType
 
 
 class AzureVoiceUpdateParams(pydantic.BaseModel):
-    type: VoiceType
     voice_name: typing.Optional[AzureVoiceUpdateParamsVoiceName]
     pitch: typing.Optional[AzureVoiceUpdateParamsPitch]
     rate: typing.Optional[AzureVoiceUpdateParamsRate]

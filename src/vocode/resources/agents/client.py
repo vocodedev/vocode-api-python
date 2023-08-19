@@ -27,8 +27,7 @@ OMIT = typing.cast(typing.Any, ...)
 
 
 class AgentsClient:
-    def __init__(self, *, environment: str, client_wrapper: SyncClientWrapper):
-        self._environment = environment
+    def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
     def get_agent(self, *, id: str) -> Agent:
@@ -38,7 +37,7 @@ class AgentsClient:
         """
         _response = self._client_wrapper.httpx_client.request(
             "GET",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/agents"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/agents"),
             params=remove_none_from_dict({"id": id}),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
@@ -62,7 +61,7 @@ class AgentsClient:
         """
         _response = self._client_wrapper.httpx_client.request(
             "GET",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/agents/list"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/agents/list"),
             params=remove_none_from_dict({"page": page, "size": size}),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
@@ -88,6 +87,7 @@ class AgentsClient:
         webhook: typing.Optional[AgentParamsWebhook] = OMIT,
         vector_database: typing.Optional[AgentParamsVectorDatabase] = OMIT,
         interrupt_sensitivity: typing.Optional[InterruptSensitivity] = OMIT,
+        context_endpoint: typing.Optional[str] = OMIT,
     ) -> Agent:
         """
         Parameters:
@@ -106,6 +106,8 @@ class AgentsClient:
             - vector_database: typing.Optional[AgentParamsVectorDatabase].
 
             - interrupt_sensitivity: typing.Optional[InterruptSensitivity].
+
+            - context_endpoint: typing.Optional[str].
         """
         _request: typing.Dict[str, typing.Any] = {"prompt": prompt, "voice": voice}
         if language is not OMIT:
@@ -120,9 +122,11 @@ class AgentsClient:
             _request["vector_database"] = vector_database
         if interrupt_sensitivity is not OMIT:
             _request["interrupt_sensitivity"] = interrupt_sensitivity
+        if context_endpoint is not OMIT:
+            _request["context_endpoint"] = context_endpoint
         _response = self._client_wrapper.httpx_client.request(
             "POST",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/agents/create"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/agents/create"),
             json=jsonable_encoder(_request),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
@@ -146,7 +150,7 @@ class AgentsClient:
         """
         _response = self._client_wrapper.httpx_client.request(
             "POST",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/agents/update"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/agents/update"),
             params=remove_none_from_dict({"id": id}),
             json=jsonable_encoder(request),
             headers=self._client_wrapper.get_headers(),
@@ -164,8 +168,7 @@ class AgentsClient:
 
 
 class AsyncAgentsClient:
-    def __init__(self, *, environment: str, client_wrapper: AsyncClientWrapper):
-        self._environment = environment
+    def __init__(self, *, client_wrapper: AsyncClientWrapper):
         self._client_wrapper = client_wrapper
 
     async def get_agent(self, *, id: str) -> Agent:
@@ -175,7 +178,7 @@ class AsyncAgentsClient:
         """
         _response = await self._client_wrapper.httpx_client.request(
             "GET",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/agents"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/agents"),
             params=remove_none_from_dict({"id": id}),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
@@ -199,7 +202,7 @@ class AsyncAgentsClient:
         """
         _response = await self._client_wrapper.httpx_client.request(
             "GET",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/agents/list"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/agents/list"),
             params=remove_none_from_dict({"page": page, "size": size}),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
@@ -225,6 +228,7 @@ class AsyncAgentsClient:
         webhook: typing.Optional[AgentParamsWebhook] = OMIT,
         vector_database: typing.Optional[AgentParamsVectorDatabase] = OMIT,
         interrupt_sensitivity: typing.Optional[InterruptSensitivity] = OMIT,
+        context_endpoint: typing.Optional[str] = OMIT,
     ) -> Agent:
         """
         Parameters:
@@ -243,6 +247,8 @@ class AsyncAgentsClient:
             - vector_database: typing.Optional[AgentParamsVectorDatabase].
 
             - interrupt_sensitivity: typing.Optional[InterruptSensitivity].
+
+            - context_endpoint: typing.Optional[str].
         """
         _request: typing.Dict[str, typing.Any] = {"prompt": prompt, "voice": voice}
         if language is not OMIT:
@@ -257,9 +263,11 @@ class AsyncAgentsClient:
             _request["vector_database"] = vector_database
         if interrupt_sensitivity is not OMIT:
             _request["interrupt_sensitivity"] = interrupt_sensitivity
+        if context_endpoint is not OMIT:
+            _request["context_endpoint"] = context_endpoint
         _response = await self._client_wrapper.httpx_client.request(
             "POST",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/agents/create"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/agents/create"),
             json=jsonable_encoder(_request),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
@@ -283,7 +291,7 @@ class AsyncAgentsClient:
         """
         _response = await self._client_wrapper.httpx_client.request(
             "POST",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/agents/update"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/agents/update"),
             params=remove_none_from_dict({"id": id}),
             json=jsonable_encoder(request),
             headers=self._client_wrapper.get_headers(),

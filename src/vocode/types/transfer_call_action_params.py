@@ -6,12 +6,10 @@ import typing
 import pydantic
 
 from ..core.datetime_utils import serialize_datetime
-from .action_type import ActionType
 from .transfer_call_config import TransferCallConfig
 
 
 class TransferCallActionParams(pydantic.BaseModel):
-    type: ActionType
     config: TransferCallConfig
 
     def json(self, **kwargs: typing.Any) -> str:

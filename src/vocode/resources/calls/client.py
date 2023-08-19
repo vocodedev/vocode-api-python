@@ -21,8 +21,7 @@ OMIT = typing.cast(typing.Any, ...)
 
 
 class CallsClient:
-    def __init__(self, *, environment: str, client_wrapper: SyncClientWrapper):
-        self._environment = environment
+    def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
     def list_calls(self, *, page: typing.Optional[int] = None, size: typing.Optional[int] = None) -> CallPage:
@@ -34,7 +33,7 @@ class CallsClient:
         """
         _response = self._client_wrapper.httpx_client.request(
             "GET",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/calls/list"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/calls/list"),
             params=remove_none_from_dict({"page": page, "size": size}),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
@@ -56,7 +55,7 @@ class CallsClient:
         """
         _response = self._client_wrapper.httpx_client.request(
             "GET",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/calls"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/calls"),
             params=remove_none_from_dict({"id": id}),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
@@ -78,7 +77,7 @@ class CallsClient:
         """
         _response = self._client_wrapper.httpx_client.request(
             "POST",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/calls/end"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/calls/end"),
             params=remove_none_from_dict({"id": id}),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
@@ -104,7 +103,7 @@ class CallsClient:
         """
         _response = self._client_wrapper.httpx_client.request(
             "POST",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/calls/create"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/calls/create"),
             json=jsonable_encoder({"from_number": from_number, "to_number": to_number, "agent": agent}),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
@@ -119,14 +118,14 @@ class CallsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def recording(self, *, id: str) -> typing.Any:
+    def get_recording(self, *, id: str) -> typing.Any:
         """
         Parameters:
             - id: str.
         """
         _response = self._client_wrapper.httpx_client.request(
             "GET",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/calls/recording"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/calls/recording"),
             params=remove_none_from_dict({"id": id}),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
@@ -143,8 +142,7 @@ class CallsClient:
 
 
 class AsyncCallsClient:
-    def __init__(self, *, environment: str, client_wrapper: AsyncClientWrapper):
-        self._environment = environment
+    def __init__(self, *, client_wrapper: AsyncClientWrapper):
         self._client_wrapper = client_wrapper
 
     async def list_calls(self, *, page: typing.Optional[int] = None, size: typing.Optional[int] = None) -> CallPage:
@@ -156,7 +154,7 @@ class AsyncCallsClient:
         """
         _response = await self._client_wrapper.httpx_client.request(
             "GET",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/calls/list"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/calls/list"),
             params=remove_none_from_dict({"page": page, "size": size}),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
@@ -178,7 +176,7 @@ class AsyncCallsClient:
         """
         _response = await self._client_wrapper.httpx_client.request(
             "GET",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/calls"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/calls"),
             params=remove_none_from_dict({"id": id}),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
@@ -200,7 +198,7 @@ class AsyncCallsClient:
         """
         _response = await self._client_wrapper.httpx_client.request(
             "POST",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/calls/end"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/calls/end"),
             params=remove_none_from_dict({"id": id}),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
@@ -226,7 +224,7 @@ class AsyncCallsClient:
         """
         _response = await self._client_wrapper.httpx_client.request(
             "POST",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/calls/create"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/calls/create"),
             json=jsonable_encoder({"from_number": from_number, "to_number": to_number, "agent": agent}),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
@@ -241,14 +239,14 @@ class AsyncCallsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def recording(self, *, id: str) -> typing.Any:
+    async def get_recording(self, *, id: str) -> typing.Any:
         """
         Parameters:
             - id: str.
         """
         _response = await self._client_wrapper.httpx_client.request(
             "GET",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/calls/recording"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/calls/recording"),
             params=remove_none_from_dict({"id": id}),
             headers=self._client_wrapper.get_headers(),
             timeout=60,

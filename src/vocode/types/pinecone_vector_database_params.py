@@ -4,13 +4,13 @@ import datetime as dt
 import typing
 
 import pydantic
+import typing_extensions
 
 from ..core.datetime_utils import serialize_datetime
-from .vector_database_type import VectorDatabaseType
 
 
 class PineconeVectorDatabaseParams(pydantic.BaseModel):
-    type: VectorDatabaseType
+    type: typing_extensions.Literal["vector_database_pinecone"]
     index: str
     api_key: str
     api_environment: str

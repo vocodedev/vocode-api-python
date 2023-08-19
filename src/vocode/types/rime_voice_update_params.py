@@ -7,11 +7,9 @@ import pydantic
 
 from ..core.datetime_utils import serialize_datetime
 from .rime_voice_update_params_speaker import RimeVoiceUpdateParamsSpeaker
-from .voice_type import VoiceType
 
 
 class RimeVoiceUpdateParams(pydantic.BaseModel):
-    type: VoiceType
     speaker: typing.Optional[RimeVoiceUpdateParamsSpeaker]
 
     def json(self, **kwargs: typing.Any) -> str:

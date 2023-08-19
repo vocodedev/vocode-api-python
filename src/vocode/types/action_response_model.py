@@ -11,7 +11,7 @@ from .end_conversation_action import EndConversationAction
 from .transfer_call_action import TransferCallAction
 
 
-class ActionPageItemsItem_ActionTransferCall(TransferCallAction):
+class ActionResponseModel_ActionTransferCall(TransferCallAction):
     type: typing_extensions.Literal["action_transfer_call"]
 
     class Config:
@@ -19,7 +19,7 @@ class ActionPageItemsItem_ActionTransferCall(TransferCallAction):
         allow_population_by_field_name = True
 
 
-class ActionPageItemsItem_ActionEndConversation(EndConversationAction):
+class ActionResponseModel_ActionEndConversation(EndConversationAction):
     type: typing_extensions.Literal["action_end_conversation"]
 
     class Config:
@@ -27,7 +27,7 @@ class ActionPageItemsItem_ActionEndConversation(EndConversationAction):
         allow_population_by_field_name = True
 
 
-class ActionPageItemsItem_ActionDtmf(DtmfAction):
+class ActionResponseModel_ActionDtmf(DtmfAction):
     type: typing_extensions.Literal["action_dtmf"]
 
     class Config:
@@ -35,6 +35,6 @@ class ActionPageItemsItem_ActionDtmf(DtmfAction):
         allow_population_by_field_name = True
 
 
-ActionPageItemsItem = typing.Union[
-    ActionPageItemsItem_ActionTransferCall, ActionPageItemsItem_ActionEndConversation, ActionPageItemsItem_ActionDtmf
+ActionResponseModel = typing.Union[
+    ActionResponseModel_ActionTransferCall, ActionResponseModel_ActionEndConversation, ActionResponseModel_ActionDtmf
 ]

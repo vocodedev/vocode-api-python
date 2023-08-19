@@ -23,6 +23,7 @@ class CreateCallAgentParams(pydantic.BaseModel):
     webhook: typing.Optional[CreateCallAgentParamsWebhook]
     vector_database: typing.Optional[CreateCallAgentParamsVectorDatabase]
     interrupt_sensitivity: typing.Optional[InterruptSensitivity]
+    context_endpoint: typing.Optional[str]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

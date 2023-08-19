@@ -11,37 +11,34 @@ from ...core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ...core.jsonable_encoder import jsonable_encoder
 from ...core.remove_none_from_dict import remove_none_from_dict
 from ...errors.unprocessable_entity_error import UnprocessableEntityError
-from ...types.create_voice_request import CreateVoiceRequest
-from ...types.create_voice_response import CreateVoiceResponse
-from ...types.get_voice_response import GetVoiceResponse
 from ...types.http_validation_error import HttpValidationError
-from ...types.update_voice_request_body import UpdateVoiceRequestBody
-from ...types.update_voice_response import UpdateVoiceResponse
 from ...types.voice_page import VoicePage
+from ...types.voice_params_request import VoiceParamsRequest
+from ...types.voice_response_model import VoiceResponseModel
+from ...types.voice_update_params_request import VoiceUpdateParamsRequest
 
 # this is used as the default value for optional parameters
 OMIT = typing.cast(typing.Any, ...)
 
 
 class VoicesClient:
-    def __init__(self, *, environment: str, client_wrapper: SyncClientWrapper):
-        self._environment = environment
+    def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    def get_voice(self, *, id: str) -> GetVoiceResponse:
+    def get_voice(self, *, id: str) -> VoiceResponseModel:
         """
         Parameters:
             - id: str.
         """
         _response = self._client_wrapper.httpx_client.request(
             "GET",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/voices"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/voices"),
             params=remove_none_from_dict({"id": id}),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(GetVoiceResponse, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(VoiceResponseModel, _response.json())  # type: ignore
         if _response.status_code == 422:
             raise UnprocessableEntityError(pydantic.parse_obj_as(HttpValidationError, _response.json()))  # type: ignore
         try:
@@ -59,7 +56,7 @@ class VoicesClient:
         """
         _response = self._client_wrapper.httpx_client.request(
             "GET",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/voices/list"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/voices/list"),
             params=remove_none_from_dict({"page": page, "size": size}),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
@@ -74,20 +71,20 @@ class VoicesClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def create_voice(self, *, request: CreateVoiceRequest) -> CreateVoiceResponse:
+    def create_voice(self, *, request: VoiceParamsRequest) -> VoiceResponseModel:
         """
         Parameters:
-            - request: CreateVoiceRequest.
+            - request: VoiceParamsRequest.
         """
         _response = self._client_wrapper.httpx_client.request(
             "POST",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/voices/create"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/voices/create"),
             json=jsonable_encoder(request),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(CreateVoiceResponse, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(VoiceResponseModel, _response.json())  # type: ignore
         if _response.status_code == 422:
             raise UnprocessableEntityError(pydantic.parse_obj_as(HttpValidationError, _response.json()))  # type: ignore
         try:
@@ -96,23 +93,23 @@ class VoicesClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def update_voice(self, *, id: str, request: UpdateVoiceRequestBody) -> UpdateVoiceResponse:
+    def update_voice(self, *, id: str, request: VoiceUpdateParamsRequest) -> VoiceResponseModel:
         """
         Parameters:
             - id: str.
 
-            - request: UpdateVoiceRequestBody.
+            - request: VoiceUpdateParamsRequest.
         """
         _response = self._client_wrapper.httpx_client.request(
             "POST",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/voices/update"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/voices/update"),
             params=remove_none_from_dict({"id": id}),
             json=jsonable_encoder(request),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(UpdateVoiceResponse, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(VoiceResponseModel, _response.json())  # type: ignore
         if _response.status_code == 422:
             raise UnprocessableEntityError(pydantic.parse_obj_as(HttpValidationError, _response.json()))  # type: ignore
         try:
@@ -123,24 +120,23 @@ class VoicesClient:
 
 
 class AsyncVoicesClient:
-    def __init__(self, *, environment: str, client_wrapper: AsyncClientWrapper):
-        self._environment = environment
+    def __init__(self, *, client_wrapper: AsyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    async def get_voice(self, *, id: str) -> GetVoiceResponse:
+    async def get_voice(self, *, id: str) -> VoiceResponseModel:
         """
         Parameters:
             - id: str.
         """
         _response = await self._client_wrapper.httpx_client.request(
             "GET",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/voices"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/voices"),
             params=remove_none_from_dict({"id": id}),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(GetVoiceResponse, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(VoiceResponseModel, _response.json())  # type: ignore
         if _response.status_code == 422:
             raise UnprocessableEntityError(pydantic.parse_obj_as(HttpValidationError, _response.json()))  # type: ignore
         try:
@@ -158,7 +154,7 @@ class AsyncVoicesClient:
         """
         _response = await self._client_wrapper.httpx_client.request(
             "GET",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/voices/list"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/voices/list"),
             params=remove_none_from_dict({"page": page, "size": size}),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
@@ -173,20 +169,20 @@ class AsyncVoicesClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def create_voice(self, *, request: CreateVoiceRequest) -> CreateVoiceResponse:
+    async def create_voice(self, *, request: VoiceParamsRequest) -> VoiceResponseModel:
         """
         Parameters:
-            - request: CreateVoiceRequest.
+            - request: VoiceParamsRequest.
         """
         _response = await self._client_wrapper.httpx_client.request(
             "POST",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/voices/create"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/voices/create"),
             json=jsonable_encoder(request),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(CreateVoiceResponse, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(VoiceResponseModel, _response.json())  # type: ignore
         if _response.status_code == 422:
             raise UnprocessableEntityError(pydantic.parse_obj_as(HttpValidationError, _response.json()))  # type: ignore
         try:
@@ -195,23 +191,23 @@ class AsyncVoicesClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def update_voice(self, *, id: str, request: UpdateVoiceRequestBody) -> UpdateVoiceResponse:
+    async def update_voice(self, *, id: str, request: VoiceUpdateParamsRequest) -> VoiceResponseModel:
         """
         Parameters:
             - id: str.
 
-            - request: UpdateVoiceRequestBody.
+            - request: VoiceUpdateParamsRequest.
         """
         _response = await self._client_wrapper.httpx_client.request(
             "POST",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/voices/update"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/voices/update"),
             params=remove_none_from_dict({"id": id}),
             json=jsonable_encoder(request),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(UpdateVoiceResponse, _response.json())  # type: ignore
+            return pydantic.parse_obj_as(VoiceResponseModel, _response.json())  # type: ignore
         if _response.status_code == 422:
             raise UnprocessableEntityError(pydantic.parse_obj_as(HttpValidationError, _response.json()))  # type: ignore
         try:

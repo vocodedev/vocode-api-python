@@ -6,13 +6,11 @@ import typing
 import pydantic
 
 from ..core.datetime_utils import serialize_datetime
-from .voice_type import VoiceType
 
 
 class PlayHtVoice(pydantic.BaseModel):
     id: str
     user_id: str
-    type: typing.Optional[VoiceType]
     voice_id: str
     api_user_id: str
     api_key: str

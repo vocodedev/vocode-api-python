@@ -2,9 +2,6 @@
 
 import typing
 
-from .azure_voice_params import AzureVoiceParams
-from .eleven_labs_voice_params import ElevenLabsVoiceParams
-from .play_ht_voice_params import PlayHtVoiceParams
-from .rime_voice_params import RimeVoiceParams
+from .agent_params_voice_one import AgentParamsVoiceOne
 
-AgentParamsVoice = typing.Union[str, AzureVoiceParams, RimeVoiceParams, ElevenLabsVoiceParams, PlayHtVoiceParams]
+AgentParamsVoice = typing.Union[str, AgentParamsVoiceOne]

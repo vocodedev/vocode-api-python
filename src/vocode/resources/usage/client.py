@@ -11,14 +11,13 @@ from ...types.usage import Usage
 
 
 class UsageClient:
-    def __init__(self, *, environment: str, client_wrapper: SyncClientWrapper):
-        self._environment = environment
+    def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
     def get_usage(self) -> Usage:
         _response = self._client_wrapper.httpx_client.request(
             "GET",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/usage"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/usage"),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
@@ -32,14 +31,13 @@ class UsageClient:
 
 
 class AsyncUsageClient:
-    def __init__(self, *, environment: str, client_wrapper: AsyncClientWrapper):
-        self._environment = environment
+    def __init__(self, *, client_wrapper: AsyncClientWrapper):
         self._client_wrapper = client_wrapper
 
     async def get_usage(self) -> Usage:
         _response = await self._client_wrapper.httpx_client.request(
             "GET",
-            urllib.parse.urljoin(f"{self._environment}/", "v1/usage"),
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/usage"),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )

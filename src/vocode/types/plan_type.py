@@ -11,19 +11,19 @@ class PlanType(str, enum.Enum):
     An enumeration.
     """
 
-    FREE = "free"
-    DEVELOPER = "developer"
-    ENTERPRISE = "enterprise"
+    PLAN_FREE = "plan_free"
+    PLAN_DEVELOPER = "plan_developer"
+    PLAN_ENTERPRISE = "plan_enterprise"
 
     def visit(
         self,
-        free: typing.Callable[[], T_Result],
-        developer: typing.Callable[[], T_Result],
-        enterprise: typing.Callable[[], T_Result],
+        plan_free: typing.Callable[[], T_Result],
+        plan_developer: typing.Callable[[], T_Result],
+        plan_enterprise: typing.Callable[[], T_Result],
     ) -> T_Result:
-        if self is PlanType.FREE:
-            return free()
-        if self is PlanType.DEVELOPER:
-            return developer()
-        if self is PlanType.ENTERPRISE:
-            return enterprise()
+        if self is PlanType.PLAN_FREE:
+            return plan_free()
+        if self is PlanType.PLAN_DEVELOPER:
+            return plan_developer()
+        if self is PlanType.PLAN_ENTERPRISE:
+            return plan_enterprise()

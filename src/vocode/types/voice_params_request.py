@@ -6,13 +6,13 @@ import typing
 
 import typing_extensions
 
-from .azure_voice import AzureVoice
-from .eleven_labs_voice import ElevenLabsVoice
-from .play_ht_voice import PlayHtVoice
-from .rime_voice import RimeVoice
+from .azure_voice_params import AzureVoiceParams
+from .eleven_labs_voice_params import ElevenLabsVoiceParams
+from .play_ht_voice_params import PlayHtVoiceParams
+from .rime_voice_params import RimeVoiceParams
 
 
-class AgentVoice_VoiceAzure(AzureVoice):
+class VoiceParamsRequest_VoiceAzure(AzureVoiceParams):
     type: typing_extensions.Literal["voice_azure"]
 
     class Config:
@@ -20,7 +20,7 @@ class AgentVoice_VoiceAzure(AzureVoice):
         allow_population_by_field_name = True
 
 
-class AgentVoice_VoiceRime(RimeVoice):
+class VoiceParamsRequest_VoiceRime(RimeVoiceParams):
     type: typing_extensions.Literal["voice_rime"]
 
     class Config:
@@ -28,7 +28,7 @@ class AgentVoice_VoiceRime(RimeVoice):
         allow_population_by_field_name = True
 
 
-class AgentVoice_VoiceElevenLabs(ElevenLabsVoice):
+class VoiceParamsRequest_VoiceElevenLabs(ElevenLabsVoiceParams):
     type: typing_extensions.Literal["voice_eleven_labs"]
 
     class Config:
@@ -36,7 +36,7 @@ class AgentVoice_VoiceElevenLabs(ElevenLabsVoice):
         allow_population_by_field_name = True
 
 
-class AgentVoice_VoicePlayHt(PlayHtVoice):
+class VoiceParamsRequest_VoicePlayHt(PlayHtVoiceParams):
     type: typing_extensions.Literal["voice_play_ht"]
 
     class Config:
@@ -44,6 +44,9 @@ class AgentVoice_VoicePlayHt(PlayHtVoice):
         allow_population_by_field_name = True
 
 
-AgentVoice = typing.Union[
-    AgentVoice_VoiceAzure, AgentVoice_VoiceRime, AgentVoice_VoiceElevenLabs, AgentVoice_VoicePlayHt
+VoiceParamsRequest = typing.Union[
+    VoiceParamsRequest_VoiceAzure,
+    VoiceParamsRequest_VoiceRime,
+    VoiceParamsRequest_VoiceElevenLabs,
+    VoiceParamsRequest_VoicePlayHt,
 ]

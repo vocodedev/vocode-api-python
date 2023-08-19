@@ -10,11 +10,9 @@ from .eleven_labs_voice_update_params_api_key import ElevenLabsVoiceUpdateParams
 from .eleven_labs_voice_update_params_similarity_boost import ElevenLabsVoiceUpdateParamsSimilarityBoost
 from .eleven_labs_voice_update_params_stability import ElevenLabsVoiceUpdateParamsStability
 from .eleven_labs_voice_update_params_voice_id import ElevenLabsVoiceUpdateParamsVoiceId
-from .voice_type import VoiceType
 
 
 class ElevenLabsVoiceUpdateParams(pydantic.BaseModel):
-    type: VoiceType
     voice_id: typing.Optional[ElevenLabsVoiceUpdateParamsVoiceId]
     stability: typing.Optional[ElevenLabsVoiceUpdateParamsStability]
     similarity_boost: typing.Optional[ElevenLabsVoiceUpdateParamsSimilarityBoost]
