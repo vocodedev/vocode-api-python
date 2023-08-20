@@ -12,7 +12,6 @@ from .transfer_call_action_params import TransferCallActionParams
 
 
 class CreateCallAgentParamsActionsItemOne_ActionTransferCall(TransferCallActionParams):
-    type: typing_extensions.Literal["action_transfer_call"]
 
     class Config:
         frozen = True
@@ -21,7 +20,6 @@ class CreateCallAgentParamsActionsItemOne_ActionTransferCall(TransferCallActionP
 
 
 class CreateCallAgentParamsActionsItemOne_ActionEndConversation(EndConversationActionParams):
-    type: typing_extensions.Literal["action_end_conversation"]
 
     class Config:
         frozen = True
@@ -30,7 +28,6 @@ class CreateCallAgentParamsActionsItemOne_ActionEndConversation(EndConversationA
 
 
 class CreateCallAgentParamsActionsItemOne_ActionDtmf(DtmfActionParams):
-    type: typing_extensions.Literal["action_dtmf"]
 
     class Config:
         frozen = True
@@ -39,7 +36,7 @@ class CreateCallAgentParamsActionsItemOne_ActionDtmf(DtmfActionParams):
 
 
 CreateCallAgentParamsActionsItemOne = typing.Union[
-    CreateCallAgentParamsActionsItemOne_ActionTransferCall,
-    CreateCallAgentParamsActionsItemOne_ActionEndConversation,
-    CreateCallAgentParamsActionsItemOne_ActionDtmf,
+    TransferCallActionParams,
+    EndConversationActionParams,
+    DtmfActionParams,
 ]

@@ -5,11 +5,14 @@ import typing
 
 import pydantic
 
+import typing_extensions
+
 from ..core.datetime_utils import serialize_datetime
 from .empty_action_config import EmptyActionConfig
 
 
 class DtmfActionParams(pydantic.BaseModel):
+    type: typing_extensions.Literal["action_dtmf"]
     config: typing.Optional[EmptyActionConfig]
 
     def json(self, **kwargs: typing.Any) -> str:
