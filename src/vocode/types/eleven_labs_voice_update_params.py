@@ -5,6 +5,8 @@ import typing
 
 import pydantic
 
+import typing_extensions
+
 from ..core.datetime_utils import serialize_datetime
 from .eleven_labs_voice_update_params_api_key import ElevenLabsVoiceUpdateParamsApiKey
 from .eleven_labs_voice_update_params_similarity_boost import ElevenLabsVoiceUpdateParamsSimilarityBoost
@@ -13,6 +15,7 @@ from .eleven_labs_voice_update_params_voice_id import ElevenLabsVoiceUpdateParam
 
 
 class ElevenLabsVoiceUpdateParams(pydantic.BaseModel):
+    type: typing_extensions.Literal["voice_eleven_labs"]
     voice_id: typing.Optional[ElevenLabsVoiceUpdateParamsVoiceId]
     stability: typing.Optional[ElevenLabsVoiceUpdateParamsStability]
     similarity_boost: typing.Optional[ElevenLabsVoiceUpdateParamsSimilarityBoost]

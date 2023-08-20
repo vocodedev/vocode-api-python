@@ -1,1 +1,8 @@
 README.md
+
+src/vocode/types/agent_update_params_voice_one.py
+src/vocode/types/azure_voice_update_params.py
+src/vocode/types/eleven_labs_voice_update_params.py
+src/vocode/types/play_ht_voice_update_params.py
+src/vocode/types/rime_voice_update_params.py
+src/vocode/types/voice_update_params_request.py

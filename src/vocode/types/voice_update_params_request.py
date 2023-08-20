@@ -13,8 +13,6 @@ from .rime_voice_update_params import RimeVoiceUpdateParams
 
 
 class VoiceUpdateParamsRequest_VoiceAzure(AzureVoiceUpdateParams):
-    type: typing_extensions.Literal["voice_azure"]
-
     class Config:
         frozen = True
         smart_union = True
@@ -22,8 +20,6 @@ class VoiceUpdateParamsRequest_VoiceAzure(AzureVoiceUpdateParams):
 
 
 class VoiceUpdateParamsRequest_VoiceRime(RimeVoiceUpdateParams):
-    type: typing_extensions.Literal["voice_rime"]
-
     class Config:
         frozen = True
         smart_union = True
@@ -31,8 +27,6 @@ class VoiceUpdateParamsRequest_VoiceRime(RimeVoiceUpdateParams):
 
 
 class VoiceUpdateParamsRequest_VoiceElevenLabs(ElevenLabsVoiceUpdateParams):
-    type: typing_extensions.Literal["voice_eleven_labs"]
-
     class Config:
         frozen = True
         smart_union = True
@@ -40,8 +34,6 @@ class VoiceUpdateParamsRequest_VoiceElevenLabs(ElevenLabsVoiceUpdateParams):
 
 
 class VoiceUpdateParamsRequest_VoicePlayHt(PlayHtVoiceUpdateParams):
-    type: typing_extensions.Literal["voice_play_ht"]
-
     class Config:
         frozen = True
         smart_union = True
@@ -49,8 +41,8 @@ class VoiceUpdateParamsRequest_VoicePlayHt(PlayHtVoiceUpdateParams):
 
 
 VoiceUpdateParamsRequest = typing.Union[
-    VoiceUpdateParamsRequest_VoiceAzure,
-    VoiceUpdateParamsRequest_VoiceRime,
-    VoiceUpdateParamsRequest_VoiceElevenLabs,
-    VoiceUpdateParamsRequest_VoicePlayHt,
+    AzureVoiceUpdateParams,
+    RimeVoiceUpdateParams,
+    ElevenLabsVoiceUpdateParams,
+    PlayHtVoiceUpdateParams,
 ]
