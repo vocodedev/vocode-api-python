@@ -5,6 +5,8 @@ import typing
 
 import pydantic
 
+import typing_extensions
+
 from ..core.datetime_utils import serialize_datetime
 from .play_ht_voice_update_params_api_key import PlayHtVoiceUpdateParamsApiKey
 from .play_ht_voice_update_params_api_user_id import PlayHtVoiceUpdateParamsApiUserId
@@ -12,6 +14,7 @@ from .play_ht_voice_update_params_voice_id import PlayHtVoiceUpdateParamsVoiceId
 
 
 class PlayHtVoiceUpdateParams(pydantic.BaseModel):
+    type: typing_extensions.Literal["voice_play_ht"]
     voice_id: typing.Optional[PlayHtVoiceUpdateParamsVoiceId]
     api_user_id: typing.Optional[PlayHtVoiceUpdateParamsApiUserId]
     api_key: typing.Optional[PlayHtVoiceUpdateParamsApiKey]
