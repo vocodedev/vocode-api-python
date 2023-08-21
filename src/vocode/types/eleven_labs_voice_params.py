@@ -9,6 +9,7 @@ from ..core.datetime_utils import serialize_datetime
 
 
 class ElevenLabsVoiceParams(pydantic.BaseModel):
+    type: typing.Literal["voice_eleven_labs"]
     voice_id: str
     stability: typing.Optional[float]
     similarity_boost: typing.Optional[float]

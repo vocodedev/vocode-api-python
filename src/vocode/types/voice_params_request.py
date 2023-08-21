@@ -13,7 +13,6 @@ from .rime_voice_params import RimeVoiceParams
 
 
 class VoiceParamsRequest_VoiceAzure(AzureVoiceParams):
-    type: typing_extensions.Literal["voice_azure"]
 
     class Config:
         frozen = True
@@ -22,7 +21,6 @@ class VoiceParamsRequest_VoiceAzure(AzureVoiceParams):
 
 
 class VoiceParamsRequest_VoiceRime(RimeVoiceParams):
-    type: typing_extensions.Literal["voice_rime"]
 
     class Config:
         frozen = True
@@ -31,7 +29,6 @@ class VoiceParamsRequest_VoiceRime(RimeVoiceParams):
 
 
 class VoiceParamsRequest_VoiceElevenLabs(ElevenLabsVoiceParams):
-    type: typing_extensions.Literal["voice_eleven_labs"]
 
     class Config:
         frozen = True
@@ -40,7 +37,6 @@ class VoiceParamsRequest_VoiceElevenLabs(ElevenLabsVoiceParams):
 
 
 class VoiceParamsRequest_VoicePlayHt(PlayHtVoiceParams):
-    type: typing_extensions.Literal["voice_play_ht"]
 
     class Config:
         frozen = True
@@ -49,8 +45,8 @@ class VoiceParamsRequest_VoicePlayHt(PlayHtVoiceParams):
 
 
 VoiceParamsRequest = typing.Union[
-    VoiceParamsRequest_VoiceAzure,
-    VoiceParamsRequest_VoiceRime,
-    VoiceParamsRequest_VoiceElevenLabs,
-    VoiceParamsRequest_VoicePlayHt,
+    AzureVoiceParams,
+    RimeVoiceParams,
+    ElevenLabsVoiceParams,
+    PlayHtVoiceParams,
 ]

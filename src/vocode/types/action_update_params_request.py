@@ -12,7 +12,6 @@ from .transfer_call_action_update_params import TransferCallActionUpdateParams
 
 
 class ActionUpdateParamsRequest_ActionTransferCall(TransferCallActionUpdateParams):
-    type: typing_extensions.Literal["action_transfer_call"]
 
     class Config:
         frozen = True
@@ -21,7 +20,6 @@ class ActionUpdateParamsRequest_ActionTransferCall(TransferCallActionUpdateParam
 
 
 class ActionUpdateParamsRequest_ActionEndConversation(EndConversationActionUpdateParams):
-    type: typing_extensions.Literal["action_end_conversation"]
 
     class Config:
         frozen = True
@@ -30,7 +28,6 @@ class ActionUpdateParamsRequest_ActionEndConversation(EndConversationActionUpdat
 
 
 class ActionUpdateParamsRequest_ActionDtmf(DtmfActionUpdateParams):
-    type: typing_extensions.Literal["action_dtmf"]
 
     class Config:
         frozen = True
@@ -39,7 +36,7 @@ class ActionUpdateParamsRequest_ActionDtmf(DtmfActionUpdateParams):
 
 
 ActionUpdateParamsRequest = typing.Union[
-    ActionUpdateParamsRequest_ActionTransferCall,
-    ActionUpdateParamsRequest_ActionEndConversation,
-    ActionUpdateParamsRequest_ActionDtmf,
+    TransferCallActionUpdateParams,
+    EndConversationActionUpdateParams,
+    DtmfActionUpdateParams,
 ]

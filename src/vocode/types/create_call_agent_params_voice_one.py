@@ -13,7 +13,6 @@ from .rime_voice_params import RimeVoiceParams
 
 
 class CreateCallAgentParamsVoiceOne_VoiceAzure(AzureVoiceParams):
-    type: typing_extensions.Literal["voice_azure"]
 
     class Config:
         frozen = True
@@ -22,7 +21,6 @@ class CreateCallAgentParamsVoiceOne_VoiceAzure(AzureVoiceParams):
 
 
 class CreateCallAgentParamsVoiceOne_VoiceRime(RimeVoiceParams):
-    type: typing_extensions.Literal["voice_rime"]
 
     class Config:
         frozen = True
@@ -31,7 +29,6 @@ class CreateCallAgentParamsVoiceOne_VoiceRime(RimeVoiceParams):
 
 
 class CreateCallAgentParamsVoiceOne_VoiceElevenLabs(ElevenLabsVoiceParams):
-    type: typing_extensions.Literal["voice_eleven_labs"]
 
     class Config:
         frozen = True
@@ -40,7 +37,6 @@ class CreateCallAgentParamsVoiceOne_VoiceElevenLabs(ElevenLabsVoiceParams):
 
 
 class CreateCallAgentParamsVoiceOne_VoicePlayHt(PlayHtVoiceParams):
-    type: typing_extensions.Literal["voice_play_ht"]
 
     class Config:
         frozen = True
@@ -49,8 +45,8 @@ class CreateCallAgentParamsVoiceOne_VoicePlayHt(PlayHtVoiceParams):
 
 
 CreateCallAgentParamsVoiceOne = typing.Union[
-    CreateCallAgentParamsVoiceOne_VoiceAzure,
-    CreateCallAgentParamsVoiceOne_VoiceRime,
-    CreateCallAgentParamsVoiceOne_VoiceElevenLabs,
-    CreateCallAgentParamsVoiceOne_VoicePlayHt,
+    AzureVoiceParams,
+    RimeVoiceParams,
+    ElevenLabsVoiceParams,
+    PlayHtVoiceParams,
 ]

@@ -9,6 +9,7 @@ from ..core.datetime_utils import serialize_datetime
 
 
 class PlayHtVoiceParams(pydantic.BaseModel):
+    type: typing.Literal["voice_play_ht"]
     voice_id: str
     api_user_id: str
     api_key: str

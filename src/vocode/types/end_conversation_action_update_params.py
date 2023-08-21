@@ -10,6 +10,7 @@ from .end_conversation_action_update_params_config import EndConversationActionU
 
 
 class EndConversationActionUpdateParams(pydantic.BaseModel):
+    type: typing.Literal["action_end_conversation"]
     config: typing.Optional[EndConversationActionUpdateParamsConfig]
 
     def json(self, **kwargs: typing.Any) -> str:

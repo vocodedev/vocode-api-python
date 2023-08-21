@@ -10,6 +10,7 @@ from .transfer_call_action_update_params_config import TransferCallActionUpdateP
 
 
 class TransferCallActionUpdateParams(pydantic.BaseModel):
+    type: typing.Literal["action_transfer_call"]
     config: typing.Optional[TransferCallActionUpdateParamsConfig]
 
     def json(self, **kwargs: typing.Any) -> str:

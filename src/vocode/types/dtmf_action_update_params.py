@@ -10,6 +10,7 @@ from .dtmf_action_update_params_config import DtmfActionUpdateParamsConfig
 
 
 class DtmfActionUpdateParams(pydantic.BaseModel):
+    type: typing.Literal["action_dtmf"]
     config: typing.Optional[DtmfActionUpdateParamsConfig]
 
     def json(self, **kwargs: typing.Any) -> str:
