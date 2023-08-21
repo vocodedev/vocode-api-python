@@ -2,6 +2,7 @@
 
 import datetime as dt
 import typing
+import typing_extensions
 
 import pydantic
 
@@ -10,6 +11,7 @@ from .dtmf_action_update_params_config import DtmfActionUpdateParamsConfig
 
 
 class DtmfActionUpdateParams(pydantic.BaseModel):
+    type: typing_extensions.Literal["action_dtmf"]
     config: typing.Optional[DtmfActionUpdateParamsConfig]
 
     def json(self, **kwargs: typing.Any) -> str:
