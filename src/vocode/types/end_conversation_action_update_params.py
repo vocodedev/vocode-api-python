@@ -2,6 +2,7 @@
 
 import datetime as dt
 import typing
+import typing_extensions
 
 import pydantic
 
@@ -10,7 +11,7 @@ from .end_conversation_action_update_params_config import EndConversationActionU
 
 
 class EndConversationActionUpdateParams(pydantic.BaseModel):
-    type: typing.Literal["action_end_conversation"]
+    type: typing_extensions.Literal["action_end_conversation"]
     config: typing.Optional[EndConversationActionUpdateParamsConfig]
 
     def json(self, **kwargs: typing.Any) -> str:

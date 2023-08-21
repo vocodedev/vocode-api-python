@@ -2,6 +2,7 @@
 
 import datetime as dt
 import typing
+import typing_extensions
 
 import pydantic
 
@@ -9,7 +10,7 @@ from ..core.datetime_utils import serialize_datetime
 
 
 class RimeVoiceParams(pydantic.BaseModel):
-    type: typing.Literal["voice_rime"]
+    type: typing_extensions.Literal["voice_rime"]
     speaker: str
 
     def json(self, **kwargs: typing.Any) -> str:
