@@ -1,6 +1,6 @@
 # Vocode Python Library
 
-[![pypi](https://img.shields.io/pypi/v/fern-vocode.svg)](https://pypi.python.org/pypi/fern-vocode)
+[![pypi](https://img.shields.io/pypi/v/vocode-api.svg)](https://pypi.python.org/pypi/vocode-api)
 [![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-SDK%20generated%20by%20Fern-brightgreen)](https://github.com/fern-api/fern)
 
 ## Documentation
