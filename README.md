@@ -1,4 +1,3 @@
-
 # Vocode Python Library
 
 [![pypi](https://img.shields.io/pypi/v/fern-vocode.svg)](https://pypi.python.org/pypi/fern-vocode)
@@ -13,9 +12,9 @@ API documentation is available at [here](https://docs.vocode.dev/).
 Add this dependency to your project's build file:
 
 ```bash
-pip install fern-vocode
+pip install vocode-api
 # or
-poetry add fern-vocode
+poetry add vocode-api
 ```
 
 ## Usage
@@ -55,7 +54,8 @@ asyncio.run(action_response())
 ```
 
 ## Timeouts
-By default, the client is configured to have a timeout of 60 seconds. You can customize this value at client instantiation. 
+
+By default, the client is configured to have a timeout of 60 seconds. You can customize this value at client instantiation.
 
 ```python
 from vocode.client import Vocode
@@ -67,7 +67,8 @@ vocode_client = Vocode(
 ```
 
 ## Handling Exceptions
-All exceptions thrown by the SDK will sublcass [vocode.ApiError](./src/vocode/core/api_error.py). 
+
+All exceptions thrown by the SDK will sublcass [vocode.ApiError](./src/vocode/core/api_error.py).
 
 ```python
 from vocode.core import ApiError
@@ -75,9 +76,9 @@ from vocode import UnprocessableEntityError
 
 try:
   vocode_client.actions.get_action(id="action_id");
-except UnprocessableEntityError as e: 
+except UnprocessableEntityError as e:
   # handle specific error
-except APIError as e:  
+except APIError as e:
   # handle any api related error
 ```
 
@@ -96,4 +97,3 @@ This SDK is in beta, and there may be breaking changes between versions without 
 While we value open-source contributions to this SDK, this library is generated programmatically. Additions made directly to this library would have to be moved over to our generation code, otherwise they would be overwritten upon the next generated release. Feel free to open a PR as a proof of concept, but know that we will not be able to merge it as-is. We suggest opening an issue first to discuss with us!
 
 On the other hand, contributions to the README are always very welcome!
-
