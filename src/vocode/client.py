@@ -5,6 +5,7 @@ import typing
 import httpx
 
 from .core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
+from .environment import VocodeEnvironment
 from .resources.actions.client import ActionsClient, AsyncActionsClient
 from .resources.agents.client import AgentsClient, AsyncAgentsClient
 from .resources.calls.client import AsyncCallsClient, CallsClient
@@ -16,10 +17,17 @@ from .resources.webhooks.client import AsyncWebhooksClient, WebhooksClient
 
 class Vocode:
     def __init__(
-        self, *, base_url: str, token: typing.Union[str, typing.Callable[[], str]], timeout: typing.Optional[float] = 60
+        self,
+        *,
+        base_url: typing.Optional[str] = None,
+        environment: VocodeEnvironment = VocodeEnvironment.PRODUCTION,
+        token: typing.Union[str, typing.Callable[[], str]],
+        timeout: typing.Optional[float] = 60
     ):
         self._client_wrapper = SyncClientWrapper(
-            base_url=base_url, token=token, httpx_client=httpx.Client(timeout=timeout)
+            base_url=_get_base_url(base_url=base_url, environment=environment),
+            token=token,
+            httpx_client=httpx.Client(timeout=timeout),
         )
         self.numbers = NumbersClient(client_wrapper=self._client_wrapper)
         self.calls = CallsClient(client_wrapper=self._client_wrapper)
@@ -32,10 +40,17 @@ class Vocode:
 
 class AsyncVocode:
     def __init__(
-        self, *, base_url: str, token: typing.Union[str, typing.Callable[[], str]], timeout: typing.Optional[float] = 60
+        self,
+        *,
+        base_url: typing.Optional[str] = None,
+        environment: VocodeEnvironment = VocodeEnvironment.PRODUCTION,
+        token: typing.Union[str, typing.Callable[[], str]],
+        timeout: typing.Optional[float] = 60
     ):
         self._client_wrapper = AsyncClientWrapper(
-            base_url=base_url, token=token, httpx_client=httpx.AsyncClient(timeout=timeout)
+            base_url=_get_base_url(base_url=base_url, environment=environment),
+            token=token,
+            httpx_client=httpx.AsyncClient(timeout=timeout),
         )
         self.numbers = AsyncNumbersClient(client_wrapper=self._client_wrapper)
         self.calls = AsyncCallsClient(client_wrapper=self._client_wrapper)
@@ -44,3 +59,12 @@ class AsyncVocode:
         self.agents = AsyncAgentsClient(client_wrapper=self._client_wrapper)
         self.voices = AsyncVoicesClient(client_wrapper=self._client_wrapper)
         self.webhooks = AsyncWebhooksClient(client_wrapper=self._client_wrapper)
+
+
+def _get_base_url(*, base_url: typing.Optional[str] = None, environment: VocodeEnvironment) -> str:
+    if base_url is not None:
+        return base_url
+    elif environment is not None:
+        return environment.value
+    else:
+        raise Exception("Please pass in either base_url or environment to construct the client")

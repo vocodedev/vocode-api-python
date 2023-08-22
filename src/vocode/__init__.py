@@ -172,6 +172,7 @@ from .types import (
 )
 from .errors import UnprocessableEntityError
 from .resources import actions, agents, calls, numbers, usage, voices, webhooks
+from .environment import VocodeEnvironment
 
 __all__ = [
     "ActionPage",
@@ -315,6 +316,7 @@ __all__ = [
     "Usage",
     "ValidationError",
     "ValidationErrorLocItem",
+    "VocodeEnvironment",
     "VoicePage",
     "VoicePageItemsItem",
     "VoicePageItemsItem_VoiceAzure",
