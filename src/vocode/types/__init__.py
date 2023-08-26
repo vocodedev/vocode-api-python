@@ -155,6 +155,7 @@ from .play_ht_voice_update_params_api_key import PlayHtVoiceUpdateParamsApiKey
 from .play_ht_voice_update_params_api_user_id import PlayHtVoiceUpdateParamsApiUserId
 from .play_ht_voice_update_params_voice_id import PlayHtVoiceUpdateParamsVoiceId
 from .prompt import Prompt
+from .prompt_page import PromptPage
 from .prompt_params import PromptParams
 from .prompt_update_params import PromptUpdateParams
 from .prompt_update_params_collect_fields import PromptUpdateParamsCollectFields
@@ -344,6 +345,7 @@ __all__ = [
     "PlayHtVoiceUpdateParamsApiUserId",
     "PlayHtVoiceUpdateParamsVoiceId",
     "Prompt",
+    "PromptPage",
     "PromptParams",
     "PromptUpdateParams",
     "PromptUpdateParamsCollectFields",

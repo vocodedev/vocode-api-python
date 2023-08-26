@@ -10,6 +10,7 @@ from .resources.actions.client import ActionsClient, AsyncActionsClient
 from .resources.agents.client import AgentsClient, AsyncAgentsClient
 from .resources.calls.client import AsyncCallsClient, CallsClient
 from .resources.numbers.client import AsyncNumbersClient, NumbersClient
+from .resources.prompts.client import AsyncPromptsClient, PromptsClient
 from .resources.usage.client import AsyncUsageClient, UsageClient
 from .resources.voices.client import AsyncVoicesClient, VoicesClient
 from .resources.webhooks.client import AsyncWebhooksClient, WebhooksClient
@@ -36,6 +37,7 @@ class Vocode:
         self.agents = AgentsClient(client_wrapper=self._client_wrapper)
         self.voices = VoicesClient(client_wrapper=self._client_wrapper)
         self.webhooks = WebhooksClient(client_wrapper=self._client_wrapper)
+        self.prompts = PromptsClient(client_wrapper=self._client_wrapper)
 
 
 class AsyncVocode:
@@ -59,6 +61,7 @@ class AsyncVocode:
         self.agents = AsyncAgentsClient(client_wrapper=self._client_wrapper)
         self.voices = AsyncVoicesClient(client_wrapper=self._client_wrapper)
         self.webhooks = AsyncWebhooksClient(client_wrapper=self._client_wrapper)
+        self.prompts = AsyncPromptsClient(client_wrapper=self._client_wrapper)
 
 
 def _get_base_url(*, base_url: typing.Optional[str] = None, environment: VocodeEnvironment) -> str:

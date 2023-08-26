@@ -132,6 +132,7 @@ from .types import (
     PlayHtVoiceUpdateParamsApiUserId,
     PlayHtVoiceUpdateParamsVoiceId,
     Prompt,
+    PromptPage,
     PromptParams,
     PromptUpdateParams,
     PromptUpdateParamsCollectFields,
@@ -182,7 +183,7 @@ from .types import (
     WebhookUpdateParamsUrl,
 )
 from .errors import UnprocessableEntityError
-from .resources import actions, agents, calls, numbers, usage, voices, webhooks
+from .resources import actions, agents, calls, numbers, prompts, usage, voices, webhooks
 from .environment import VocodeEnvironment
 
 __all__ = [
@@ -317,6 +318,7 @@ __all__ = [
     "PlayHtVoiceUpdateParamsApiUserId",
     "PlayHtVoiceUpdateParamsVoiceId",
     "Prompt",
+    "PromptPage",
     "PromptParams",
     "PromptUpdateParams",
     "PromptUpdateParamsCollectFields",
@@ -371,6 +373,7 @@ __all__ = [
     "agents",
     "calls",
     "numbers",
+    "prompts",
     "usage",
     "voices",
     "webhooks",
