@@ -7,6 +7,7 @@ import pydantic
 
 from ..core.datetime_utils import serialize_datetime
 from .create_call_agent_params_actions_item import CreateCallAgentParamsActionsItem
+from .create_call_agent_params_prompt import CreateCallAgentParamsPrompt
 from .create_call_agent_params_vector_database import CreateCallAgentParamsVectorDatabase
 from .create_call_agent_params_voice import CreateCallAgentParamsVoice
 from .create_call_agent_params_webhook import CreateCallAgentParamsWebhook
@@ -15,7 +16,7 @@ from .language import Language
 
 
 class CreateCallAgentParams(pydantic.BaseModel):
-    prompt: str
+    prompt: CreateCallAgentParamsPrompt
     language: typing.Optional[Language]
     actions: typing.Optional[typing.List[CreateCallAgentParamsActionsItem]]
     voice: typing.Optional[CreateCallAgentParamsVoice]

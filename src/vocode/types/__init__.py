@@ -40,6 +40,7 @@ from .agent_params_actions_item_one import (
     AgentParamsActionsItemOne_ActionEndConversation,
     AgentParamsActionsItemOne_ActionTransferCall,
 )
+from .agent_params_prompt import AgentParamsPrompt
 from .agent_params_vector_database import AgentParamsVectorDatabase
 from .agent_params_voice import AgentParamsVoice
 from .agent_params_voice_one import (
@@ -90,6 +91,8 @@ from .azure_voice_update_params_voice_name import AzureVoiceUpdateParamsVoiceNam
 from .call import Call
 from .call_page import CallPage
 from .call_status import CallStatus
+from .collect_field import CollectField
+from .collect_field_field_type import CollectFieldFieldType
 from .create_call_agent_params import CreateCallAgentParams
 from .create_call_agent_params_actions_item import CreateCallAgentParamsActionsItem
 from .create_call_agent_params_actions_item_one import (
@@ -98,6 +101,7 @@ from .create_call_agent_params_actions_item_one import (
     CreateCallAgentParamsActionsItemOne_ActionEndConversation,
     CreateCallAgentParamsActionsItemOne_ActionTransferCall,
 )
+from .create_call_agent_params_prompt import CreateCallAgentParamsPrompt
 from .create_call_agent_params_vector_database import CreateCallAgentParamsVectorDatabase
 from .create_call_agent_params_voice import CreateCallAgentParamsVoice
 from .create_call_agent_params_voice_one import (
@@ -131,6 +135,7 @@ from .http_validation_error import HttpValidationError
 from .interrupt_sensitivity import InterruptSensitivity
 from .language import Language
 from .normalized_agent import NormalizedAgent
+from .normalized_agent_prompt import NormalizedAgentPrompt
 from .normalized_agent_vector_database import NormalizedAgentVectorDatabase
 from .normalized_call import NormalizedCall
 from .normalized_phone_number import NormalizedPhoneNumber
@@ -149,6 +154,12 @@ from .play_ht_voice_update_params import PlayHtVoiceUpdateParams
 from .play_ht_voice_update_params_api_key import PlayHtVoiceUpdateParamsApiKey
 from .play_ht_voice_update_params_api_user_id import PlayHtVoiceUpdateParamsApiUserId
 from .play_ht_voice_update_params_voice_id import PlayHtVoiceUpdateParamsVoiceId
+from .prompt import Prompt
+from .prompt_params import PromptParams
+from .prompt_update_params import PromptUpdateParams
+from .prompt_update_params_collect_fields import PromptUpdateParamsCollectFields
+from .prompt_update_params_content import PromptUpdateParamsContent
+from .prompt_update_params_context_endpoint import PromptUpdateParamsContextEndpoint
 from .rime_voice import RimeVoice
 from .rime_voice_params import RimeVoiceParams
 from .rime_voice_update_params import RimeVoiceUpdateParams
@@ -230,6 +241,7 @@ __all__ = [
     "AgentParamsActionsItemOne_ActionDtmf",
     "AgentParamsActionsItemOne_ActionEndConversation",
     "AgentParamsActionsItemOne_ActionTransferCall",
+    "AgentParamsPrompt",
     "AgentParamsVectorDatabase",
     "AgentParamsVoice",
     "AgentParamsVoiceOne",
@@ -272,12 +284,15 @@ __all__ = [
     "Call",
     "CallPage",
     "CallStatus",
+    "CollectField",
+    "CollectFieldFieldType",
     "CreateCallAgentParams",
     "CreateCallAgentParamsActionsItem",
     "CreateCallAgentParamsActionsItemOne",
     "CreateCallAgentParamsActionsItemOne_ActionDtmf",
     "CreateCallAgentParamsActionsItemOne_ActionEndConversation",
     "CreateCallAgentParamsActionsItemOne_ActionTransferCall",
+    "CreateCallAgentParamsPrompt",
     "CreateCallAgentParamsVectorDatabase",
     "CreateCallAgentParamsVoice",
     "CreateCallAgentParamsVoiceOne",
@@ -309,6 +324,7 @@ __all__ = [
     "InterruptSensitivity",
     "Language",
     "NormalizedAgent",
+    "NormalizedAgentPrompt",
     "NormalizedAgentVectorDatabase",
     "NormalizedCall",
     "NormalizedPhoneNumber",
@@ -327,6 +343,12 @@ __all__ = [
     "PlayHtVoiceUpdateParamsApiKey",
     "PlayHtVoiceUpdateParamsApiUserId",
     "PlayHtVoiceUpdateParamsVoiceId",
+    "Prompt",
+    "PromptParams",
+    "PromptUpdateParams",
+    "PromptUpdateParamsCollectFields",
+    "PromptUpdateParamsContent",
+    "PromptUpdateParamsContextEndpoint",
     "RimeVoice",
     "RimeVoiceParams",
     "RimeVoiceUpdateParams",

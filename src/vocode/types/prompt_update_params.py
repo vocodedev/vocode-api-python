@@ -6,24 +6,15 @@ import typing
 import pydantic
 
 from ..core.datetime_utils import serialize_datetime
-from .interrupt_sensitivity import InterruptSensitivity
-from .language import Language
-from .normalized_agent_prompt import NormalizedAgentPrompt
-from .normalized_agent_vector_database import NormalizedAgentVectorDatabase
+from .prompt_update_params_collect_fields import PromptUpdateParamsCollectFields
+from .prompt_update_params_content import PromptUpdateParamsContent
+from .prompt_update_params_context_endpoint import PromptUpdateParamsContextEndpoint
 
 
-class NormalizedAgent(pydantic.BaseModel):
-    id: str
-    user_id: str
-    prompt: NormalizedAgentPrompt
-    language: typing.Optional[Language]
-    actions: typing.List[str]
-    voice: str
-    initial_message: typing.Optional[str]
-    webhook: typing.Optional[str]
-    vector_database: typing.Optional[NormalizedAgentVectorDatabase]
-    interrupt_sensitivity: typing.Optional[InterruptSensitivity]
-    context_endpoint: typing.Optional[str]
+class PromptUpdateParams(pydantic.BaseModel):
+    content: typing.Optional[PromptUpdateParamsContent]
+    collect_fields: typing.Optional[PromptUpdateParamsCollectFields]
+    context_endpoint: typing.Optional[PromptUpdateParamsContextEndpoint]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

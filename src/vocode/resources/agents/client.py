@@ -14,6 +14,7 @@ from ...errors.unprocessable_entity_error import UnprocessableEntityError
 from ...types.agent import Agent
 from ...types.agent_page import AgentPage
 from ...types.agent_params_actions_item import AgentParamsActionsItem
+from ...types.agent_params_prompt import AgentParamsPrompt
 from ...types.agent_params_vector_database import AgentParamsVectorDatabase
 from ...types.agent_params_voice import AgentParamsVoice
 from ...types.agent_params_webhook import AgentParamsWebhook
@@ -79,7 +80,7 @@ class AgentsClient:
     def create_agent(
         self,
         *,
-        prompt: str,
+        prompt: AgentParamsPrompt,
         language: typing.Optional[Language] = OMIT,
         actions: typing.Optional[typing.List[AgentParamsActionsItem]] = OMIT,
         voice: AgentParamsVoice,
@@ -91,7 +92,7 @@ class AgentsClient:
     ) -> Agent:
         """
         Parameters:
-            - prompt: str.
+            - prompt: AgentParamsPrompt.
 
             - language: typing.Optional[Language].
 
@@ -220,7 +221,7 @@ class AsyncAgentsClient:
     async def create_agent(
         self,
         *,
-        prompt: str,
+        prompt: AgentParamsPrompt,
         language: typing.Optional[Language] = OMIT,
         actions: typing.Optional[typing.List[AgentParamsActionsItem]] = OMIT,
         voice: AgentParamsVoice,
@@ -232,7 +233,7 @@ class AsyncAgentsClient:
     ) -> Agent:
         """
         Parameters:
-            - prompt: str.
+            - prompt: AgentParamsPrompt.
 
             - language: typing.Optional[Language].
 

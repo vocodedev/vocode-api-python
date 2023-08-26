@@ -6,26 +6,12 @@ import typing
 import pydantic
 
 from ..core.datetime_utils import serialize_datetime
-from .agent_actions_item import AgentActionsItem
-from .agent_voice import AgentVoice
-from .interrupt_sensitivity import InterruptSensitivity
-from .language import Language
-from .pinecone_vector_database import PineconeVectorDatabase
-from .prompt import Prompt
-from .webhook import Webhook
+from .collect_field import CollectField
 
 
-class Agent(pydantic.BaseModel):
-    id: str
-    user_id: str
-    prompt: Prompt
-    language: typing.Optional[Language]
-    actions: typing.List[AgentActionsItem]
-    voice: AgentVoice
-    initial_message: typing.Optional[str]
-    webhook: typing.Optional[Webhook]
-    vector_database: typing.Optional[PineconeVectorDatabase]
-    interrupt_sensitivity: typing.Optional[InterruptSensitivity]
+class PromptParams(pydantic.BaseModel):
+    content: str
+    collect_fields: typing.Optional[typing.List[CollectField]]
     context_endpoint: typing.Optional[str]
 
     def json(self, **kwargs: typing.Any) -> str:
