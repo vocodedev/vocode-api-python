@@ -176,6 +176,7 @@ from .update_number_request_label import UpdateNumberRequestLabel
 from .usage import Usage
 from .validation_error import ValidationError
 from .validation_error_loc_item import ValidationErrorLocItem
+from .vector_database_page import VectorDatabasePage
 from .voice_page import VoicePage
 from .voice_page_items_item import (
     VoicePageItemsItem,
@@ -366,6 +367,7 @@ __all__ = [
     "Usage",
     "ValidationError",
     "ValidationErrorLocItem",
+    "VectorDatabasePage",
     "VoicePage",
     "VoicePageItemsItem",
     "VoicePageItemsItem_VoiceAzure",

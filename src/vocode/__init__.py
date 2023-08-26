@@ -153,6 +153,7 @@ from .types import (
     Usage,
     ValidationError,
     ValidationErrorLocItem,
+    VectorDatabasePage,
     VoicePage,
     VoicePageItemsItem,
     VoicePageItemsItem_VoiceAzure,
@@ -183,7 +184,7 @@ from .types import (
     WebhookUpdateParamsUrl,
 )
 from .errors import UnprocessableEntityError
-from .resources import actions, agents, calls, numbers, prompts, usage, voices, webhooks
+from .resources import actions, agents, calls, numbers, prompts, usage, vector_databases, voices, webhooks
 from .environment import VocodeEnvironment
 
 __all__ = [
@@ -340,6 +341,7 @@ __all__ = [
     "Usage",
     "ValidationError",
     "ValidationErrorLocItem",
+    "VectorDatabasePage",
     "VocodeEnvironment",
     "VoicePage",
     "VoicePageItemsItem",
@@ -375,6 +377,7 @@ __all__ = [
     "numbers",
     "prompts",
     "usage",
+    "vector_databases",
     "voices",
     "webhooks",
 ]
