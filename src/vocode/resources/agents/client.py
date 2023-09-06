@@ -14,6 +14,7 @@ from ...errors.unprocessable_entity_error import UnprocessableEntityError
 from ...types.agent import Agent
 from ...types.agent_page import AgentPage
 from ...types.agent_params_actions_item import AgentParamsActionsItem
+from ...types.agent_params_endpointing_sensitivity import AgentParamsEndpointingSensitivity
 from ...types.agent_params_prompt import AgentParamsPrompt
 from ...types.agent_params_vector_database import AgentParamsVectorDatabase
 from ...types.agent_params_voice import AgentParamsVoice
@@ -89,6 +90,8 @@ class AgentsClient:
         vector_database: typing.Optional[AgentParamsVectorDatabase] = OMIT,
         interrupt_sensitivity: typing.Optional[InterruptSensitivity] = OMIT,
         context_endpoint: typing.Optional[str] = OMIT,
+        noise_suppression: typing.Optional[bool] = OMIT,
+        endpointing_sensitivity: typing.Optional[AgentParamsEndpointingSensitivity] = OMIT,
     ) -> Agent:
         """
         Parameters:
@@ -109,6 +112,10 @@ class AgentsClient:
             - interrupt_sensitivity: typing.Optional[InterruptSensitivity].
 
             - context_endpoint: typing.Optional[str].
+
+            - noise_suppression: typing.Optional[bool].
+
+            - endpointing_sensitivity: typing.Optional[AgentParamsEndpointingSensitivity].
         """
         _request: typing.Dict[str, typing.Any] = {"prompt": prompt, "voice": voice}
         if language is not OMIT:
@@ -125,6 +132,10 @@ class AgentsClient:
             _request["interrupt_sensitivity"] = interrupt_sensitivity
         if context_endpoint is not OMIT:
             _request["context_endpoint"] = context_endpoint
+        if noise_suppression is not OMIT:
+            _request["noise_suppression"] = noise_suppression
+        if endpointing_sensitivity is not OMIT:
+            _request["endpointing_sensitivity"] = endpointing_sensitivity
         _response = self._client_wrapper.httpx_client.request(
             "POST",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/agents/create"),
@@ -230,6 +241,8 @@ class AsyncAgentsClient:
         vector_database: typing.Optional[AgentParamsVectorDatabase] = OMIT,
         interrupt_sensitivity: typing.Optional[InterruptSensitivity] = OMIT,
         context_endpoint: typing.Optional[str] = OMIT,
+        noise_suppression: typing.Optional[bool] = OMIT,
+        endpointing_sensitivity: typing.Optional[AgentParamsEndpointingSensitivity] = OMIT,
     ) -> Agent:
         """
         Parameters:
@@ -250,6 +263,10 @@ class AsyncAgentsClient:
             - interrupt_sensitivity: typing.Optional[InterruptSensitivity].
 
             - context_endpoint: typing.Optional[str].
+
+            - noise_suppression: typing.Optional[bool].
+
+            - endpointing_sensitivity: typing.Optional[AgentParamsEndpointingSensitivity].
         """
         _request: typing.Dict[str, typing.Any] = {"prompt": prompt, "voice": voice}
         if language is not OMIT:
@@ -266,6 +283,10 @@ class AsyncAgentsClient:
             _request["interrupt_sensitivity"] = interrupt_sensitivity
         if context_endpoint is not OMIT:
             _request["context_endpoint"] = context_endpoint
+        if noise_suppression is not OMIT:
+            _request["noise_suppression"] = noise_suppression
+        if endpointing_sensitivity is not OMIT:
+            _request["endpointing_sensitivity"] = endpointing_sensitivity
         _response = await self._client_wrapper.httpx_client.request(
             "POST",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/agents/create"),

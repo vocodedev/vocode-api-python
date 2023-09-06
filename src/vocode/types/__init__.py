@@ -32,6 +32,7 @@ from .agent_actions_item import (
     AgentActionsItem_ActionEndConversation,
     AgentActionsItem_ActionTransferCall,
 )
+from .agent_endpointing_sensitivity import AgentEndpointingSensitivity
 from .agent_page import AgentPage
 from .agent_params_actions_item import AgentParamsActionsItem
 from .agent_params_actions_item_one import (
@@ -40,6 +41,7 @@ from .agent_params_actions_item_one import (
     AgentParamsActionsItemOne_ActionEndConversation,
     AgentParamsActionsItemOne_ActionTransferCall,
 )
+from .agent_params_endpointing_sensitivity import AgentParamsEndpointingSensitivity
 from .agent_params_prompt import AgentParamsPrompt
 from .agent_params_vector_database import AgentParamsVectorDatabase
 from .agent_params_voice import AgentParamsVoice
@@ -61,9 +63,11 @@ from .agent_update_params_actions_item_one import (
     AgentUpdateParamsActionsItemOne_ActionTransferCall,
 )
 from .agent_update_params_context_endpoint import AgentUpdateParamsContextEndpoint
+from .agent_update_params_endpointing_sensitivity import AgentUpdateParamsEndpointingSensitivity
 from .agent_update_params_initial_message import AgentUpdateParamsInitialMessage
 from .agent_update_params_interrupt_sensitivity import AgentUpdateParamsInterruptSensitivity
 from .agent_update_params_language import AgentUpdateParamsLanguage
+from .agent_update_params_noise_suppression import AgentUpdateParamsNoiseSuppression
 from .agent_update_params_prompt import AgentUpdateParamsPrompt
 from .agent_update_params_vector_database import AgentUpdateParamsVectorDatabase
 from .agent_update_params_voice import AgentUpdateParamsVoice
@@ -89,10 +93,10 @@ from .azure_voice_update_params_pitch import AzureVoiceUpdateParamsPitch
 from .azure_voice_update_params_rate import AzureVoiceUpdateParamsRate
 from .azure_voice_update_params_voice_name import AzureVoiceUpdateParamsVoiceName
 from .call import Call
+from .call_machine_detection_result import CallMachineDetectionResult
 from .call_page import CallPage
 from .call_status import CallStatus
 from .collect_field import CollectField
-from .collect_field_field_type import CollectFieldFieldType
 from .create_call_agent_params import CreateCallAgentParams
 from .create_call_agent_params_actions_item import CreateCallAgentParamsActionsItem
 from .create_call_agent_params_actions_item_one import (
@@ -101,6 +105,7 @@ from .create_call_agent_params_actions_item_one import (
     CreateCallAgentParamsActionsItemOne_ActionEndConversation,
     CreateCallAgentParamsActionsItemOne_ActionTransferCall,
 )
+from .create_call_agent_params_endpointing_sensitivity import CreateCallAgentParamsEndpointingSensitivity
 from .create_call_agent_params_prompt import CreateCallAgentParamsPrompt
 from .create_call_agent_params_vector_database import CreateCallAgentParamsVectorDatabase
 from .create_call_agent_params_voice import CreateCallAgentParamsVoice
@@ -113,6 +118,7 @@ from .create_call_agent_params_voice_one import (
 )
 from .create_call_agent_params_webhook import CreateCallAgentParamsWebhook
 from .create_call_request_agent import CreateCallRequestAgent
+from .create_call_request_on_machine_answer import CreateCallRequestOnMachineAnswer
 from .dtmf_action import DtmfAction
 from .dtmf_action_params import DtmfActionParams
 from .dtmf_action_update_params import DtmfActionUpdateParams
@@ -135,9 +141,11 @@ from .http_validation_error import HttpValidationError
 from .interrupt_sensitivity import InterruptSensitivity
 from .language import Language
 from .normalized_agent import NormalizedAgent
+from .normalized_agent_endpointing_sensitivity import NormalizedAgentEndpointingSensitivity
 from .normalized_agent_prompt import NormalizedAgentPrompt
 from .normalized_agent_vector_database import NormalizedAgentVectorDatabase
 from .normalized_call import NormalizedCall
+from .normalized_call_machine_detection_result import NormalizedCallMachineDetectionResult
 from .normalized_phone_number import NormalizedPhoneNumber
 from .phone_number import PhoneNumber
 from .phone_number_page import PhoneNumberPage
@@ -237,12 +245,14 @@ __all__ = [
     "AgentActionsItem_ActionDtmf",
     "AgentActionsItem_ActionEndConversation",
     "AgentActionsItem_ActionTransferCall",
+    "AgentEndpointingSensitivity",
     "AgentPage",
     "AgentParamsActionsItem",
     "AgentParamsActionsItemOne",
     "AgentParamsActionsItemOne_ActionDtmf",
     "AgentParamsActionsItemOne_ActionEndConversation",
     "AgentParamsActionsItemOne_ActionTransferCall",
+    "AgentParamsEndpointingSensitivity",
     "AgentParamsPrompt",
     "AgentParamsVectorDatabase",
     "AgentParamsVoice",
@@ -260,9 +270,11 @@ __all__ = [
     "AgentUpdateParamsActionsItemOne_ActionEndConversation",
     "AgentUpdateParamsActionsItemOne_ActionTransferCall",
     "AgentUpdateParamsContextEndpoint",
+    "AgentUpdateParamsEndpointingSensitivity",
     "AgentUpdateParamsInitialMessage",
     "AgentUpdateParamsInterruptSensitivity",
     "AgentUpdateParamsLanguage",
+    "AgentUpdateParamsNoiseSuppression",
     "AgentUpdateParamsPrompt",
     "AgentUpdateParamsVectorDatabase",
     "AgentUpdateParamsVoice",
@@ -284,16 +296,17 @@ __all__ = [
     "AzureVoiceUpdateParamsRate",
     "AzureVoiceUpdateParamsVoiceName",
     "Call",
+    "CallMachineDetectionResult",
     "CallPage",
     "CallStatus",
     "CollectField",
-    "CollectFieldFieldType",
     "CreateCallAgentParams",
     "CreateCallAgentParamsActionsItem",
     "CreateCallAgentParamsActionsItemOne",
     "CreateCallAgentParamsActionsItemOne_ActionDtmf",
     "CreateCallAgentParamsActionsItemOne_ActionEndConversation",
     "CreateCallAgentParamsActionsItemOne_ActionTransferCall",
+    "CreateCallAgentParamsEndpointingSensitivity",
     "CreateCallAgentParamsPrompt",
     "CreateCallAgentParamsVectorDatabase",
     "CreateCallAgentParamsVoice",
@@ -304,6 +317,7 @@ __all__ = [
     "CreateCallAgentParamsVoiceOne_VoiceRime",
     "CreateCallAgentParamsWebhook",
     "CreateCallRequestAgent",
+    "CreateCallRequestOnMachineAnswer",
     "DtmfAction",
     "DtmfActionParams",
     "DtmfActionUpdateParams",
@@ -326,9 +340,11 @@ __all__ = [
     "InterruptSensitivity",
     "Language",
     "NormalizedAgent",
+    "NormalizedAgentEndpointingSensitivity",
     "NormalizedAgentPrompt",
     "NormalizedAgentVectorDatabase",
     "NormalizedCall",
+    "NormalizedCallMachineDetectionResult",
     "NormalizedPhoneNumber",
     "PhoneNumber",
     "PhoneNumberPage",

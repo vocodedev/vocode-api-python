@@ -7,6 +7,7 @@ import pydantic
 
 from ..core.datetime_utils import serialize_datetime
 from .agent import Agent
+from .call_machine_detection_result import CallMachineDetectionResult
 from .call_status import CallStatus
 
 
@@ -17,6 +18,7 @@ class Call(pydantic.BaseModel):
     error_message: typing.Optional[str]
     recording_available: typing.Optional[bool]
     transcript: typing.Optional[str]
+    machine_detection_result: typing.Optional[CallMachineDetectionResult]
     to_number: str
     from_number: str
     agent: Agent

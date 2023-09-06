@@ -14,7 +14,7 @@ class ElevenLabsVoice(pydantic.BaseModel):
     voice_id: str
     stability: typing.Optional[float]
     similarity_boost: typing.Optional[float]
-    api_key: str
+    api_key: typing.Optional[str]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

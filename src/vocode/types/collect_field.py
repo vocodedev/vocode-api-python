@@ -4,13 +4,13 @@ import datetime as dt
 import typing
 
 import pydantic
+import typing_extensions
 
 from ..core.datetime_utils import serialize_datetime
-from .collect_field_field_type import CollectFieldFieldType
 
 
 class CollectField(pydantic.BaseModel):
-    field_type: CollectFieldFieldType
+    field_type: typing_extensions.Literal["field_type_email"]
     label: str
     name: str
     description: typing.Optional[str]

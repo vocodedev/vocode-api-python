@@ -14,6 +14,7 @@ from ...errors.unprocessable_entity_error import UnprocessableEntityError
 from ...types.call import Call
 from ...types.call_page import CallPage
 from ...types.create_call_request_agent import CreateCallRequestAgent
+from ...types.create_call_request_on_machine_answer import CreateCallRequestOnMachineAnswer
 from ...types.http_validation_error import HttpValidationError
 
 # this is used as the default value for optional parameters
@@ -92,7 +93,14 @@ class CallsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def create_call(self, *, from_number: str, to_number: str, agent: CreateCallRequestAgent) -> Call:
+    def create_call(
+        self,
+        *,
+        from_number: str,
+        to_number: str,
+        agent: CreateCallRequestAgent,
+        on_machine_answer: typing.Optional[CreateCallRequestOnMachineAnswer] = OMIT,
+    ) -> Call:
         """
         Parameters:
             - from_number: str.
@@ -100,11 +108,16 @@ class CallsClient:
             - to_number: str.
 
             - agent: CreateCallRequestAgent.
+
+            - on_machine_answer: typing.Optional[CreateCallRequestOnMachineAnswer].
         """
+        _request: typing.Dict[str, typing.Any] = {"from_number": from_number, "to_number": to_number, "agent": agent}
+        if on_machine_answer is not OMIT:
+            _request["on_machine_answer"] = on_machine_answer
         _response = self._client_wrapper.httpx_client.request(
             "POST",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/calls/create"),
-            json=jsonable_encoder({"from_number": from_number, "to_number": to_number, "agent": agent}),
+            json=jsonable_encoder(_request),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
@@ -213,7 +226,14 @@ class AsyncCallsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def create_call(self, *, from_number: str, to_number: str, agent: CreateCallRequestAgent) -> Call:
+    async def create_call(
+        self,
+        *,
+        from_number: str,
+        to_number: str,
+        agent: CreateCallRequestAgent,
+        on_machine_answer: typing.Optional[CreateCallRequestOnMachineAnswer] = OMIT,
+    ) -> Call:
         """
         Parameters:
             - from_number: str.
@@ -221,11 +241,16 @@ class AsyncCallsClient:
             - to_number: str.
 
             - agent: CreateCallRequestAgent.
+
+            - on_machine_answer: typing.Optional[CreateCallRequestOnMachineAnswer].
         """
+        _request: typing.Dict[str, typing.Any] = {"from_number": from_number, "to_number": to_number, "agent": agent}
+        if on_machine_answer is not OMIT:
+            _request["on_machine_answer"] = on_machine_answer
         _response = await self._client_wrapper.httpx_client.request(
             "POST",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/calls/create"),
-            json=jsonable_encoder({"from_number": from_number, "to_number": to_number, "agent": agent}),
+            json=jsonable_encoder(_request),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )

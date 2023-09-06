@@ -17,6 +17,7 @@ class EventType(str, enum.Enum):
     EVENT_PHONE_CALL_ENDED = "event_phone_call_ended"
     EVENT_TRANSCRIPT = "event_transcript"
     EVENT_RECORDING = "event_recording"
+    EVENT_MACHINE_DETECTION = "event_machine_detection"
 
     def visit(
         self,
@@ -26,6 +27,7 @@ class EventType(str, enum.Enum):
         event_phone_call_ended: typing.Callable[[], T_Result],
         event_transcript: typing.Callable[[], T_Result],
         event_recording: typing.Callable[[], T_Result],
+        event_machine_detection: typing.Callable[[], T_Result],
     ) -> T_Result:
         if self is EventType.EVENT_MESSAGE:
             return event_message()
@@ -39,3 +41,5 @@ class EventType(str, enum.Enum):
             return event_transcript()
         if self is EventType.EVENT_RECORDING:
             return event_recording()
+        if self is EventType.EVENT_MACHINE_DETECTION:
+            return event_machine_detection()
