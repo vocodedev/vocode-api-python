@@ -9,6 +9,7 @@ from ..core.datetime_utils import serialize_datetime
 from .interrupt_sensitivity import InterruptSensitivity
 from .language import Language
 from .normalized_agent_endpointing_sensitivity import NormalizedAgentEndpointingSensitivity
+from .normalized_agent_ivr_navigation_mode import NormalizedAgentIvrNavigationMode
 from .normalized_agent_prompt import NormalizedAgentPrompt
 from .normalized_agent_vector_database import NormalizedAgentVectorDatabase
 
@@ -27,6 +28,7 @@ class NormalizedAgent(pydantic.BaseModel):
     context_endpoint: typing.Optional[str]
     noise_suppression: typing.Optional[bool]
     endpointing_sensitivity: typing.Optional[NormalizedAgentEndpointingSensitivity]
+    ivr_navigation_mode: typing.Optional[NormalizedAgentIvrNavigationMode]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

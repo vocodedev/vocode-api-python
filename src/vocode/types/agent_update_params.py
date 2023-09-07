@@ -11,6 +11,7 @@ from .agent_update_params_context_endpoint import AgentUpdateParamsContextEndpoi
 from .agent_update_params_endpointing_sensitivity import AgentUpdateParamsEndpointingSensitivity
 from .agent_update_params_initial_message import AgentUpdateParamsInitialMessage
 from .agent_update_params_interrupt_sensitivity import AgentUpdateParamsInterruptSensitivity
+from .agent_update_params_ivr_navigation_mode import AgentUpdateParamsIvrNavigationMode
 from .agent_update_params_language import AgentUpdateParamsLanguage
 from .agent_update_params_noise_suppression import AgentUpdateParamsNoiseSuppression
 from .agent_update_params_prompt import AgentUpdateParamsPrompt
@@ -31,6 +32,7 @@ class AgentUpdateParams(pydantic.BaseModel):
     context_endpoint: typing.Optional[AgentUpdateParamsContextEndpoint]
     noise_suppression: typing.Optional[AgentUpdateParamsNoiseSuppression]
     endpointing_sensitivity: typing.Optional[AgentUpdateParamsEndpointingSensitivity]
+    ivr_navigation_mode: typing.Optional[AgentUpdateParamsIvrNavigationMode]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

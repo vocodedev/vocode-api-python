@@ -12,6 +12,7 @@ class RimeVoice(pydantic.BaseModel):
     id: str
     user_id: str
     speaker: str
+    speed_alpha: typing.Optional[float]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

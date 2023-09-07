@@ -15,6 +15,7 @@ from ...types.agent import Agent
 from ...types.agent_page import AgentPage
 from ...types.agent_params_actions_item import AgentParamsActionsItem
 from ...types.agent_params_endpointing_sensitivity import AgentParamsEndpointingSensitivity
+from ...types.agent_params_ivr_navigation_mode import AgentParamsIvrNavigationMode
 from ...types.agent_params_prompt import AgentParamsPrompt
 from ...types.agent_params_vector_database import AgentParamsVectorDatabase
 from ...types.agent_params_voice import AgentParamsVoice
@@ -92,6 +93,7 @@ class AgentsClient:
         context_endpoint: typing.Optional[str] = OMIT,
         noise_suppression: typing.Optional[bool] = OMIT,
         endpointing_sensitivity: typing.Optional[AgentParamsEndpointingSensitivity] = OMIT,
+        ivr_navigation_mode: typing.Optional[AgentParamsIvrNavigationMode] = OMIT,
     ) -> Agent:
         """
         Parameters:
@@ -116,6 +118,8 @@ class AgentsClient:
             - noise_suppression: typing.Optional[bool].
 
             - endpointing_sensitivity: typing.Optional[AgentParamsEndpointingSensitivity].
+
+            - ivr_navigation_mode: typing.Optional[AgentParamsIvrNavigationMode].
         """
         _request: typing.Dict[str, typing.Any] = {"prompt": prompt, "voice": voice}
         if language is not OMIT:
@@ -136,6 +140,8 @@ class AgentsClient:
             _request["noise_suppression"] = noise_suppression
         if endpointing_sensitivity is not OMIT:
             _request["endpointing_sensitivity"] = endpointing_sensitivity
+        if ivr_navigation_mode is not OMIT:
+            _request["ivr_navigation_mode"] = ivr_navigation_mode
         _response = self._client_wrapper.httpx_client.request(
             "POST",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/agents/create"),
@@ -243,6 +249,7 @@ class AsyncAgentsClient:
         context_endpoint: typing.Optional[str] = OMIT,
         noise_suppression: typing.Optional[bool] = OMIT,
         endpointing_sensitivity: typing.Optional[AgentParamsEndpointingSensitivity] = OMIT,
+        ivr_navigation_mode: typing.Optional[AgentParamsIvrNavigationMode] = OMIT,
     ) -> Agent:
         """
         Parameters:
@@ -267,6 +274,8 @@ class AsyncAgentsClient:
             - noise_suppression: typing.Optional[bool].
 
             - endpointing_sensitivity: typing.Optional[AgentParamsEndpointingSensitivity].
+
+            - ivr_navigation_mode: typing.Optional[AgentParamsIvrNavigationMode].
         """
         _request: typing.Dict[str, typing.Any] = {"prompt": prompt, "voice": voice}
         if language is not OMIT:
@@ -287,6 +296,8 @@ class AsyncAgentsClient:
             _request["noise_suppression"] = noise_suppression
         if endpointing_sensitivity is not OMIT:
             _request["endpointing_sensitivity"] = endpointing_sensitivity
+        if ivr_navigation_mode is not OMIT:
+            _request["ivr_navigation_mode"] = ivr_navigation_mode
         _response = await self._client_wrapper.httpx_client.request(
             "POST",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/agents/create"),

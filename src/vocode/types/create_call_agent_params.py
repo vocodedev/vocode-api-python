@@ -8,6 +8,7 @@ import pydantic
 from ..core.datetime_utils import serialize_datetime
 from .create_call_agent_params_actions_item import CreateCallAgentParamsActionsItem
 from .create_call_agent_params_endpointing_sensitivity import CreateCallAgentParamsEndpointingSensitivity
+from .create_call_agent_params_ivr_navigation_mode import CreateCallAgentParamsIvrNavigationMode
 from .create_call_agent_params_prompt import CreateCallAgentParamsPrompt
 from .create_call_agent_params_vector_database import CreateCallAgentParamsVectorDatabase
 from .create_call_agent_params_voice import CreateCallAgentParamsVoice
@@ -28,6 +29,7 @@ class CreateCallAgentParams(pydantic.BaseModel):
     context_endpoint: typing.Optional[str]
     noise_suppression: typing.Optional[bool]
     endpointing_sensitivity: typing.Optional[CreateCallAgentParamsEndpointingSensitivity]
+    ivr_navigation_mode: typing.Optional[CreateCallAgentParamsIvrNavigationMode]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

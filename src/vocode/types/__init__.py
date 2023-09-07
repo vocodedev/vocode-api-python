@@ -33,6 +33,7 @@ from .agent_actions_item import (
     AgentActionsItem_ActionTransferCall,
 )
 from .agent_endpointing_sensitivity import AgentEndpointingSensitivity
+from .agent_ivr_navigation_mode import AgentIvrNavigationMode
 from .agent_page import AgentPage
 from .agent_params_actions_item import AgentParamsActionsItem
 from .agent_params_actions_item_one import (
@@ -42,6 +43,7 @@ from .agent_params_actions_item_one import (
     AgentParamsActionsItemOne_ActionTransferCall,
 )
 from .agent_params_endpointing_sensitivity import AgentParamsEndpointingSensitivity
+from .agent_params_ivr_navigation_mode import AgentParamsIvrNavigationMode
 from .agent_params_prompt import AgentParamsPrompt
 from .agent_params_vector_database import AgentParamsVectorDatabase
 from .agent_params_voice import AgentParamsVoice
@@ -66,6 +68,7 @@ from .agent_update_params_context_endpoint import AgentUpdateParamsContextEndpoi
 from .agent_update_params_endpointing_sensitivity import AgentUpdateParamsEndpointingSensitivity
 from .agent_update_params_initial_message import AgentUpdateParamsInitialMessage
 from .agent_update_params_interrupt_sensitivity import AgentUpdateParamsInterruptSensitivity
+from .agent_update_params_ivr_navigation_mode import AgentUpdateParamsIvrNavigationMode
 from .agent_update_params_language import AgentUpdateParamsLanguage
 from .agent_update_params_noise_suppression import AgentUpdateParamsNoiseSuppression
 from .agent_update_params_prompt import AgentUpdateParamsPrompt
@@ -106,6 +109,7 @@ from .create_call_agent_params_actions_item_one import (
     CreateCallAgentParamsActionsItemOne_ActionTransferCall,
 )
 from .create_call_agent_params_endpointing_sensitivity import CreateCallAgentParamsEndpointingSensitivity
+from .create_call_agent_params_ivr_navigation_mode import CreateCallAgentParamsIvrNavigationMode
 from .create_call_agent_params_prompt import CreateCallAgentParamsPrompt
 from .create_call_agent_params_vector_database import CreateCallAgentParamsVectorDatabase
 from .create_call_agent_params_voice import CreateCallAgentParamsVoice
@@ -142,6 +146,7 @@ from .interrupt_sensitivity import InterruptSensitivity
 from .language import Language
 from .normalized_agent import NormalizedAgent
 from .normalized_agent_endpointing_sensitivity import NormalizedAgentEndpointingSensitivity
+from .normalized_agent_ivr_navigation_mode import NormalizedAgentIvrNavigationMode
 from .normalized_agent_prompt import NormalizedAgentPrompt
 from .normalized_agent_vector_database import NormalizedAgentVectorDatabase
 from .normalized_call import NormalizedCall
@@ -173,6 +178,7 @@ from .rime_voice import RimeVoice
 from .rime_voice_params import RimeVoiceParams
 from .rime_voice_update_params import RimeVoiceUpdateParams
 from .rime_voice_update_params_speaker import RimeVoiceUpdateParamsSpeaker
+from .rime_voice_update_params_speed_alpha import RimeVoiceUpdateParamsSpeedAlpha
 from .transfer_call_action import TransferCallAction
 from .transfer_call_action_params import TransferCallActionParams
 from .transfer_call_action_update_params import TransferCallActionUpdateParams
@@ -246,6 +252,7 @@ __all__ = [
     "AgentActionsItem_ActionEndConversation",
     "AgentActionsItem_ActionTransferCall",
     "AgentEndpointingSensitivity",
+    "AgentIvrNavigationMode",
     "AgentPage",
     "AgentParamsActionsItem",
     "AgentParamsActionsItemOne",
@@ -253,6 +260,7 @@ __all__ = [
     "AgentParamsActionsItemOne_ActionEndConversation",
     "AgentParamsActionsItemOne_ActionTransferCall",
     "AgentParamsEndpointingSensitivity",
+    "AgentParamsIvrNavigationMode",
     "AgentParamsPrompt",
     "AgentParamsVectorDatabase",
     "AgentParamsVoice",
@@ -273,6 +281,7 @@ __all__ = [
     "AgentUpdateParamsEndpointingSensitivity",
     "AgentUpdateParamsInitialMessage",
     "AgentUpdateParamsInterruptSensitivity",
+    "AgentUpdateParamsIvrNavigationMode",
     "AgentUpdateParamsLanguage",
     "AgentUpdateParamsNoiseSuppression",
     "AgentUpdateParamsPrompt",
@@ -307,6 +316,7 @@ __all__ = [
     "CreateCallAgentParamsActionsItemOne_ActionEndConversation",
     "CreateCallAgentParamsActionsItemOne_ActionTransferCall",
     "CreateCallAgentParamsEndpointingSensitivity",
+    "CreateCallAgentParamsIvrNavigationMode",
     "CreateCallAgentParamsPrompt",
     "CreateCallAgentParamsVectorDatabase",
     "CreateCallAgentParamsVoice",
@@ -341,6 +351,7 @@ __all__ = [
     "Language",
     "NormalizedAgent",
     "NormalizedAgentEndpointingSensitivity",
+    "NormalizedAgentIvrNavigationMode",
     "NormalizedAgentPrompt",
     "NormalizedAgentVectorDatabase",
     "NormalizedCall",
@@ -372,6 +383,7 @@ __all__ = [
     "RimeVoiceParams",
     "RimeVoiceUpdateParams",
     "RimeVoiceUpdateParamsSpeaker",
+    "RimeVoiceUpdateParamsSpeedAlpha",
     "TransferCallAction",
     "TransferCallActionParams",
     "TransferCallActionUpdateParams",
