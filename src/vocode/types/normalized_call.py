@@ -24,6 +24,7 @@ class NormalizedCall(pydantic.BaseModel):
     agent_phone_number: str
     start_time: typing.Optional[dt.datetime]
     end_time: typing.Optional[dt.datetime]
+    hipaa_compliant: typing.Optional[bool]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
