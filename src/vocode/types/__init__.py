@@ -65,6 +65,7 @@ from .agent_update_params_actions_item_one import (
     AgentUpdateParamsActionsItemOne_ActionTransferCall,
 )
 from .agent_update_params_context_endpoint import AgentUpdateParamsContextEndpoint
+from .agent_update_params_conversation_speed import AgentUpdateParamsConversationSpeed
 from .agent_update_params_endpointing_sensitivity import AgentUpdateParamsEndpointingSensitivity
 from .agent_update_params_initial_message import AgentUpdateParamsInitialMessage
 from .agent_update_params_interrupt_sensitivity import AgentUpdateParamsInterruptSensitivity
@@ -278,6 +279,7 @@ __all__ = [
     "AgentUpdateParamsActionsItemOne_ActionEndConversation",
     "AgentUpdateParamsActionsItemOne_ActionTransferCall",
     "AgentUpdateParamsContextEndpoint",
+    "AgentUpdateParamsConversationSpeed",
     "AgentUpdateParamsEndpointingSensitivity",
     "AgentUpdateParamsInitialMessage",
     "AgentUpdateParamsInterruptSensitivity",

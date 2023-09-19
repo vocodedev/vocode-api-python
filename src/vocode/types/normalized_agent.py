@@ -29,6 +29,7 @@ class NormalizedAgent(pydantic.BaseModel):
     noise_suppression: typing.Optional[bool]
     endpointing_sensitivity: typing.Optional[NormalizedAgentEndpointingSensitivity]
     ivr_navigation_mode: typing.Optional[NormalizedAgentIvrNavigationMode]
+    conversation_speed: typing.Optional[float]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

@@ -30,6 +30,7 @@ class CreateCallAgentParams(pydantic.BaseModel):
     noise_suppression: typing.Optional[bool]
     endpointing_sensitivity: typing.Optional[CreateCallAgentParamsEndpointingSensitivity]
     ivr_navigation_mode: typing.Optional[CreateCallAgentParamsIvrNavigationMode]
+    conversation_speed: typing.Optional[float]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
