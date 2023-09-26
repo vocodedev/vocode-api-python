@@ -153,6 +153,7 @@ from .normalized_agent_vector_database import NormalizedAgentVectorDatabase
 from .normalized_call import NormalizedCall
 from .normalized_call_machine_detection_result import NormalizedCallMachineDetectionResult
 from .normalized_phone_number import NormalizedPhoneNumber
+from .normalized_prompt import NormalizedPrompt
 from .phone_number import PhoneNumber
 from .phone_number_page import PhoneNumberPage
 from .pinecone_vector_database import PineconeVectorDatabase
@@ -171,10 +172,13 @@ from .play_ht_voice_update_params_voice_id import PlayHtVoiceUpdateParamsVoiceId
 from .prompt import Prompt
 from .prompt_page import PromptPage
 from .prompt_params import PromptParams
+from .prompt_params_prompt_template import PromptParamsPromptTemplate
+from .prompt_template import PromptTemplate
 from .prompt_update_params import PromptUpdateParams
 from .prompt_update_params_collect_fields import PromptUpdateParamsCollectFields
 from .prompt_update_params_content import PromptUpdateParamsContent
 from .prompt_update_params_context_endpoint import PromptUpdateParamsContextEndpoint
+from .prompt_update_params_prompt_template import PromptUpdateParamsPromptTemplate
 from .rime_voice import RimeVoice
 from .rime_voice_params import RimeVoiceParams
 from .rime_voice_update_params import RimeVoiceUpdateParams
@@ -359,6 +363,7 @@ __all__ = [
     "NormalizedCall",
     "NormalizedCallMachineDetectionResult",
     "NormalizedPhoneNumber",
+    "NormalizedPrompt",
     "PhoneNumber",
     "PhoneNumberPage",
     "PineconeVectorDatabase",
@@ -377,10 +382,13 @@ __all__ = [
     "Prompt",
     "PromptPage",
     "PromptParams",
+    "PromptParamsPromptTemplate",
+    "PromptTemplate",
     "PromptUpdateParams",
     "PromptUpdateParamsCollectFields",
     "PromptUpdateParamsContent",
     "PromptUpdateParamsContextEndpoint",
+    "PromptUpdateParamsPromptTemplate",
     "RimeVoice",
     "RimeVoiceParams",
     "RimeVoiceUpdateParams",

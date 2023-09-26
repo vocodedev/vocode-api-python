@@ -6,11 +6,11 @@ import typing
 import pydantic
 
 from ..core.datetime_utils import serialize_datetime
-from .prompt import Prompt
+from .normalized_prompt import NormalizedPrompt
 
 
 class PromptPage(pydantic.BaseModel):
-    items: typing.List[Prompt]
+    items: typing.List[NormalizedPrompt]
     page: int
     size: int
     has_more: bool

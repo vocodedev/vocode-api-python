@@ -101,6 +101,7 @@ class CallsClient:
         agent: CreateCallRequestAgent,
         on_machine_answer: typing.Optional[CreateCallRequestOnMachineAnswer] = OMIT,
         hipaa_compliant: typing.Optional[bool] = OMIT,
+        context: typing.Optional[typing.Dict[str, str]] = OMIT,
     ) -> Call:
         """
         Parameters:
@@ -113,12 +114,16 @@ class CallsClient:
             - on_machine_answer: typing.Optional[CreateCallRequestOnMachineAnswer].
 
             - hipaa_compliant: typing.Optional[bool].
+
+            - context: typing.Optional[typing.Dict[str, str]].
         """
         _request: typing.Dict[str, typing.Any] = {"from_number": from_number, "to_number": to_number, "agent": agent}
         if on_machine_answer is not OMIT:
             _request["on_machine_answer"] = on_machine_answer
         if hipaa_compliant is not OMIT:
             _request["hipaa_compliant"] = hipaa_compliant
+        if context is not OMIT:
+            _request["context"] = context
         _response = self._client_wrapper.httpx_client.request(
             "POST",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/calls/create"),
@@ -239,6 +244,7 @@ class AsyncCallsClient:
         agent: CreateCallRequestAgent,
         on_machine_answer: typing.Optional[CreateCallRequestOnMachineAnswer] = OMIT,
         hipaa_compliant: typing.Optional[bool] = OMIT,
+        context: typing.Optional[typing.Dict[str, str]] = OMIT,
     ) -> Call:
         """
         Parameters:
@@ -251,12 +257,16 @@ class AsyncCallsClient:
             - on_machine_answer: typing.Optional[CreateCallRequestOnMachineAnswer].
 
             - hipaa_compliant: typing.Optional[bool].
+
+            - context: typing.Optional[typing.Dict[str, str]].
         """
         _request: typing.Dict[str, typing.Any] = {"from_number": from_number, "to_number": to_number, "agent": agent}
         if on_machine_answer is not OMIT:
             _request["on_machine_answer"] = on_machine_answer
         if hipaa_compliant is not OMIT:
             _request["hipaa_compliant"] = hipaa_compliant
+        if context is not OMIT:
+            _request["context"] = context
         _response = await self._client_wrapper.httpx_client.request(
             "POST",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/calls/create"),

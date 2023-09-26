@@ -13,7 +13,7 @@ class Usage(pydantic.BaseModel):
     user_id: str
     plan_type: PlanType
     monthly_usage_minutes: int
-    monthly_usage_limit_minutes: int
+    monthly_usage_limit_minutes: typing.Optional[int]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

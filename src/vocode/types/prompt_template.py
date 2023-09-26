@@ -6,17 +6,13 @@ import typing
 import pydantic
 
 from ..core.datetime_utils import serialize_datetime
-from .collect_field import CollectField
-from .prompt_template import PromptTemplate
 
 
-class Prompt(pydantic.BaseModel):
+class PromptTemplate(pydantic.BaseModel):
     id: str
     user_id: str
-    content: typing.Optional[str]
-    collect_fields: typing.Optional[typing.List[CollectField]]
-    context_endpoint: typing.Optional[str]
-    prompt_template: typing.Optional[PromptTemplate]
+    label: typing.Optional[str]
+    required_context_keys: typing.List[str]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

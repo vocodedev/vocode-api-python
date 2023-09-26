@@ -9,12 +9,14 @@ from ..core.datetime_utils import serialize_datetime
 from .prompt_update_params_collect_fields import PromptUpdateParamsCollectFields
 from .prompt_update_params_content import PromptUpdateParamsContent
 from .prompt_update_params_context_endpoint import PromptUpdateParamsContextEndpoint
+from .prompt_update_params_prompt_template import PromptUpdateParamsPromptTemplate
 
 
 class PromptUpdateParams(pydantic.BaseModel):
     content: typing.Optional[PromptUpdateParamsContent]
     collect_fields: typing.Optional[PromptUpdateParamsCollectFields]
     context_endpoint: typing.Optional[PromptUpdateParamsContextEndpoint]
+    prompt_template: typing.Optional[PromptUpdateParamsPromptTemplate]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

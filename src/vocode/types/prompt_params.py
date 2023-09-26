@@ -7,12 +7,14 @@ import pydantic
 
 from ..core.datetime_utils import serialize_datetime
 from .collect_field import CollectField
+from .prompt_params_prompt_template import PromptParamsPromptTemplate
 
 
 class PromptParams(pydantic.BaseModel):
-    content: str
+    content: typing.Optional[str]
     collect_fields: typing.Optional[typing.List[CollectField]]
     context_endpoint: typing.Optional[str]
+    prompt_template: typing.Optional[PromptParamsPromptTemplate]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
