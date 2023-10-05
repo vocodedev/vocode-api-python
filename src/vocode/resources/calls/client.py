@@ -14,7 +14,7 @@ from ...errors.unprocessable_entity_error import UnprocessableEntityError
 from ...types.call import Call
 from ...types.call_page import CallPage
 from ...types.create_call_request_agent import CreateCallRequestAgent
-from ...types.create_call_request_on_machine_answer import CreateCallRequestOnMachineAnswer
+from ...types.create_call_request_on_no_human_answer import CreateCallRequestOnNoHumanAnswer
 from ...types.http_validation_error import HttpValidationError
 
 # this is used as the default value for optional parameters
@@ -99,7 +99,7 @@ class CallsClient:
         from_number: str,
         to_number: str,
         agent: CreateCallRequestAgent,
-        on_machine_answer: typing.Optional[CreateCallRequestOnMachineAnswer] = OMIT,
+        on_no_human_answer: typing.Optional[CreateCallRequestOnNoHumanAnswer] = OMIT,
         hipaa_compliant: typing.Optional[bool] = OMIT,
         context: typing.Optional[typing.Dict[str, str]] = OMIT,
     ) -> Call:
@@ -111,15 +111,15 @@ class CallsClient:
 
             - agent: CreateCallRequestAgent.
 
-            - on_machine_answer: typing.Optional[CreateCallRequestOnMachineAnswer].
+            - on_no_human_answer: typing.Optional[CreateCallRequestOnNoHumanAnswer].
 
             - hipaa_compliant: typing.Optional[bool].
 
             - context: typing.Optional[typing.Dict[str, str]].
         """
         _request: typing.Dict[str, typing.Any] = {"from_number": from_number, "to_number": to_number, "agent": agent}
-        if on_machine_answer is not OMIT:
-            _request["on_machine_answer"] = on_machine_answer
+        if on_no_human_answer is not OMIT:
+            _request["on_no_human_answer"] = on_no_human_answer
         if hipaa_compliant is not OMIT:
             _request["hipaa_compliant"] = hipaa_compliant
         if context is not OMIT:
@@ -141,7 +141,7 @@ class CallsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def get_recording(self, *, id: str) -> typing.Any:
+    def get_recording(self, *, id: str) -> None:
         """
         Parameters:
             - id: str.
@@ -154,7 +154,7 @@ class CallsClient:
             timeout=60,
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(typing.Any, _response.json())  # type: ignore
+            return
         if _response.status_code == 422:
             raise UnprocessableEntityError(pydantic.parse_obj_as(HttpValidationError, _response.json()))  # type: ignore
         try:
@@ -242,7 +242,7 @@ class AsyncCallsClient:
         from_number: str,
         to_number: str,
         agent: CreateCallRequestAgent,
-        on_machine_answer: typing.Optional[CreateCallRequestOnMachineAnswer] = OMIT,
+        on_no_human_answer: typing.Optional[CreateCallRequestOnNoHumanAnswer] = OMIT,
         hipaa_compliant: typing.Optional[bool] = OMIT,
         context: typing.Optional[typing.Dict[str, str]] = OMIT,
     ) -> Call:
@@ -254,15 +254,15 @@ class AsyncCallsClient:
 
             - agent: CreateCallRequestAgent.
 
-            - on_machine_answer: typing.Optional[CreateCallRequestOnMachineAnswer].
+            - on_no_human_answer: typing.Optional[CreateCallRequestOnNoHumanAnswer].
 
             - hipaa_compliant: typing.Optional[bool].
 
             - context: typing.Optional[typing.Dict[str, str]].
         """
         _request: typing.Dict[str, typing.Any] = {"from_number": from_number, "to_number": to_number, "agent": agent}
-        if on_machine_answer is not OMIT:
-            _request["on_machine_answer"] = on_machine_answer
+        if on_no_human_answer is not OMIT:
+            _request["on_no_human_answer"] = on_no_human_answer
         if hipaa_compliant is not OMIT:
             _request["hipaa_compliant"] = hipaa_compliant
         if context is not OMIT:
@@ -284,7 +284,7 @@ class AsyncCallsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def get_recording(self, *, id: str) -> typing.Any:
+    async def get_recording(self, *, id: str) -> None:
         """
         Parameters:
             - id: str.
@@ -297,7 +297,7 @@ class AsyncCallsClient:
             timeout=60,
         )
         if 200 <= _response.status_code < 300:
-            return pydantic.parse_obj_as(typing.Any, _response.json())  # type: ignore
+            return
         if _response.status_code == 422:
             raise UnprocessableEntityError(pydantic.parse_obj_as(HttpValidationError, _response.json()))  # type: ignore
         try:

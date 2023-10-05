@@ -6,12 +6,12 @@ import typing
 T_Result = typing.TypeVar("T_Result")
 
 
-class CreateCallRequestOnMachineAnswer(str, enum.Enum):
+class CreateCallRequestOnNoHumanAnswer(str, enum.Enum):
     CONTINUE = "continue"
     HANGUP = "hangup"
 
     def visit(self, continue_: typing.Callable[[], T_Result], hangup: typing.Callable[[], T_Result]) -> T_Result:
-        if self is CreateCallRequestOnMachineAnswer.CONTINUE:
+        if self is CreateCallRequestOnNoHumanAnswer.CONTINUE:
             return continue_()
-        if self is CreateCallRequestOnMachineAnswer.HANGUP:
+        if self is CreateCallRequestOnNoHumanAnswer.HANGUP:
             return hangup()

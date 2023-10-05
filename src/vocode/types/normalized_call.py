@@ -7,7 +7,8 @@ import pydantic
 
 from ..core.datetime_utils import serialize_datetime
 from .call_status import CallStatus
-from .normalized_call_machine_detection_result import NormalizedCallMachineDetectionResult
+from .normalized_call_human_detection_result import NormalizedCallHumanDetectionResult
+from .normalized_call_on_no_human_answer import NormalizedCallOnNoHumanAnswer
 
 
 class NormalizedCall(pydantic.BaseModel):
@@ -17,7 +18,7 @@ class NormalizedCall(pydantic.BaseModel):
     error_message: typing.Optional[str]
     recording_available: typing.Optional[bool]
     transcript: typing.Optional[str]
-    machine_detection_result: typing.Optional[NormalizedCallMachineDetectionResult]
+    human_detection_result: typing.Optional[NormalizedCallHumanDetectionResult]
     to_number: str
     from_number: str
     agent: str
@@ -25,6 +26,7 @@ class NormalizedCall(pydantic.BaseModel):
     start_time: typing.Optional[dt.datetime]
     end_time: typing.Optional[dt.datetime]
     hipaa_compliant: typing.Optional[bool]
+    on_no_human_answer: typing.Optional[NormalizedCallOnNoHumanAnswer]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

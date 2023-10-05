@@ -14,6 +14,7 @@ class NormalizedPhoneNumber(pydantic.BaseModel):
     active: typing.Optional[bool]
     label: typing.Optional[str]
     inbound_agent: str
+    outbound_only: typing.Optional[bool]
     number: str
 
     def json(self, **kwargs: typing.Any) -> str:

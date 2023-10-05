@@ -97,7 +97,8 @@ from .azure_voice_update_params_pitch import AzureVoiceUpdateParamsPitch
 from .azure_voice_update_params_rate import AzureVoiceUpdateParamsRate
 from .azure_voice_update_params_voice_name import AzureVoiceUpdateParamsVoiceName
 from .call import Call
-from .call_machine_detection_result import CallMachineDetectionResult
+from .call_human_detection_result import CallHumanDetectionResult
+from .call_on_no_human_answer import CallOnNoHumanAnswer
 from .call_page import CallPage
 from .call_status import CallStatus
 from .collect_field import CollectField
@@ -123,7 +124,7 @@ from .create_call_agent_params_voice_one import (
 )
 from .create_call_agent_params_webhook import CreateCallAgentParamsWebhook
 from .create_call_request_agent import CreateCallRequestAgent
-from .create_call_request_on_machine_answer import CreateCallRequestOnMachineAnswer
+from .create_call_request_on_no_human_answer import CreateCallRequestOnNoHumanAnswer
 from .dtmf_action import DtmfAction
 from .dtmf_action_params import DtmfActionParams
 from .dtmf_action_update_params import DtmfActionUpdateParams
@@ -151,7 +152,8 @@ from .normalized_agent_ivr_navigation_mode import NormalizedAgentIvrNavigationMo
 from .normalized_agent_prompt import NormalizedAgentPrompt
 from .normalized_agent_vector_database import NormalizedAgentVectorDatabase
 from .normalized_call import NormalizedCall
-from .normalized_call_machine_detection_result import NormalizedCallMachineDetectionResult
+from .normalized_call_human_detection_result import NormalizedCallHumanDetectionResult
+from .normalized_call_on_no_human_answer import NormalizedCallOnNoHumanAnswer
 from .normalized_phone_number import NormalizedPhoneNumber
 from .normalized_prompt import NormalizedPrompt
 from .phone_number import PhoneNumber
@@ -311,7 +313,8 @@ __all__ = [
     "AzureVoiceUpdateParamsRate",
     "AzureVoiceUpdateParamsVoiceName",
     "Call",
-    "CallMachineDetectionResult",
+    "CallHumanDetectionResult",
+    "CallOnNoHumanAnswer",
     "CallPage",
     "CallStatus",
     "CollectField",
@@ -333,7 +336,7 @@ __all__ = [
     "CreateCallAgentParamsVoiceOne_VoiceRime",
     "CreateCallAgentParamsWebhook",
     "CreateCallRequestAgent",
-    "CreateCallRequestOnMachineAnswer",
+    "CreateCallRequestOnNoHumanAnswer",
     "DtmfAction",
     "DtmfActionParams",
     "DtmfActionUpdateParams",
@@ -361,7 +364,8 @@ __all__ = [
     "NormalizedAgentPrompt",
     "NormalizedAgentVectorDatabase",
     "NormalizedCall",
-    "NormalizedCallMachineDetectionResult",
+    "NormalizedCallHumanDetectionResult",
+    "NormalizedCallOnNoHumanAnswer",
     "NormalizedPhoneNumber",
     "NormalizedPrompt",
     "PhoneNumber",
