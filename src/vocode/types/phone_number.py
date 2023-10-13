@@ -16,6 +16,7 @@ class PhoneNumber(pydantic.BaseModel):
     label: typing.Optional[str]
     inbound_agent: Agent
     outbound_only: typing.Optional[bool]
+    example_context: typing.Optional[typing.Dict[str, str]]
     number: str
 
     def json(self, **kwargs: typing.Any) -> str:

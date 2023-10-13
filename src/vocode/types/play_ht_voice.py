@@ -6,14 +6,16 @@ import typing
 import pydantic
 
 from ..core.datetime_utils import serialize_datetime
+from .play_ht_voice_version import PlayHtVoiceVersion
 
 
 class PlayHtVoice(pydantic.BaseModel):
     id: str
     user_id: str
     voice_id: str
-    api_user_id: str
-    api_key: str
+    api_user_id: typing.Optional[str]
+    api_key: typing.Optional[str]
+    version: typing.Optional[PlayHtVoiceVersion]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

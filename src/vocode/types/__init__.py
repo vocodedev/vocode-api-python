@@ -167,10 +167,13 @@ from .pinecone_vector_database_update_params_index import PineconeVectorDatabase
 from .plan_type import PlanType
 from .play_ht_voice import PlayHtVoice
 from .play_ht_voice_params import PlayHtVoiceParams
+from .play_ht_voice_params_version import PlayHtVoiceParamsVersion
 from .play_ht_voice_update_params import PlayHtVoiceUpdateParams
 from .play_ht_voice_update_params_api_key import PlayHtVoiceUpdateParamsApiKey
 from .play_ht_voice_update_params_api_user_id import PlayHtVoiceUpdateParamsApiUserId
+from .play_ht_voice_update_params_version import PlayHtVoiceUpdateParamsVersion
 from .play_ht_voice_update_params_voice_id import PlayHtVoiceUpdateParamsVoiceId
+from .play_ht_voice_version import PlayHtVoiceVersion
 from .prompt import Prompt
 from .prompt_page import PromptPage
 from .prompt_params import PromptParams
@@ -379,10 +382,13 @@ __all__ = [
     "PlanType",
     "PlayHtVoice",
     "PlayHtVoiceParams",
+    "PlayHtVoiceParamsVersion",
     "PlayHtVoiceUpdateParams",
     "PlayHtVoiceUpdateParamsApiKey",
     "PlayHtVoiceUpdateParamsApiUserId",
+    "PlayHtVoiceUpdateParamsVersion",
     "PlayHtVoiceUpdateParamsVoiceId",
+    "PlayHtVoiceVersion",
     "Prompt",
     "PromptPage",
     "PromptParams",
