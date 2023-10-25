@@ -100,6 +100,7 @@ class CallsClient:
         to_number: str,
         agent: CreateCallRequestAgent,
         on_no_human_answer: typing.Optional[CreateCallRequestOnNoHumanAnswer] = OMIT,
+        run_do_not_call_detection: typing.Optional[bool] = OMIT,
         hipaa_compliant: typing.Optional[bool] = OMIT,
         context: typing.Optional[typing.Dict[str, str]] = OMIT,
     ) -> Call:
@@ -113,6 +114,8 @@ class CallsClient:
 
             - on_no_human_answer: typing.Optional[CreateCallRequestOnNoHumanAnswer].
 
+            - run_do_not_call_detection: typing.Optional[bool].
+
             - hipaa_compliant: typing.Optional[bool].
 
             - context: typing.Optional[typing.Dict[str, str]].
@@ -120,6 +123,8 @@ class CallsClient:
         _request: typing.Dict[str, typing.Any] = {"from_number": from_number, "to_number": to_number, "agent": agent}
         if on_no_human_answer is not OMIT:
             _request["on_no_human_answer"] = on_no_human_answer
+        if run_do_not_call_detection is not OMIT:
+            _request["run_do_not_call_detection"] = run_do_not_call_detection
         if hipaa_compliant is not OMIT:
             _request["hipaa_compliant"] = hipaa_compliant
         if context is not OMIT:
@@ -243,6 +248,7 @@ class AsyncCallsClient:
         to_number: str,
         agent: CreateCallRequestAgent,
         on_no_human_answer: typing.Optional[CreateCallRequestOnNoHumanAnswer] = OMIT,
+        run_do_not_call_detection: typing.Optional[bool] = OMIT,
         hipaa_compliant: typing.Optional[bool] = OMIT,
         context: typing.Optional[typing.Dict[str, str]] = OMIT,
     ) -> Call:
@@ -256,6 +262,8 @@ class AsyncCallsClient:
 
             - on_no_human_answer: typing.Optional[CreateCallRequestOnNoHumanAnswer].
 
+            - run_do_not_call_detection: typing.Optional[bool].
+
             - hipaa_compliant: typing.Optional[bool].
 
             - context: typing.Optional[typing.Dict[str, str]].
@@ -263,6 +271,8 @@ class AsyncCallsClient:
         _request: typing.Dict[str, typing.Any] = {"from_number": from_number, "to_number": to_number, "agent": agent}
         if on_no_human_answer is not OMIT:
             _request["on_no_human_answer"] = on_no_human_answer
+        if run_do_not_call_detection is not OMIT:
+            _request["run_do_not_call_detection"] = run_do_not_call_detection
         if hipaa_compliant is not OMIT:
             _request["hipaa_compliant"] = hipaa_compliant
         if context is not OMIT:

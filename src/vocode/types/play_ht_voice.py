@@ -16,6 +16,7 @@ class PlayHtVoice(pydantic.BaseModel):
     api_user_id: typing.Optional[str]
     api_key: typing.Optional[str]
     version: typing.Optional[PlayHtVoiceVersion]
+    speed: typing.Optional[float]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

@@ -171,6 +171,7 @@ from .play_ht_voice_params_version import PlayHtVoiceParamsVersion
 from .play_ht_voice_update_params import PlayHtVoiceUpdateParams
 from .play_ht_voice_update_params_api_key import PlayHtVoiceUpdateParamsApiKey
 from .play_ht_voice_update_params_api_user_id import PlayHtVoiceUpdateParamsApiUserId
+from .play_ht_voice_update_params_speed import PlayHtVoiceUpdateParamsSpeed
 from .play_ht_voice_update_params_version import PlayHtVoiceUpdateParamsVersion
 from .play_ht_voice_update_params_voice_id import PlayHtVoiceUpdateParamsVoiceId
 from .play_ht_voice_version import PlayHtVoiceVersion
@@ -386,6 +387,7 @@ __all__ = [
     "PlayHtVoiceUpdateParams",
     "PlayHtVoiceUpdateParamsApiKey",
     "PlayHtVoiceUpdateParamsApiUserId",
+    "PlayHtVoiceUpdateParamsSpeed",
     "PlayHtVoiceUpdateParamsVersion",
     "PlayHtVoiceUpdateParamsVoiceId",
     "PlayHtVoiceVersion",

@@ -19,6 +19,7 @@ class NormalizedCall(pydantic.BaseModel):
     recording_available: typing.Optional[bool]
     transcript: typing.Optional[str]
     human_detection_result: typing.Optional[NormalizedCallHumanDetectionResult]
+    do_not_call_result: typing.Optional[bool]
     to_number: str
     from_number: str
     agent: str
@@ -27,6 +28,8 @@ class NormalizedCall(pydantic.BaseModel):
     end_time: typing.Optional[dt.datetime]
     hipaa_compliant: typing.Optional[bool]
     on_no_human_answer: typing.Optional[NormalizedCallOnNoHumanAnswer]
+    context: typing.Optional[typing.Dict[str, str]]
+    run_do_not_call_detection: typing.Optional[bool]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
