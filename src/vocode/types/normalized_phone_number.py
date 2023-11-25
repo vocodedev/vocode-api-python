@@ -6,6 +6,8 @@ import typing
 import pydantic
 
 from ..core.datetime_utils import serialize_datetime
+from .normalized_phone_number_telephony_account_connection import NormalizedPhoneNumberTelephonyAccountConnection
+from .normalized_phone_number_telephony_provider import NormalizedPhoneNumberTelephonyProvider
 
 
 class NormalizedPhoneNumber(pydantic.BaseModel):
@@ -17,6 +19,8 @@ class NormalizedPhoneNumber(pydantic.BaseModel):
     outbound_only: typing.Optional[bool]
     example_context: typing.Optional[typing.Dict[str, str]]
     number: str
+    telephony_provider: typing.Optional[NormalizedPhoneNumberTelephonyProvider]
+    telephony_account_connection: typing.Optional[NormalizedPhoneNumberTelephonyAccountConnection]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

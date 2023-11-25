@@ -4,19 +4,17 @@ import datetime as dt
 import typing
 
 import pydantic
+import typing_extensions
 
 from ..core.datetime_utils import serialize_datetime
+from .twilio_credentials import TwilioCredentials
 
 
-class ElevenLabsVoice(pydantic.BaseModel):
+class TwilioAccountConnection(pydantic.BaseModel):
     id: str
     user_id: str
-    voice_id: str
-    stability: typing.Optional[float]
-    similarity_boost: typing.Optional[float]
-    api_key: typing.Optional[str]
-    optimize_streaming_latency: typing.Optional[int]
-    model_id: typing.Optional[str]
+    type: typing_extensions.Literal["account_connection_twilio"]
+    credentials: TwilioCredentials
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

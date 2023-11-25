@@ -10,6 +10,7 @@ from .agent import Agent
 from .call_human_detection_result import CallHumanDetectionResult
 from .call_on_no_human_answer import CallOnNoHumanAnswer
 from .call_status import CallStatus
+from .call_telephony_provider import CallTelephonyProvider
 
 
 class Call(pydantic.BaseModel):
@@ -21,9 +22,11 @@ class Call(pydantic.BaseModel):
     transcript: typing.Optional[str]
     human_detection_result: typing.Optional[CallHumanDetectionResult]
     do_not_call_result: typing.Optional[bool]
+    telephony_id: typing.Optional[str]
     to_number: str
     from_number: str
     agent: Agent
+    telephony_provider: CallTelephonyProvider
     agent_phone_number: str
     start_time: typing.Optional[dt.datetime]
     end_time: typing.Optional[dt.datetime]

@@ -11,6 +11,7 @@ from ...core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ...core.jsonable_encoder import jsonable_encoder
 from ...core.remove_none_from_dict import remove_none_from_dict
 from ...errors.unprocessable_entity_error import UnprocessableEntityError
+from ...types.buy_phone_number_request import BuyPhoneNumberRequest
 from ...types.http_validation_error import HttpValidationError
 from ...types.phone_number import PhoneNumber
 from ...types.phone_number_page import PhoneNumberPage
@@ -71,18 +72,15 @@ class NumbersClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def buy_number(self, *, area_code: typing.Optional[str] = OMIT) -> PhoneNumber:
+    def buy_number(self, *, request: BuyPhoneNumberRequest) -> PhoneNumber:
         """
         Parameters:
-            - area_code: typing.Optional[str].
+            - request: BuyPhoneNumberRequest.
         """
-        _request: typing.Dict[str, typing.Any] = {}
-        if area_code is not OMIT:
-            _request["area_code"] = area_code
         _response = self._client_wrapper.httpx_client.request(
             "POST",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/numbers/buy"),
-            json=jsonable_encoder(_request),
+            json=jsonable_encoder(request),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
@@ -156,6 +154,40 @@ class NumbersClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
+    def link_number(
+        self, *, phone_number: str, telephony_account_connection: str, outbound_only: typing.Optional[bool] = OMIT
+    ) -> PhoneNumber:
+        """
+        Parameters:
+            - phone_number: str.
+
+            - telephony_account_connection: str.
+
+            - outbound_only: typing.Optional[bool].
+        """
+        _request: typing.Dict[str, typing.Any] = {
+            "phone_number": phone_number,
+            "telephony_account_connection": telephony_account_connection,
+        }
+        if outbound_only is not OMIT:
+            _request["outbound_only"] = outbound_only
+        _response = self._client_wrapper.httpx_client.request(
+            "POST",
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/numbers/link"),
+            json=jsonable_encoder(_request),
+            headers=self._client_wrapper.get_headers(),
+            timeout=60,
+        )
+        if 200 <= _response.status_code < 300:
+            return pydantic.parse_obj_as(PhoneNumber, _response.json())  # type: ignore
+        if _response.status_code == 422:
+            raise UnprocessableEntityError(pydantic.parse_obj_as(HttpValidationError, _response.json()))  # type: ignore
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
 
 class AsyncNumbersClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
@@ -209,18 +241,15 @@ class AsyncNumbersClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def buy_number(self, *, area_code: typing.Optional[str] = OMIT) -> PhoneNumber:
+    async def buy_number(self, *, request: BuyPhoneNumberRequest) -> PhoneNumber:
         """
         Parameters:
-            - area_code: typing.Optional[str].
+            - request: BuyPhoneNumberRequest.
         """
-        _request: typing.Dict[str, typing.Any] = {}
-        if area_code is not OMIT:
-            _request["area_code"] = area_code
         _response = await self._client_wrapper.httpx_client.request(
             "POST",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/numbers/buy"),
-            json=jsonable_encoder(_request),
+            json=jsonable_encoder(request),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
@@ -281,6 +310,40 @@ class AsyncNumbersClient:
             "POST",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/numbers/cancel"),
             params=remove_none_from_dict({"phone_number": phone_number}),
+            headers=self._client_wrapper.get_headers(),
+            timeout=60,
+        )
+        if 200 <= _response.status_code < 300:
+            return pydantic.parse_obj_as(PhoneNumber, _response.json())  # type: ignore
+        if _response.status_code == 422:
+            raise UnprocessableEntityError(pydantic.parse_obj_as(HttpValidationError, _response.json()))  # type: ignore
+        try:
+            _response_json = _response.json()
+        except JSONDecodeError:
+            raise ApiError(status_code=_response.status_code, body=_response.text)
+        raise ApiError(status_code=_response.status_code, body=_response_json)
+
+    async def link_number(
+        self, *, phone_number: str, telephony_account_connection: str, outbound_only: typing.Optional[bool] = OMIT
+    ) -> PhoneNumber:
+        """
+        Parameters:
+            - phone_number: str.
+
+            - telephony_account_connection: str.
+
+            - outbound_only: typing.Optional[bool].
+        """
+        _request: typing.Dict[str, typing.Any] = {
+            "phone_number": phone_number,
+            "telephony_account_connection": telephony_account_connection,
+        }
+        if outbound_only is not OMIT:
+            _request["outbound_only"] = outbound_only
+        _response = await self._client_wrapper.httpx_client.request(
+            "POST",
+            urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/numbers/link"),
+            json=jsonable_encoder(_request),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )

@@ -68,6 +68,7 @@ from .agent_update_params_context_endpoint import AgentUpdateParamsContextEndpoi
 from .agent_update_params_conversation_speed import AgentUpdateParamsConversationSpeed
 from .agent_update_params_endpointing_sensitivity import AgentUpdateParamsEndpointingSensitivity
 from .agent_update_params_initial_message import AgentUpdateParamsInitialMessage
+from .agent_update_params_initial_message_delay import AgentUpdateParamsInitialMessageDelay
 from .agent_update_params_interrupt_sensitivity import AgentUpdateParamsInterruptSensitivity
 from .agent_update_params_ivr_navigation_mode import AgentUpdateParamsIvrNavigationMode
 from .agent_update_params_language import AgentUpdateParamsLanguage
@@ -96,11 +97,14 @@ from .azure_voice_update_params import AzureVoiceUpdateParams
 from .azure_voice_update_params_pitch import AzureVoiceUpdateParamsPitch
 from .azure_voice_update_params_rate import AzureVoiceUpdateParamsRate
 from .azure_voice_update_params_voice_name import AzureVoiceUpdateParamsVoiceName
+from .buy_phone_number_request import BuyPhoneNumberRequest
+from .buy_phone_number_request_telephony_provider import BuyPhoneNumberRequestTelephonyProvider
 from .call import Call
 from .call_human_detection_result import CallHumanDetectionResult
 from .call_on_no_human_answer import CallOnNoHumanAnswer
 from .call_page import CallPage
 from .call_status import CallStatus
+from .call_telephony_provider import CallTelephonyProvider
 from .collect_field import CollectField
 from .create_call_agent_params import CreateCallAgentParams
 from .create_call_agent_params_actions_item import CreateCallAgentParamsActionsItem
@@ -133,6 +137,10 @@ from .eleven_labs_voice import ElevenLabsVoice
 from .eleven_labs_voice_params import ElevenLabsVoiceParams
 from .eleven_labs_voice_update_params import ElevenLabsVoiceUpdateParams
 from .eleven_labs_voice_update_params_api_key import ElevenLabsVoiceUpdateParamsApiKey
+from .eleven_labs_voice_update_params_model_id import ElevenLabsVoiceUpdateParamsModelId
+from .eleven_labs_voice_update_params_optimize_streaming_latency import (
+    ElevenLabsVoiceUpdateParamsOptimizeStreamingLatency,
+)
 from .eleven_labs_voice_update_params_similarity_boost import ElevenLabsVoiceUpdateParamsSimilarityBoost
 from .eleven_labs_voice_update_params_stability import ElevenLabsVoiceUpdateParamsStability
 from .eleven_labs_voice_update_params_voice_id import ElevenLabsVoiceUpdateParamsVoiceId
@@ -154,10 +162,14 @@ from .normalized_agent_vector_database import NormalizedAgentVectorDatabase
 from .normalized_call import NormalizedCall
 from .normalized_call_human_detection_result import NormalizedCallHumanDetectionResult
 from .normalized_call_on_no_human_answer import NormalizedCallOnNoHumanAnswer
+from .normalized_call_telephony_provider import NormalizedCallTelephonyProvider
 from .normalized_phone_number import NormalizedPhoneNumber
+from .normalized_phone_number_telephony_account_connection import NormalizedPhoneNumberTelephonyAccountConnection
+from .normalized_phone_number_telephony_provider import NormalizedPhoneNumberTelephonyProvider
 from .normalized_prompt import NormalizedPrompt
 from .phone_number import PhoneNumber
 from .phone_number_page import PhoneNumberPage
+from .phone_number_telephony_provider import PhoneNumberTelephonyProvider
 from .pinecone_vector_database import PineconeVectorDatabase
 from .pinecone_vector_database_params import PineconeVectorDatabaseParams
 from .pinecone_vector_database_update_params import PineconeVectorDatabaseUpdateParams
@@ -195,6 +207,8 @@ from .transfer_call_action_params import TransferCallActionParams
 from .transfer_call_action_update_params import TransferCallActionUpdateParams
 from .transfer_call_action_update_params_config import TransferCallActionUpdateParamsConfig
 from .transfer_call_config import TransferCallConfig
+from .twilio_account_connection import TwilioAccountConnection
+from .twilio_credentials import TwilioCredentials
 from .undefined import Undefined
 from .update_number_request_inbound_agent import UpdateNumberRequestInboundAgent
 from .update_number_request_label import UpdateNumberRequestLabel
@@ -292,6 +306,7 @@ __all__ = [
     "AgentUpdateParamsConversationSpeed",
     "AgentUpdateParamsEndpointingSensitivity",
     "AgentUpdateParamsInitialMessage",
+    "AgentUpdateParamsInitialMessageDelay",
     "AgentUpdateParamsInterruptSensitivity",
     "AgentUpdateParamsIvrNavigationMode",
     "AgentUpdateParamsLanguage",
@@ -316,11 +331,14 @@ __all__ = [
     "AzureVoiceUpdateParamsPitch",
     "AzureVoiceUpdateParamsRate",
     "AzureVoiceUpdateParamsVoiceName",
+    "BuyPhoneNumberRequest",
+    "BuyPhoneNumberRequestTelephonyProvider",
     "Call",
     "CallHumanDetectionResult",
     "CallOnNoHumanAnswer",
     "CallPage",
     "CallStatus",
+    "CallTelephonyProvider",
     "CollectField",
     "CreateCallAgentParams",
     "CreateCallAgentParamsActionsItem",
@@ -349,6 +367,8 @@ __all__ = [
     "ElevenLabsVoiceParams",
     "ElevenLabsVoiceUpdateParams",
     "ElevenLabsVoiceUpdateParamsApiKey",
+    "ElevenLabsVoiceUpdateParamsModelId",
+    "ElevenLabsVoiceUpdateParamsOptimizeStreamingLatency",
     "ElevenLabsVoiceUpdateParamsSimilarityBoost",
     "ElevenLabsVoiceUpdateParamsStability",
     "ElevenLabsVoiceUpdateParamsVoiceId",
@@ -370,10 +390,14 @@ __all__ = [
     "NormalizedCall",
     "NormalizedCallHumanDetectionResult",
     "NormalizedCallOnNoHumanAnswer",
+    "NormalizedCallTelephonyProvider",
     "NormalizedPhoneNumber",
+    "NormalizedPhoneNumberTelephonyAccountConnection",
+    "NormalizedPhoneNumberTelephonyProvider",
     "NormalizedPrompt",
     "PhoneNumber",
     "PhoneNumberPage",
+    "PhoneNumberTelephonyProvider",
     "PineconeVectorDatabase",
     "PineconeVectorDatabaseParams",
     "PineconeVectorDatabaseUpdateParams",
@@ -411,6 +435,8 @@ __all__ = [
     "TransferCallActionUpdateParams",
     "TransferCallActionUpdateParamsConfig",
     "TransferCallConfig",
+    "TwilioAccountConnection",
+    "TwilioCredentials",
     "Undefined",
     "UpdateNumberRequestInboundAgent",
     "UpdateNumberRequestLabel",

@@ -6,17 +6,13 @@ import typing
 import pydantic
 
 from ..core.datetime_utils import serialize_datetime
+from .buy_phone_number_request_telephony_provider import BuyPhoneNumberRequestTelephonyProvider
 
 
-class ElevenLabsVoice(pydantic.BaseModel):
-    id: str
-    user_id: str
-    voice_id: str
-    stability: typing.Optional[float]
-    similarity_boost: typing.Optional[float]
-    api_key: typing.Optional[str]
-    optimize_streaming_latency: typing.Optional[int]
-    model_id: typing.Optional[str]
+class BuyPhoneNumberRequest(pydantic.BaseModel):
+    area_code: typing.Optional[str]
+    telephony_provider: typing.Optional[BuyPhoneNumberRequestTelephonyProvider]
+    telephony_account_connection: typing.Optional[str]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

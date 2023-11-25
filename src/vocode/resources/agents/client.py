@@ -95,6 +95,7 @@ class AgentsClient:
         endpointing_sensitivity: typing.Optional[AgentParamsEndpointingSensitivity] = OMIT,
         ivr_navigation_mode: typing.Optional[AgentParamsIvrNavigationMode] = OMIT,
         conversation_speed: typing.Optional[float] = OMIT,
+        initial_message_delay: typing.Optional[float] = OMIT,
     ) -> Agent:
         """
         Parameters:
@@ -123,6 +124,8 @@ class AgentsClient:
             - ivr_navigation_mode: typing.Optional[AgentParamsIvrNavigationMode].
 
             - conversation_speed: typing.Optional[float].
+
+            - initial_message_delay: typing.Optional[float].
         """
         _request: typing.Dict[str, typing.Any] = {"prompt": prompt, "voice": voice}
         if language is not OMIT:
@@ -147,6 +150,8 @@ class AgentsClient:
             _request["ivr_navigation_mode"] = ivr_navigation_mode
         if conversation_speed is not OMIT:
             _request["conversation_speed"] = conversation_speed
+        if initial_message_delay is not OMIT:
+            _request["initial_message_delay"] = initial_message_delay
         _response = self._client_wrapper.httpx_client.request(
             "POST",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/agents/create"),
@@ -256,6 +261,7 @@ class AsyncAgentsClient:
         endpointing_sensitivity: typing.Optional[AgentParamsEndpointingSensitivity] = OMIT,
         ivr_navigation_mode: typing.Optional[AgentParamsIvrNavigationMode] = OMIT,
         conversation_speed: typing.Optional[float] = OMIT,
+        initial_message_delay: typing.Optional[float] = OMIT,
     ) -> Agent:
         """
         Parameters:
@@ -284,6 +290,8 @@ class AsyncAgentsClient:
             - ivr_navigation_mode: typing.Optional[AgentParamsIvrNavigationMode].
 
             - conversation_speed: typing.Optional[float].
+
+            - initial_message_delay: typing.Optional[float].
         """
         _request: typing.Dict[str, typing.Any] = {"prompt": prompt, "voice": voice}
         if language is not OMIT:
@@ -308,6 +316,8 @@ class AsyncAgentsClient:
             _request["ivr_navigation_mode"] = ivr_navigation_mode
         if conversation_speed is not OMIT:
             _request["conversation_speed"] = conversation_speed
+        if initial_message_delay is not OMIT:
+            _request["initial_message_delay"] = initial_message_delay
         _response = await self._client_wrapper.httpx_client.request(
             "POST",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/agents/create"),
