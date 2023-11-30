@@ -9,6 +9,7 @@ from ..core.datetime_utils import serialize_datetime
 from .create_call_agent_params_actions_item import CreateCallAgentParamsActionsItem
 from .create_call_agent_params_endpointing_sensitivity import CreateCallAgentParamsEndpointingSensitivity
 from .create_call_agent_params_ivr_navigation_mode import CreateCallAgentParamsIvrNavigationMode
+from .create_call_agent_params_openai_account_connection import CreateCallAgentParamsOpenaiAccountConnection
 from .create_call_agent_params_prompt import CreateCallAgentParamsPrompt
 from .create_call_agent_params_vector_database import CreateCallAgentParamsVectorDatabase
 from .create_call_agent_params_voice import CreateCallAgentParamsVoice
@@ -32,6 +33,8 @@ class CreateCallAgentParams(pydantic.BaseModel):
     ivr_navigation_mode: typing.Optional[CreateCallAgentParamsIvrNavigationMode]
     conversation_speed: typing.Optional[float]
     initial_message_delay: typing.Optional[float]
+    openai_model_name_override: typing.Optional[str]
+    openai_account_connection: typing.Optional[CreateCallAgentParamsOpenaiAccountConnection]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

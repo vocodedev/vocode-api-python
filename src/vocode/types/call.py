@@ -11,6 +11,7 @@ from .call_human_detection_result import CallHumanDetectionResult
 from .call_on_no_human_answer import CallOnNoHumanAnswer
 from .call_status import CallStatus
 from .call_telephony_provider import CallTelephonyProvider
+from .twilio_account_connection import TwilioAccountConnection
 
 
 class Call(pydantic.BaseModel):
@@ -34,6 +35,7 @@ class Call(pydantic.BaseModel):
     on_no_human_answer: typing.Optional[CallOnNoHumanAnswer]
     context: typing.Optional[typing.Dict[str, str]]
     run_do_not_call_detection: typing.Optional[bool]
+    telephony_account_connection: typing.Optional[TwilioAccountConnection]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

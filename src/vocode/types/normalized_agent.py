@@ -10,6 +10,7 @@ from .interrupt_sensitivity import InterruptSensitivity
 from .language import Language
 from .normalized_agent_endpointing_sensitivity import NormalizedAgentEndpointingSensitivity
 from .normalized_agent_ivr_navigation_mode import NormalizedAgentIvrNavigationMode
+from .normalized_agent_openai_account_connection import NormalizedAgentOpenaiAccountConnection
 from .normalized_agent_prompt import NormalizedAgentPrompt
 from .normalized_agent_vector_database import NormalizedAgentVectorDatabase
 
@@ -31,6 +32,8 @@ class NormalizedAgent(pydantic.BaseModel):
     ivr_navigation_mode: typing.Optional[NormalizedAgentIvrNavigationMode]
     conversation_speed: typing.Optional[float]
     initial_message_delay: typing.Optional[float]
+    openai_model_name_override: typing.Optional[str]
+    openai_account_connection: typing.Optional[NormalizedAgentOpenaiAccountConnection]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

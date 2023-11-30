@@ -44,6 +44,7 @@ from .agent_params_actions_item_one import (
 )
 from .agent_params_endpointing_sensitivity import AgentParamsEndpointingSensitivity
 from .agent_params_ivr_navigation_mode import AgentParamsIvrNavigationMode
+from .agent_params_openai_account_connection import AgentParamsOpenaiAccountConnection
 from .agent_params_prompt import AgentParamsPrompt
 from .agent_params_vector_database import AgentParamsVectorDatabase
 from .agent_params_voice import AgentParamsVoice
@@ -73,6 +74,8 @@ from .agent_update_params_interrupt_sensitivity import AgentUpdateParamsInterrup
 from .agent_update_params_ivr_navigation_mode import AgentUpdateParamsIvrNavigationMode
 from .agent_update_params_language import AgentUpdateParamsLanguage
 from .agent_update_params_noise_suppression import AgentUpdateParamsNoiseSuppression
+from .agent_update_params_openai_account_connection import AgentUpdateParamsOpenaiAccountConnection
+from .agent_update_params_openai_model_name_override import AgentUpdateParamsOpenaiModelNameOverride
 from .agent_update_params_prompt import AgentUpdateParamsPrompt
 from .agent_update_params_vector_database import AgentUpdateParamsVectorDatabase
 from .agent_update_params_voice import AgentUpdateParamsVoice
@@ -116,6 +119,7 @@ from .create_call_agent_params_actions_item_one import (
 )
 from .create_call_agent_params_endpointing_sensitivity import CreateCallAgentParamsEndpointingSensitivity
 from .create_call_agent_params_ivr_navigation_mode import CreateCallAgentParamsIvrNavigationMode
+from .create_call_agent_params_openai_account_connection import CreateCallAgentParamsOpenaiAccountConnection
 from .create_call_agent_params_prompt import CreateCallAgentParamsPrompt
 from .create_call_agent_params_vector_database import CreateCallAgentParamsVectorDatabase
 from .create_call_agent_params_voice import CreateCallAgentParamsVoice
@@ -157,16 +161,20 @@ from .language import Language
 from .normalized_agent import NormalizedAgent
 from .normalized_agent_endpointing_sensitivity import NormalizedAgentEndpointingSensitivity
 from .normalized_agent_ivr_navigation_mode import NormalizedAgentIvrNavigationMode
+from .normalized_agent_openai_account_connection import NormalizedAgentOpenaiAccountConnection
 from .normalized_agent_prompt import NormalizedAgentPrompt
 from .normalized_agent_vector_database import NormalizedAgentVectorDatabase
 from .normalized_call import NormalizedCall
 from .normalized_call_human_detection_result import NormalizedCallHumanDetectionResult
 from .normalized_call_on_no_human_answer import NormalizedCallOnNoHumanAnswer
+from .normalized_call_telephony_account_connection import NormalizedCallTelephonyAccountConnection
 from .normalized_call_telephony_provider import NormalizedCallTelephonyProvider
 from .normalized_phone_number import NormalizedPhoneNumber
 from .normalized_phone_number_telephony_account_connection import NormalizedPhoneNumberTelephonyAccountConnection
 from .normalized_phone_number_telephony_provider import NormalizedPhoneNumberTelephonyProvider
 from .normalized_prompt import NormalizedPrompt
+from .open_ai_account_connection import OpenAiAccountConnection
+from .open_ai_credentials import OpenAiCredentials
 from .phone_number import PhoneNumber
 from .phone_number_page import PhoneNumberPage
 from .phone_number_telephony_provider import PhoneNumberTelephonyProvider
@@ -212,6 +220,7 @@ from .twilio_credentials import TwilioCredentials
 from .undefined import Undefined
 from .update_number_request_inbound_agent import UpdateNumberRequestInboundAgent
 from .update_number_request_label import UpdateNumberRequestLabel
+from .update_number_request_outbound_only import UpdateNumberRequestOutboundOnly
 from .usage import Usage
 from .validation_error import ValidationError
 from .validation_error_loc_item import ValidationErrorLocItem
@@ -286,6 +295,7 @@ __all__ = [
     "AgentParamsActionsItemOne_ActionTransferCall",
     "AgentParamsEndpointingSensitivity",
     "AgentParamsIvrNavigationMode",
+    "AgentParamsOpenaiAccountConnection",
     "AgentParamsPrompt",
     "AgentParamsVectorDatabase",
     "AgentParamsVoice",
@@ -311,6 +321,8 @@ __all__ = [
     "AgentUpdateParamsIvrNavigationMode",
     "AgentUpdateParamsLanguage",
     "AgentUpdateParamsNoiseSuppression",
+    "AgentUpdateParamsOpenaiAccountConnection",
+    "AgentUpdateParamsOpenaiModelNameOverride",
     "AgentUpdateParamsPrompt",
     "AgentUpdateParamsVectorDatabase",
     "AgentUpdateParamsVoice",
@@ -348,6 +360,7 @@ __all__ = [
     "CreateCallAgentParamsActionsItemOne_ActionTransferCall",
     "CreateCallAgentParamsEndpointingSensitivity",
     "CreateCallAgentParamsIvrNavigationMode",
+    "CreateCallAgentParamsOpenaiAccountConnection",
     "CreateCallAgentParamsPrompt",
     "CreateCallAgentParamsVectorDatabase",
     "CreateCallAgentParamsVoice",
@@ -385,16 +398,20 @@ __all__ = [
     "NormalizedAgent",
     "NormalizedAgentEndpointingSensitivity",
     "NormalizedAgentIvrNavigationMode",
+    "NormalizedAgentOpenaiAccountConnection",
     "NormalizedAgentPrompt",
     "NormalizedAgentVectorDatabase",
     "NormalizedCall",
     "NormalizedCallHumanDetectionResult",
     "NormalizedCallOnNoHumanAnswer",
+    "NormalizedCallTelephonyAccountConnection",
     "NormalizedCallTelephonyProvider",
     "NormalizedPhoneNumber",
     "NormalizedPhoneNumberTelephonyAccountConnection",
     "NormalizedPhoneNumberTelephonyProvider",
     "NormalizedPrompt",
+    "OpenAiAccountConnection",
+    "OpenAiCredentials",
     "PhoneNumber",
     "PhoneNumberPage",
     "PhoneNumberTelephonyProvider",
@@ -440,6 +457,7 @@ __all__ = [
     "Undefined",
     "UpdateNumberRequestInboundAgent",
     "UpdateNumberRequestLabel",
+    "UpdateNumberRequestOutboundOnly",
     "Usage",
     "ValidationError",
     "ValidationErrorLocItem",

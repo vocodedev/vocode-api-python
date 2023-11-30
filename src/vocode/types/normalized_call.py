@@ -9,6 +9,7 @@ from ..core.datetime_utils import serialize_datetime
 from .call_status import CallStatus
 from .normalized_call_human_detection_result import NormalizedCallHumanDetectionResult
 from .normalized_call_on_no_human_answer import NormalizedCallOnNoHumanAnswer
+from .normalized_call_telephony_account_connection import NormalizedCallTelephonyAccountConnection
 from .normalized_call_telephony_provider import NormalizedCallTelephonyProvider
 
 
@@ -33,6 +34,7 @@ class NormalizedCall(pydantic.BaseModel):
     on_no_human_answer: typing.Optional[NormalizedCallOnNoHumanAnswer]
     context: typing.Optional[typing.Dict[str, str]]
     run_do_not_call_detection: typing.Optional[bool]
+    telephony_account_connection: typing.Optional[NormalizedCallTelephonyAccountConnection]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

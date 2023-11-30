@@ -17,6 +17,7 @@ from ...types.phone_number import PhoneNumber
 from ...types.phone_number_page import PhoneNumberPage
 from ...types.update_number_request_inbound_agent import UpdateNumberRequestInboundAgent
 from ...types.update_number_request_label import UpdateNumberRequestLabel
+from ...types.update_number_request_outbound_only import UpdateNumberRequestOutboundOnly
 
 # this is used as the default value for optional parameters
 OMIT = typing.cast(typing.Any, ...)
@@ -98,6 +99,7 @@ class NumbersClient:
         self,
         *,
         phone_number: str,
+        outbound_only: typing.Optional[UpdateNumberRequestOutboundOnly] = OMIT,
         label: typing.Optional[UpdateNumberRequestLabel] = OMIT,
         inbound_agent: typing.Optional[UpdateNumberRequestInboundAgent] = OMIT,
     ) -> PhoneNumber:
@@ -105,11 +107,15 @@ class NumbersClient:
         Parameters:
             - phone_number: str.
 
+            - outbound_only: typing.Optional[UpdateNumberRequestOutboundOnly].
+
             - label: typing.Optional[UpdateNumberRequestLabel].
 
             - inbound_agent: typing.Optional[UpdateNumberRequestInboundAgent].
         """
         _request: typing.Dict[str, typing.Any] = {}
+        if outbound_only is not OMIT:
+            _request["outbound_only"] = outbound_only
         if label is not OMIT:
             _request["label"] = label
         if inbound_agent is not OMIT:
@@ -267,6 +273,7 @@ class AsyncNumbersClient:
         self,
         *,
         phone_number: str,
+        outbound_only: typing.Optional[UpdateNumberRequestOutboundOnly] = OMIT,
         label: typing.Optional[UpdateNumberRequestLabel] = OMIT,
         inbound_agent: typing.Optional[UpdateNumberRequestInboundAgent] = OMIT,
     ) -> PhoneNumber:
@@ -274,11 +281,15 @@ class AsyncNumbersClient:
         Parameters:
             - phone_number: str.
 
+            - outbound_only: typing.Optional[UpdateNumberRequestOutboundOnly].
+
             - label: typing.Optional[UpdateNumberRequestLabel].
 
             - inbound_agent: typing.Optional[UpdateNumberRequestInboundAgent].
         """
         _request: typing.Dict[str, typing.Any] = {}
+        if outbound_only is not OMIT:
+            _request["outbound_only"] = outbound_only
         if label is not OMIT:
             _request["label"] = label
         if inbound_agent is not OMIT:

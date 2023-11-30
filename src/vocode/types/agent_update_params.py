@@ -16,6 +16,8 @@ from .agent_update_params_interrupt_sensitivity import AgentUpdateParamsInterrup
 from .agent_update_params_ivr_navigation_mode import AgentUpdateParamsIvrNavigationMode
 from .agent_update_params_language import AgentUpdateParamsLanguage
 from .agent_update_params_noise_suppression import AgentUpdateParamsNoiseSuppression
+from .agent_update_params_openai_account_connection import AgentUpdateParamsOpenaiAccountConnection
+from .agent_update_params_openai_model_name_override import AgentUpdateParamsOpenaiModelNameOverride
 from .agent_update_params_prompt import AgentUpdateParamsPrompt
 from .agent_update_params_vector_database import AgentUpdateParamsVectorDatabase
 from .agent_update_params_voice import AgentUpdateParamsVoice
@@ -37,6 +39,8 @@ class AgentUpdateParams(pydantic.BaseModel):
     ivr_navigation_mode: typing.Optional[AgentUpdateParamsIvrNavigationMode]
     conversation_speed: typing.Optional[AgentUpdateParamsConversationSpeed]
     initial_message_delay: typing.Optional[AgentUpdateParamsInitialMessageDelay]
+    openai_model_name_override: typing.Optional[AgentUpdateParamsOpenaiModelNameOverride]
+    openai_account_connection: typing.Optional[AgentUpdateParamsOpenaiAccountConnection]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

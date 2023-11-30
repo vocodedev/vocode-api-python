@@ -12,6 +12,7 @@ from .agent_ivr_navigation_mode import AgentIvrNavigationMode
 from .agent_voice import AgentVoice
 from .interrupt_sensitivity import InterruptSensitivity
 from .language import Language
+from .open_ai_account_connection import OpenAiAccountConnection
 from .pinecone_vector_database import PineconeVectorDatabase
 from .prompt import Prompt
 from .webhook import Webhook
@@ -34,6 +35,8 @@ class Agent(pydantic.BaseModel):
     ivr_navigation_mode: typing.Optional[AgentIvrNavigationMode]
     conversation_speed: typing.Optional[float]
     initial_message_delay: typing.Optional[float]
+    openai_model_name_override: typing.Optional[str]
+    openai_account_connection: typing.Optional[OpenAiAccountConnection]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
