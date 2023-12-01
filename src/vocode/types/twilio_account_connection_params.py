@@ -9,9 +9,7 @@ from ..core.datetime_utils import serialize_datetime
 from .twilio_credentials import TwilioCredentials
 
 
-class TwilioAccountConnection(pydantic.BaseModel):
-    id: str
-    user_id: str
+class TwilioAccountConnectionParams(pydantic.BaseModel):
     credentials: TwilioCredentials
 
     def json(self, **kwargs: typing.Any) -> str:

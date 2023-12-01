@@ -6,6 +6,7 @@ import httpx
 
 from .core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from .environment import VocodeEnvironment
+from .resources.account_connections.client import AccountConnectionsClient, AsyncAccountConnectionsClient
 from .resources.actions.client import ActionsClient, AsyncActionsClient
 from .resources.agents.client import AgentsClient, AsyncAgentsClient
 from .resources.calls.client import AsyncCallsClient, CallsClient
@@ -40,6 +41,7 @@ class Vocode:
         self.webhooks = WebhooksClient(client_wrapper=self._client_wrapper)
         self.prompts = PromptsClient(client_wrapper=self._client_wrapper)
         self.vector_databases = VectorDatabasesClient(client_wrapper=self._client_wrapper)
+        self.account_connections = AccountConnectionsClient(client_wrapper=self._client_wrapper)
 
 
 class AsyncVocode:
@@ -65,6 +67,7 @@ class AsyncVocode:
         self.webhooks = AsyncWebhooksClient(client_wrapper=self._client_wrapper)
         self.prompts = AsyncPromptsClient(client_wrapper=self._client_wrapper)
         self.vector_databases = AsyncVectorDatabasesClient(client_wrapper=self._client_wrapper)
+        self.account_connections = AsyncAccountConnectionsClient(client_wrapper=self._client_wrapper)
 
 
 def _get_base_url(*, base_url: typing.Optional[str] = None, environment: VocodeEnvironment) -> str:

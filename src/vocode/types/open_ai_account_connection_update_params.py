@@ -6,13 +6,11 @@ import typing
 import pydantic
 
 from ..core.datetime_utils import serialize_datetime
-from .twilio_credentials import TwilioCredentials
+from .open_ai_account_connection_update_params_credentials import OpenAiAccountConnectionUpdateParamsCredentials
 
 
-class TwilioAccountConnection(pydantic.BaseModel):
-    id: str
-    user_id: str
-    credentials: TwilioCredentials
+class OpenAiAccountConnectionUpdateParams(pydantic.BaseModel):
+    credentials: typing.Optional[OpenAiAccountConnectionUpdateParamsCredentials]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

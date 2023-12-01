@@ -6,13 +6,14 @@ import typing
 import pydantic
 
 from ..core.datetime_utils import serialize_datetime
-from .twilio_credentials import TwilioCredentials
+from .account_connection_page_items_item import AccountConnectionPageItemsItem
 
 
-class TwilioAccountConnection(pydantic.BaseModel):
-    id: str
-    user_id: str
-    credentials: TwilioCredentials
+class AccountConnectionPage(pydantic.BaseModel):
+    items: typing.List[AccountConnectionPageItemsItem]
+    page: int
+    size: int
+    has_more: bool
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

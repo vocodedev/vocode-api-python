@@ -4,7 +4,6 @@ import datetime as dt
 import typing
 
 import pydantic
-import typing_extensions
 
 from ..core.datetime_utils import serialize_datetime
 from .open_ai_credentials import OpenAiCredentials
@@ -13,7 +12,6 @@ from .open_ai_credentials import OpenAiCredentials
 class OpenAiAccountConnection(pydantic.BaseModel):
     id: str
     user_id: str
-    type: typing_extensions.Literal["account_connection_openai"]
     credentials: OpenAiCredentials
 
     def json(self, **kwargs: typing.Any) -> str:
