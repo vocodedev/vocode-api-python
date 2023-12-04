@@ -99,6 +99,7 @@ class AgentsClient:
         initial_message_delay: typing.Optional[float] = OMIT,
         openai_model_name_override: typing.Optional[str] = OMIT,
         openai_account_connection: typing.Optional[AgentParamsOpenaiAccountConnection] = OMIT,
+        run_do_not_call_detection: typing.Optional[bool] = OMIT,
     ) -> Agent:
         """
         Parameters:
@@ -133,6 +134,8 @@ class AgentsClient:
             - openai_model_name_override: typing.Optional[str].
 
             - openai_account_connection: typing.Optional[AgentParamsOpenaiAccountConnection].
+
+            - run_do_not_call_detection: typing.Optional[bool].
         """
         _request: typing.Dict[str, typing.Any] = {"prompt": prompt, "voice": voice}
         if language is not OMIT:
@@ -163,6 +166,8 @@ class AgentsClient:
             _request["openai_model_name_override"] = openai_model_name_override
         if openai_account_connection is not OMIT:
             _request["openai_account_connection"] = openai_account_connection
+        if run_do_not_call_detection is not OMIT:
+            _request["run_do_not_call_detection"] = run_do_not_call_detection
         _response = self._client_wrapper.httpx_client.request(
             "POST",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/agents/create"),
@@ -275,6 +280,7 @@ class AsyncAgentsClient:
         initial_message_delay: typing.Optional[float] = OMIT,
         openai_model_name_override: typing.Optional[str] = OMIT,
         openai_account_connection: typing.Optional[AgentParamsOpenaiAccountConnection] = OMIT,
+        run_do_not_call_detection: typing.Optional[bool] = OMIT,
     ) -> Agent:
         """
         Parameters:
@@ -309,6 +315,8 @@ class AsyncAgentsClient:
             - openai_model_name_override: typing.Optional[str].
 
             - openai_account_connection: typing.Optional[AgentParamsOpenaiAccountConnection].
+
+            - run_do_not_call_detection: typing.Optional[bool].
         """
         _request: typing.Dict[str, typing.Any] = {"prompt": prompt, "voice": voice}
         if language is not OMIT:
@@ -339,6 +347,8 @@ class AsyncAgentsClient:
             _request["openai_model_name_override"] = openai_model_name_override
         if openai_account_connection is not OMIT:
             _request["openai_account_connection"] = openai_account_connection
+        if run_do_not_call_detection is not OMIT:
+            _request["run_do_not_call_detection"] = run_do_not_call_detection
         _response = await self._client_wrapper.httpx_client.request(
             "POST",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/agents/create"),

@@ -35,6 +35,7 @@ class CreateCallAgentParams(pydantic.BaseModel):
     initial_message_delay: typing.Optional[float]
     openai_model_name_override: typing.Optional[str]
     openai_account_connection: typing.Optional[CreateCallAgentParamsOpenaiAccountConnection]
+    run_do_not_call_detection: typing.Optional[bool]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

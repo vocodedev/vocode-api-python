@@ -98,6 +98,7 @@ from .agent_update_params_noise_suppression import AgentUpdateParamsNoiseSuppres
 from .agent_update_params_openai_account_connection import AgentUpdateParamsOpenaiAccountConnection
 from .agent_update_params_openai_model_name_override import AgentUpdateParamsOpenaiModelNameOverride
 from .agent_update_params_prompt import AgentUpdateParamsPrompt
+from .agent_update_params_run_do_not_call_detection import AgentUpdateParamsRunDoNotCallDetection
 from .agent_update_params_vector_database import AgentUpdateParamsVectorDatabase
 from .agent_update_params_voice import AgentUpdateParamsVoice
 from .agent_update_params_voice_one import (
@@ -364,6 +365,7 @@ __all__ = [
     "AgentUpdateParamsOpenaiAccountConnection",
     "AgentUpdateParamsOpenaiModelNameOverride",
     "AgentUpdateParamsPrompt",
+    "AgentUpdateParamsRunDoNotCallDetection",
     "AgentUpdateParamsVectorDatabase",
     "AgentUpdateParamsVoice",
     "AgentUpdateParamsVoiceOne",
