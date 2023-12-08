@@ -212,11 +212,15 @@ from .pinecone_vector_database_update_params_index import PineconeVectorDatabase
 from .plan_type import PlanType
 from .play_ht_voice import PlayHtVoice
 from .play_ht_voice_params import PlayHtVoiceParams
+from .play_ht_voice_params_quality import PlayHtVoiceParamsQuality
 from .play_ht_voice_params_version import PlayHtVoiceParamsVersion
+from .play_ht_voice_quality import PlayHtVoiceQuality
 from .play_ht_voice_update_params import PlayHtVoiceUpdateParams
 from .play_ht_voice_update_params_api_key import PlayHtVoiceUpdateParamsApiKey
 from .play_ht_voice_update_params_api_user_id import PlayHtVoiceUpdateParamsApiUserId
+from .play_ht_voice_update_params_quality import PlayHtVoiceUpdateParamsQuality
 from .play_ht_voice_update_params_speed import PlayHtVoiceUpdateParamsSpeed
+from .play_ht_voice_update_params_temperature import PlayHtVoiceUpdateParamsTemperature
 from .play_ht_voice_update_params_version import PlayHtVoiceUpdateParamsVersion
 from .play_ht_voice_update_params_voice_id import PlayHtVoiceUpdateParamsVoiceId
 from .play_ht_voice_version import PlayHtVoiceVersion
@@ -469,11 +473,15 @@ __all__ = [
     "PlanType",
     "PlayHtVoice",
     "PlayHtVoiceParams",
+    "PlayHtVoiceParamsQuality",
     "PlayHtVoiceParamsVersion",
+    "PlayHtVoiceQuality",
     "PlayHtVoiceUpdateParams",
     "PlayHtVoiceUpdateParamsApiKey",
     "PlayHtVoiceUpdateParamsApiUserId",
+    "PlayHtVoiceUpdateParamsQuality",
     "PlayHtVoiceUpdateParamsSpeed",
+    "PlayHtVoiceUpdateParamsTemperature",
     "PlayHtVoiceUpdateParamsVersion",
     "PlayHtVoiceUpdateParamsVoiceId",
     "PlayHtVoiceVersion",
