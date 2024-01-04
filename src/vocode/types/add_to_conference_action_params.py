@@ -2,6 +2,7 @@
 
 import datetime as dt
 import typing
+import typing_extensions
 
 import pydantic
 
@@ -11,6 +12,7 @@ from .add_to_conference_config import AddToConferenceConfig
 
 
 class AddToConferenceActionParams(pydantic.BaseModel):
+    type: typing_extensions.Literal["action_add_to_conference"]
     config: AddToConferenceConfig
     action_trigger: typing.Optional[AddToConferenceActionParamsActionTrigger]
 

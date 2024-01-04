@@ -59,9 +59,9 @@ class ActionUpdateParamsRequest_ActionSetHold(SetHoldActionUpdateParams):
 
 
 ActionUpdateParamsRequest = typing.Union[
-    ActionUpdateParamsRequest_ActionTransferCall,
-    ActionUpdateParamsRequest_ActionEndConversation,
-    ActionUpdateParamsRequest_ActionDtmf,
-    ActionUpdateParamsRequest_ActionAddToConference,
-    ActionUpdateParamsRequest_ActionSetHold,
+    TransferCallActionUpdateParams,
+    EndConversationActionUpdateParams,
+    DtmfActionUpdateParams,
+    AddToConferenceActionUpdateParams,
+    SetHoldActionUpdateParams,
 ]

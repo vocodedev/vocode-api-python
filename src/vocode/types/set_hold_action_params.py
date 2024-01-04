@@ -2,6 +2,7 @@
 
 import datetime as dt
 import typing
+import typing_extensions
 
 import pydantic
 
@@ -11,6 +12,7 @@ from .set_hold_action_params_action_trigger import SetHoldActionParamsActionTrig
 
 
 class SetHoldActionParams(pydantic.BaseModel):
+    type: typing_extensions.Literal["action_set_hold"]
     config: typing.Optional[EmptyActionConfig]
     action_trigger: typing.Optional[SetHoldActionParamsActionTrigger]
 
