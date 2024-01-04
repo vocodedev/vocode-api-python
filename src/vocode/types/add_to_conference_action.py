@@ -6,15 +6,15 @@ import typing
 import pydantic
 
 from ..core.datetime_utils import serialize_datetime
-from .empty_action_config import EmptyActionConfig
-from .end_conversation_action_action_trigger import EndConversationActionActionTrigger
+from .add_to_conference_action_action_trigger import AddToConferenceActionActionTrigger
+from .add_to_conference_config import AddToConferenceConfig
 
 
-class EndConversationAction(pydantic.BaseModel):
+class AddToConferenceAction(pydantic.BaseModel):
     id: str
     user_id: str
-    config: typing.Optional[EmptyActionConfig]
-    action_trigger: typing.Optional[EndConversationActionActionTrigger]
+    config: AddToConferenceConfig
+    action_trigger: typing.Optional[AddToConferenceActionActionTrigger]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

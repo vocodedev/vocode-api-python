@@ -36,6 +36,7 @@ class Agent(pydantic.BaseModel):
     conversation_speed: typing.Optional[float]
     initial_message_delay: typing.Optional[float]
     openai_model_name_override: typing.Optional[str]
+    ask_if_human_present_on_idle: typing.Optional[bool]
     openai_account_connection: typing.Optional[OpenAiAccountConnection]
     run_do_not_call_detection: typing.Optional[bool]
 

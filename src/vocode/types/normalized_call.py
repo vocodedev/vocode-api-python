@@ -9,6 +9,8 @@ from ..core.datetime_utils import serialize_datetime
 from .call_status import CallStatus
 from .normalized_call_human_detection_result import NormalizedCallHumanDetectionResult
 from .normalized_call_on_no_human_answer import NormalizedCallOnNoHumanAnswer
+from .normalized_call_stage import NormalizedCallStage
+from .normalized_call_stage_outcome import NormalizedCallStageOutcome
 from .normalized_call_telephony_account_connection import NormalizedCallTelephonyAccountConnection
 from .normalized_call_telephony_provider import NormalizedCallTelephonyProvider
 
@@ -23,6 +25,8 @@ class NormalizedCall(pydantic.BaseModel):
     human_detection_result: typing.Optional[NormalizedCallHumanDetectionResult]
     do_not_call_result: typing.Optional[bool]
     telephony_id: typing.Optional[str]
+    stage: typing.Optional[NormalizedCallStage]
+    stage_outcome: typing.Optional[NormalizedCallStageOutcome]
     to_number: str
     from_number: str
     agent: str

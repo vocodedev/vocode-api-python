@@ -24,33 +24,64 @@ from .account_connection_update_params_request import (
 from .action_page import ActionPage
 from .action_page_items_item import (
     ActionPageItemsItem,
+    ActionPageItemsItem_ActionAddToConference,
     ActionPageItemsItem_ActionDtmf,
     ActionPageItemsItem_ActionEndConversation,
+    ActionPageItemsItem_ActionSetHold,
     ActionPageItemsItem_ActionTransferCall,
 )
 from .action_params_request import (
     ActionParamsRequest,
+    ActionParamsRequest_ActionAddToConference,
     ActionParamsRequest_ActionDtmf,
     ActionParamsRequest_ActionEndConversation,
+    ActionParamsRequest_ActionSetHold,
     ActionParamsRequest_ActionTransferCall,
 )
 from .action_response_model import (
     ActionResponseModel,
+    ActionResponseModel_ActionAddToConference,
     ActionResponseModel_ActionDtmf,
     ActionResponseModel_ActionEndConversation,
+    ActionResponseModel_ActionSetHold,
     ActionResponseModel_ActionTransferCall,
 )
 from .action_update_params_request import (
     ActionUpdateParamsRequest,
+    ActionUpdateParamsRequest_ActionAddToConference,
     ActionUpdateParamsRequest_ActionDtmf,
     ActionUpdateParamsRequest_ActionEndConversation,
+    ActionUpdateParamsRequest_ActionSetHold,
     ActionUpdateParamsRequest_ActionTransferCall,
 )
+from .add_to_conference_action import AddToConferenceAction
+from .add_to_conference_action_action_trigger import (
+    AddToConferenceActionActionTrigger,
+    AddToConferenceActionActionTrigger_ActionTriggerFunctionCall,
+    AddToConferenceActionActionTrigger_ActionTriggerPhraseBased,
+)
+from .add_to_conference_action_params import AddToConferenceActionParams
+from .add_to_conference_action_params_action_trigger import (
+    AddToConferenceActionParamsActionTrigger,
+    AddToConferenceActionParamsActionTrigger_ActionTriggerFunctionCall,
+    AddToConferenceActionParamsActionTrigger_ActionTriggerPhraseBased,
+)
+from .add_to_conference_action_update_params import AddToConferenceActionUpdateParams
+from .add_to_conference_action_update_params_action_trigger import AddToConferenceActionUpdateParamsActionTrigger
+from .add_to_conference_action_update_params_action_trigger_zero import (
+    AddToConferenceActionUpdateParamsActionTriggerZero,
+    AddToConferenceActionUpdateParamsActionTriggerZero_ActionTriggerFunctionCall,
+    AddToConferenceActionUpdateParamsActionTriggerZero_ActionTriggerPhraseBased,
+)
+from .add_to_conference_action_update_params_config import AddToConferenceActionUpdateParamsConfig
+from .add_to_conference_config import AddToConferenceConfig
 from .agent import Agent
 from .agent_actions_item import (
     AgentActionsItem,
+    AgentActionsItem_ActionAddToConference,
     AgentActionsItem_ActionDtmf,
     AgentActionsItem_ActionEndConversation,
+    AgentActionsItem_ActionSetHold,
     AgentActionsItem_ActionTransferCall,
 )
 from .agent_endpointing_sensitivity import AgentEndpointingSensitivity
@@ -59,8 +90,10 @@ from .agent_page import AgentPage
 from .agent_params_actions_item import AgentParamsActionsItem
 from .agent_params_actions_item_one import (
     AgentParamsActionsItemOne,
+    AgentParamsActionsItemOne_ActionAddToConference,
     AgentParamsActionsItemOne_ActionDtmf,
     AgentParamsActionsItemOne_ActionEndConversation,
+    AgentParamsActionsItemOne_ActionSetHold,
     AgentParamsActionsItemOne_ActionTransferCall,
 )
 from .agent_params_endpointing_sensitivity import AgentParamsEndpointingSensitivity
@@ -82,10 +115,13 @@ from .agent_update_params_actions import AgentUpdateParamsActions
 from .agent_update_params_actions_item import AgentUpdateParamsActionsItem
 from .agent_update_params_actions_item_one import (
     AgentUpdateParamsActionsItemOne,
+    AgentUpdateParamsActionsItemOne_ActionAddToConference,
     AgentUpdateParamsActionsItemOne_ActionDtmf,
     AgentUpdateParamsActionsItemOne_ActionEndConversation,
+    AgentUpdateParamsActionsItemOne_ActionSetHold,
     AgentUpdateParamsActionsItemOne_ActionTransferCall,
 )
+from .agent_update_params_ask_if_human_present_on_idle import AgentUpdateParamsAskIfHumanPresentOnIdle
 from .agent_update_params_context_endpoint import AgentUpdateParamsContextEndpoint
 from .agent_update_params_conversation_speed import AgentUpdateParamsConversationSpeed
 from .agent_update_params_endpointing_sensitivity import AgentUpdateParamsEndpointingSensitivity
@@ -128,6 +164,8 @@ from .call import Call
 from .call_human_detection_result import CallHumanDetectionResult
 from .call_on_no_human_answer import CallOnNoHumanAnswer
 from .call_page import CallPage
+from .call_stage import CallStage
+from .call_stage_outcome import CallStageOutcome
 from .call_status import CallStatus
 from .call_telephony_provider import CallTelephonyProvider
 from .collect_field import CollectField
@@ -135,8 +173,10 @@ from .create_call_agent_params import CreateCallAgentParams
 from .create_call_agent_params_actions_item import CreateCallAgentParamsActionsItem
 from .create_call_agent_params_actions_item_one import (
     CreateCallAgentParamsActionsItemOne,
+    CreateCallAgentParamsActionsItemOne_ActionAddToConference,
     CreateCallAgentParamsActionsItemOne_ActionDtmf,
     CreateCallAgentParamsActionsItemOne_ActionEndConversation,
+    CreateCallAgentParamsActionsItemOne_ActionSetHold,
     CreateCallAgentParamsActionsItemOne_ActionTransferCall,
 )
 from .create_call_agent_params_endpointing_sensitivity import CreateCallAgentParamsEndpointingSensitivity
@@ -156,8 +196,24 @@ from .create_call_agent_params_webhook import CreateCallAgentParamsWebhook
 from .create_call_request_agent import CreateCallRequestAgent
 from .create_call_request_on_no_human_answer import CreateCallRequestOnNoHumanAnswer
 from .dtmf_action import DtmfAction
+from .dtmf_action_action_trigger import (
+    DtmfActionActionTrigger,
+    DtmfActionActionTrigger_ActionTriggerFunctionCall,
+    DtmfActionActionTrigger_ActionTriggerPhraseBased,
+)
 from .dtmf_action_params import DtmfActionParams
+from .dtmf_action_params_action_trigger import (
+    DtmfActionParamsActionTrigger,
+    DtmfActionParamsActionTrigger_ActionTriggerFunctionCall,
+    DtmfActionParamsActionTrigger_ActionTriggerPhraseBased,
+)
 from .dtmf_action_update_params import DtmfActionUpdateParams
+from .dtmf_action_update_params_action_trigger import DtmfActionUpdateParamsActionTrigger
+from .dtmf_action_update_params_action_trigger_zero import (
+    DtmfActionUpdateParamsActionTriggerZero,
+    DtmfActionUpdateParamsActionTriggerZero_ActionTriggerFunctionCall,
+    DtmfActionUpdateParamsActionTriggerZero_ActionTriggerPhraseBased,
+)
 from .dtmf_action_update_params_config import DtmfActionUpdateParamsConfig
 from .eleven_labs_voice import ElevenLabsVoice
 from .eleven_labs_voice_params import ElevenLabsVoiceParams
@@ -172,10 +228,28 @@ from .eleven_labs_voice_update_params_stability import ElevenLabsVoiceUpdatePara
 from .eleven_labs_voice_update_params_voice_id import ElevenLabsVoiceUpdateParamsVoiceId
 from .empty_action_config import EmptyActionConfig
 from .end_conversation_action import EndConversationAction
+from .end_conversation_action_action_trigger import (
+    EndConversationActionActionTrigger,
+    EndConversationActionActionTrigger_ActionTriggerFunctionCall,
+    EndConversationActionActionTrigger_ActionTriggerPhraseBased,
+)
 from .end_conversation_action_params import EndConversationActionParams
+from .end_conversation_action_params_action_trigger import (
+    EndConversationActionParamsActionTrigger,
+    EndConversationActionParamsActionTrigger_ActionTriggerFunctionCall,
+    EndConversationActionParamsActionTrigger_ActionTriggerPhraseBased,
+)
 from .end_conversation_action_update_params import EndConversationActionUpdateParams
+from .end_conversation_action_update_params_action_trigger import EndConversationActionUpdateParamsActionTrigger
+from .end_conversation_action_update_params_action_trigger_zero import (
+    EndConversationActionUpdateParamsActionTriggerZero,
+    EndConversationActionUpdateParamsActionTriggerZero_ActionTriggerFunctionCall,
+    EndConversationActionUpdateParamsActionTriggerZero_ActionTriggerPhraseBased,
+)
 from .end_conversation_action_update_params_config import EndConversationActionUpdateParamsConfig
 from .event_type import EventType
+from .function_call_action_trigger import FunctionCallActionTrigger
+from .function_call_action_trigger_config import FunctionCallActionTriggerConfig
 from .http_method import HttpMethod
 from .http_validation_error import HttpValidationError
 from .interrupt_sensitivity import InterruptSensitivity
@@ -189,6 +263,8 @@ from .normalized_agent_vector_database import NormalizedAgentVectorDatabase
 from .normalized_call import NormalizedCall
 from .normalized_call_human_detection_result import NormalizedCallHumanDetectionResult
 from .normalized_call_on_no_human_answer import NormalizedCallOnNoHumanAnswer
+from .normalized_call_stage import NormalizedCallStage
+from .normalized_call_stage_outcome import NormalizedCallStageOutcome
 from .normalized_call_telephony_account_connection import NormalizedCallTelephonyAccountConnection
 from .normalized_call_telephony_provider import NormalizedCallTelephonyProvider
 from .normalized_phone_number import NormalizedPhoneNumber
@@ -203,6 +279,9 @@ from .open_ai_credentials import OpenAiCredentials
 from .phone_number import PhoneNumber
 from .phone_number_page import PhoneNumberPage
 from .phone_number_telephony_provider import PhoneNumberTelephonyProvider
+from .phrase_based_action_trigger import PhraseBasedActionTrigger
+from .phrase_based_action_trigger_config import PhraseBasedActionTriggerConfig
+from .phrase_trigger import PhraseTrigger
 from .pinecone_vector_database import PineconeVectorDatabase
 from .pinecone_vector_database_params import PineconeVectorDatabaseParams
 from .pinecone_vector_database_update_params import PineconeVectorDatabaseUpdateParams
@@ -239,9 +318,45 @@ from .rime_voice_params import RimeVoiceParams
 from .rime_voice_update_params import RimeVoiceUpdateParams
 from .rime_voice_update_params_speaker import RimeVoiceUpdateParamsSpeaker
 from .rime_voice_update_params_speed_alpha import RimeVoiceUpdateParamsSpeedAlpha
+from .set_hold_action import SetHoldAction
+from .set_hold_action_action_trigger import (
+    SetHoldActionActionTrigger,
+    SetHoldActionActionTrigger_ActionTriggerFunctionCall,
+    SetHoldActionActionTrigger_ActionTriggerPhraseBased,
+)
+from .set_hold_action_params import SetHoldActionParams
+from .set_hold_action_params_action_trigger import (
+    SetHoldActionParamsActionTrigger,
+    SetHoldActionParamsActionTrigger_ActionTriggerFunctionCall,
+    SetHoldActionParamsActionTrigger_ActionTriggerPhraseBased,
+)
+from .set_hold_action_update_params import SetHoldActionUpdateParams
+from .set_hold_action_update_params_action_trigger import SetHoldActionUpdateParamsActionTrigger
+from .set_hold_action_update_params_action_trigger_zero import (
+    SetHoldActionUpdateParamsActionTriggerZero,
+    SetHoldActionUpdateParamsActionTriggerZero_ActionTriggerFunctionCall,
+    SetHoldActionUpdateParamsActionTriggerZero_ActionTriggerPhraseBased,
+)
+from .set_hold_action_update_params_config import SetHoldActionUpdateParamsConfig
 from .transfer_call_action import TransferCallAction
+from .transfer_call_action_action_trigger import (
+    TransferCallActionActionTrigger,
+    TransferCallActionActionTrigger_ActionTriggerFunctionCall,
+    TransferCallActionActionTrigger_ActionTriggerPhraseBased,
+)
 from .transfer_call_action_params import TransferCallActionParams
+from .transfer_call_action_params_action_trigger import (
+    TransferCallActionParamsActionTrigger,
+    TransferCallActionParamsActionTrigger_ActionTriggerFunctionCall,
+    TransferCallActionParamsActionTrigger_ActionTriggerPhraseBased,
+)
 from .transfer_call_action_update_params import TransferCallActionUpdateParams
+from .transfer_call_action_update_params_action_trigger import TransferCallActionUpdateParamsActionTrigger
+from .transfer_call_action_update_params_action_trigger_zero import (
+    TransferCallActionUpdateParamsActionTriggerZero,
+    TransferCallActionUpdateParamsActionTriggerZero_ActionTriggerFunctionCall,
+    TransferCallActionUpdateParamsActionTriggerZero_ActionTriggerPhraseBased,
+)
 from .transfer_call_action_update_params_config import TransferCallActionUpdateParamsConfig
 from .transfer_call_config import TransferCallConfig
 from .twilio_account_connection import TwilioAccountConnection
@@ -310,33 +425,60 @@ __all__ = [
     "AccountConnectionUpdateParamsRequest_AccountConnectionTwilio",
     "ActionPage",
     "ActionPageItemsItem",
+    "ActionPageItemsItem_ActionAddToConference",
     "ActionPageItemsItem_ActionDtmf",
     "ActionPageItemsItem_ActionEndConversation",
+    "ActionPageItemsItem_ActionSetHold",
     "ActionPageItemsItem_ActionTransferCall",
     "ActionParamsRequest",
+    "ActionParamsRequest_ActionAddToConference",
     "ActionParamsRequest_ActionDtmf",
     "ActionParamsRequest_ActionEndConversation",
+    "ActionParamsRequest_ActionSetHold",
     "ActionParamsRequest_ActionTransferCall",
     "ActionResponseModel",
+    "ActionResponseModel_ActionAddToConference",
     "ActionResponseModel_ActionDtmf",
     "ActionResponseModel_ActionEndConversation",
+    "ActionResponseModel_ActionSetHold",
     "ActionResponseModel_ActionTransferCall",
     "ActionUpdateParamsRequest",
+    "ActionUpdateParamsRequest_ActionAddToConference",
     "ActionUpdateParamsRequest_ActionDtmf",
     "ActionUpdateParamsRequest_ActionEndConversation",
+    "ActionUpdateParamsRequest_ActionSetHold",
     "ActionUpdateParamsRequest_ActionTransferCall",
+    "AddToConferenceAction",
+    "AddToConferenceActionActionTrigger",
+    "AddToConferenceActionActionTrigger_ActionTriggerFunctionCall",
+    "AddToConferenceActionActionTrigger_ActionTriggerPhraseBased",
+    "AddToConferenceActionParams",
+    "AddToConferenceActionParamsActionTrigger",
+    "AddToConferenceActionParamsActionTrigger_ActionTriggerFunctionCall",
+    "AddToConferenceActionParamsActionTrigger_ActionTriggerPhraseBased",
+    "AddToConferenceActionUpdateParams",
+    "AddToConferenceActionUpdateParamsActionTrigger",
+    "AddToConferenceActionUpdateParamsActionTriggerZero",
+    "AddToConferenceActionUpdateParamsActionTriggerZero_ActionTriggerFunctionCall",
+    "AddToConferenceActionUpdateParamsActionTriggerZero_ActionTriggerPhraseBased",
+    "AddToConferenceActionUpdateParamsConfig",
+    "AddToConferenceConfig",
     "Agent",
     "AgentActionsItem",
+    "AgentActionsItem_ActionAddToConference",
     "AgentActionsItem_ActionDtmf",
     "AgentActionsItem_ActionEndConversation",
+    "AgentActionsItem_ActionSetHold",
     "AgentActionsItem_ActionTransferCall",
     "AgentEndpointingSensitivity",
     "AgentIvrNavigationMode",
     "AgentPage",
     "AgentParamsActionsItem",
     "AgentParamsActionsItemOne",
+    "AgentParamsActionsItemOne_ActionAddToConference",
     "AgentParamsActionsItemOne_ActionDtmf",
     "AgentParamsActionsItemOne_ActionEndConversation",
+    "AgentParamsActionsItemOne_ActionSetHold",
     "AgentParamsActionsItemOne_ActionTransferCall",
     "AgentParamsEndpointingSensitivity",
     "AgentParamsIvrNavigationMode",
@@ -354,9 +496,12 @@ __all__ = [
     "AgentUpdateParamsActions",
     "AgentUpdateParamsActionsItem",
     "AgentUpdateParamsActionsItemOne",
+    "AgentUpdateParamsActionsItemOne_ActionAddToConference",
     "AgentUpdateParamsActionsItemOne_ActionDtmf",
     "AgentUpdateParamsActionsItemOne_ActionEndConversation",
+    "AgentUpdateParamsActionsItemOne_ActionSetHold",
     "AgentUpdateParamsActionsItemOne_ActionTransferCall",
+    "AgentUpdateParamsAskIfHumanPresentOnIdle",
     "AgentUpdateParamsContextEndpoint",
     "AgentUpdateParamsConversationSpeed",
     "AgentUpdateParamsEndpointingSensitivity",
@@ -395,14 +540,18 @@ __all__ = [
     "CallHumanDetectionResult",
     "CallOnNoHumanAnswer",
     "CallPage",
+    "CallStage",
+    "CallStageOutcome",
     "CallStatus",
     "CallTelephonyProvider",
     "CollectField",
     "CreateCallAgentParams",
     "CreateCallAgentParamsActionsItem",
     "CreateCallAgentParamsActionsItemOne",
+    "CreateCallAgentParamsActionsItemOne_ActionAddToConference",
     "CreateCallAgentParamsActionsItemOne_ActionDtmf",
     "CreateCallAgentParamsActionsItemOne_ActionEndConversation",
+    "CreateCallAgentParamsActionsItemOne_ActionSetHold",
     "CreateCallAgentParamsActionsItemOne_ActionTransferCall",
     "CreateCallAgentParamsEndpointingSensitivity",
     "CreateCallAgentParamsIvrNavigationMode",
@@ -419,8 +568,18 @@ __all__ = [
     "CreateCallRequestAgent",
     "CreateCallRequestOnNoHumanAnswer",
     "DtmfAction",
+    "DtmfActionActionTrigger",
+    "DtmfActionActionTrigger_ActionTriggerFunctionCall",
+    "DtmfActionActionTrigger_ActionTriggerPhraseBased",
     "DtmfActionParams",
+    "DtmfActionParamsActionTrigger",
+    "DtmfActionParamsActionTrigger_ActionTriggerFunctionCall",
+    "DtmfActionParamsActionTrigger_ActionTriggerPhraseBased",
     "DtmfActionUpdateParams",
+    "DtmfActionUpdateParamsActionTrigger",
+    "DtmfActionUpdateParamsActionTriggerZero",
+    "DtmfActionUpdateParamsActionTriggerZero_ActionTriggerFunctionCall",
+    "DtmfActionUpdateParamsActionTriggerZero_ActionTriggerPhraseBased",
     "DtmfActionUpdateParamsConfig",
     "ElevenLabsVoice",
     "ElevenLabsVoiceParams",
@@ -433,10 +592,22 @@ __all__ = [
     "ElevenLabsVoiceUpdateParamsVoiceId",
     "EmptyActionConfig",
     "EndConversationAction",
+    "EndConversationActionActionTrigger",
+    "EndConversationActionActionTrigger_ActionTriggerFunctionCall",
+    "EndConversationActionActionTrigger_ActionTriggerPhraseBased",
     "EndConversationActionParams",
+    "EndConversationActionParamsActionTrigger",
+    "EndConversationActionParamsActionTrigger_ActionTriggerFunctionCall",
+    "EndConversationActionParamsActionTrigger_ActionTriggerPhraseBased",
     "EndConversationActionUpdateParams",
+    "EndConversationActionUpdateParamsActionTrigger",
+    "EndConversationActionUpdateParamsActionTriggerZero",
+    "EndConversationActionUpdateParamsActionTriggerZero_ActionTriggerFunctionCall",
+    "EndConversationActionUpdateParamsActionTriggerZero_ActionTriggerPhraseBased",
     "EndConversationActionUpdateParamsConfig",
     "EventType",
+    "FunctionCallActionTrigger",
+    "FunctionCallActionTriggerConfig",
     "HttpMethod",
     "HttpValidationError",
     "InterruptSensitivity",
@@ -450,6 +621,8 @@ __all__ = [
     "NormalizedCall",
     "NormalizedCallHumanDetectionResult",
     "NormalizedCallOnNoHumanAnswer",
+    "NormalizedCallStage",
+    "NormalizedCallStageOutcome",
     "NormalizedCallTelephonyAccountConnection",
     "NormalizedCallTelephonyProvider",
     "NormalizedPhoneNumber",
@@ -464,6 +637,9 @@ __all__ = [
     "PhoneNumber",
     "PhoneNumberPage",
     "PhoneNumberTelephonyProvider",
+    "PhraseBasedActionTrigger",
+    "PhraseBasedActionTriggerConfig",
+    "PhraseTrigger",
     "PineconeVectorDatabase",
     "PineconeVectorDatabaseParams",
     "PineconeVectorDatabaseUpdateParams",
@@ -500,9 +676,33 @@ __all__ = [
     "RimeVoiceUpdateParams",
     "RimeVoiceUpdateParamsSpeaker",
     "RimeVoiceUpdateParamsSpeedAlpha",
+    "SetHoldAction",
+    "SetHoldActionActionTrigger",
+    "SetHoldActionActionTrigger_ActionTriggerFunctionCall",
+    "SetHoldActionActionTrigger_ActionTriggerPhraseBased",
+    "SetHoldActionParams",
+    "SetHoldActionParamsActionTrigger",
+    "SetHoldActionParamsActionTrigger_ActionTriggerFunctionCall",
+    "SetHoldActionParamsActionTrigger_ActionTriggerPhraseBased",
+    "SetHoldActionUpdateParams",
+    "SetHoldActionUpdateParamsActionTrigger",
+    "SetHoldActionUpdateParamsActionTriggerZero",
+    "SetHoldActionUpdateParamsActionTriggerZero_ActionTriggerFunctionCall",
+    "SetHoldActionUpdateParamsActionTriggerZero_ActionTriggerPhraseBased",
+    "SetHoldActionUpdateParamsConfig",
     "TransferCallAction",
+    "TransferCallActionActionTrigger",
+    "TransferCallActionActionTrigger_ActionTriggerFunctionCall",
+    "TransferCallActionActionTrigger_ActionTriggerPhraseBased",
     "TransferCallActionParams",
+    "TransferCallActionParamsActionTrigger",
+    "TransferCallActionParamsActionTrigger_ActionTriggerFunctionCall",
+    "TransferCallActionParamsActionTrigger_ActionTriggerPhraseBased",
     "TransferCallActionUpdateParams",
+    "TransferCallActionUpdateParamsActionTrigger",
+    "TransferCallActionUpdateParamsActionTriggerZero",
+    "TransferCallActionUpdateParamsActionTriggerZero_ActionTriggerFunctionCall",
+    "TransferCallActionUpdateParamsActionTriggerZero_ActionTriggerPhraseBased",
     "TransferCallActionUpdateParamsConfig",
     "TransferCallConfig",
     "TwilioAccountConnection",

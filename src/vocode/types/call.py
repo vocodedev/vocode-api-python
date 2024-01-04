@@ -9,6 +9,8 @@ from ..core.datetime_utils import serialize_datetime
 from .agent import Agent
 from .call_human_detection_result import CallHumanDetectionResult
 from .call_on_no_human_answer import CallOnNoHumanAnswer
+from .call_stage import CallStage
+from .call_stage_outcome import CallStageOutcome
 from .call_status import CallStatus
 from .call_telephony_provider import CallTelephonyProvider
 from .twilio_account_connection import TwilioAccountConnection
@@ -24,6 +26,8 @@ class Call(pydantic.BaseModel):
     human_detection_result: typing.Optional[CallHumanDetectionResult]
     do_not_call_result: typing.Optional[bool]
     telephony_id: typing.Optional[str]
+    stage: typing.Optional[CallStage]
+    stage_outcome: typing.Optional[CallStageOutcome]
     to_number: str
     from_number: str
     agent: Agent

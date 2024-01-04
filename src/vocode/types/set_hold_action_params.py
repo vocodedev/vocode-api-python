@@ -7,14 +7,12 @@ import pydantic
 
 from ..core.datetime_utils import serialize_datetime
 from .empty_action_config import EmptyActionConfig
-from .end_conversation_action_action_trigger import EndConversationActionActionTrigger
+from .set_hold_action_params_action_trigger import SetHoldActionParamsActionTrigger
 
 
-class EndConversationAction(pydantic.BaseModel):
-    id: str
-    user_id: str
+class SetHoldActionParams(pydantic.BaseModel):
     config: typing.Optional[EmptyActionConfig]
-    action_trigger: typing.Optional[EndConversationActionActionTrigger]
+    action_trigger: typing.Optional[SetHoldActionParamsActionTrigger]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

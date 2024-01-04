@@ -7,6 +7,7 @@ import pydantic
 
 from ..core.datetime_utils import serialize_datetime
 from .agent_update_params_actions import AgentUpdateParamsActions
+from .agent_update_params_ask_if_human_present_on_idle import AgentUpdateParamsAskIfHumanPresentOnIdle
 from .agent_update_params_context_endpoint import AgentUpdateParamsContextEndpoint
 from .agent_update_params_conversation_speed import AgentUpdateParamsConversationSpeed
 from .agent_update_params_endpointing_sensitivity import AgentUpdateParamsEndpointingSensitivity
@@ -41,6 +42,7 @@ class AgentUpdateParams(pydantic.BaseModel):
     conversation_speed: typing.Optional[AgentUpdateParamsConversationSpeed]
     initial_message_delay: typing.Optional[AgentUpdateParamsInitialMessageDelay]
     openai_model_name_override: typing.Optional[AgentUpdateParamsOpenaiModelNameOverride]
+    ask_if_human_present_on_idle: typing.Optional[AgentUpdateParamsAskIfHumanPresentOnIdle]
     openai_account_connection: typing.Optional[AgentUpdateParamsOpenaiAccountConnection]
     run_do_not_call_detection: typing.Optional[AgentUpdateParamsRunDoNotCallDetection]
 

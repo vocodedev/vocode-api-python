@@ -6,8 +6,10 @@ import typing
 
 import typing_extensions
 
+from .add_to_conference_action_params import AddToConferenceActionParams
 from .dtmf_action_params import DtmfActionParams
 from .end_conversation_action_params import EndConversationActionParams
+from .set_hold_action_params import SetHoldActionParams
 from .transfer_call_action_params import TransferCallActionParams
 
 
@@ -38,8 +40,28 @@ class AgentParamsActionsItemOne_ActionDtmf(DtmfActionParams):
         allow_population_by_field_name = True
 
 
+class AgentParamsActionsItemOne_ActionAddToConference(AddToConferenceActionParams):
+    type: typing_extensions.Literal["action_add_to_conference"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
+class AgentParamsActionsItemOne_ActionSetHold(SetHoldActionParams):
+    type: typing_extensions.Literal["action_set_hold"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
 AgentParamsActionsItemOne = typing.Union[
     AgentParamsActionsItemOne_ActionTransferCall,
     AgentParamsActionsItemOne_ActionEndConversation,
     AgentParamsActionsItemOne_ActionDtmf,
+    AgentParamsActionsItemOne_ActionAddToConference,
+    AgentParamsActionsItemOne_ActionSetHold,
 ]

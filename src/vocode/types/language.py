@@ -14,9 +14,28 @@ class Language(str, enum.Enum):
     EN = "en"
     ES = "es"
     DE = "de"
+    HI = "hi"
+    PT = "pt"
+    FR = "fr"
+    NL = "nl"
+    ID = "id"
+    IT = "it"
+    JA = "ja"
+    KO = "ko"
 
     def visit(
-        self, en: typing.Callable[[], T_Result], es: typing.Callable[[], T_Result], de: typing.Callable[[], T_Result]
+        self,
+        en: typing.Callable[[], T_Result],
+        es: typing.Callable[[], T_Result],
+        de: typing.Callable[[], T_Result],
+        hi: typing.Callable[[], T_Result],
+        pt: typing.Callable[[], T_Result],
+        fr: typing.Callable[[], T_Result],
+        nl: typing.Callable[[], T_Result],
+        id: typing.Callable[[], T_Result],
+        it: typing.Callable[[], T_Result],
+        ja: typing.Callable[[], T_Result],
+        ko: typing.Callable[[], T_Result],
     ) -> T_Result:
         if self is Language.EN:
             return en()
@@ -24,3 +43,19 @@ class Language(str, enum.Enum):
             return es()
         if self is Language.DE:
             return de()
+        if self is Language.HI:
+            return hi()
+        if self is Language.PT:
+            return pt()
+        if self is Language.FR:
+            return fr()
+        if self is Language.NL:
+            return nl()
+        if self is Language.ID:
+            return id()
+        if self is Language.IT:
+            return it()
+        if self is Language.JA:
+            return ja()
+        if self is Language.KO:
+            return ko()

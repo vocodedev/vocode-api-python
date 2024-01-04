@@ -6,15 +6,13 @@ import typing
 import pydantic
 
 from ..core.datetime_utils import serialize_datetime
-from .empty_action_config import EmptyActionConfig
-from .end_conversation_action_action_trigger import EndConversationActionActionTrigger
+from .set_hold_action_update_params_action_trigger import SetHoldActionUpdateParamsActionTrigger
+from .set_hold_action_update_params_config import SetHoldActionUpdateParamsConfig
 
 
-class EndConversationAction(pydantic.BaseModel):
-    id: str
-    user_id: str
-    config: typing.Optional[EmptyActionConfig]
-    action_trigger: typing.Optional[EndConversationActionActionTrigger]
+class SetHoldActionUpdateParams(pydantic.BaseModel):
+    config: typing.Optional[SetHoldActionUpdateParamsConfig]
+    action_trigger: typing.Optional[SetHoldActionUpdateParamsActionTrigger]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

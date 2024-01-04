@@ -4,17 +4,14 @@ import datetime as dt
 import typing
 
 import pydantic
+import typing_extensions
 
 from ..core.datetime_utils import serialize_datetime
-from .empty_action_config import EmptyActionConfig
-from .end_conversation_action_action_trigger import EndConversationActionActionTrigger
 
 
-class EndConversationAction(pydantic.BaseModel):
-    id: str
-    user_id: str
-    config: typing.Optional[EmptyActionConfig]
-    action_trigger: typing.Optional[EndConversationActionActionTrigger]
+class PhraseTrigger(pydantic.BaseModel):
+    phrase: str
+    conditions: typing.List[typing_extensions.Literal["phrase_condition_type_contains"]]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

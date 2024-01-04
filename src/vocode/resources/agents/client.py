@@ -98,6 +98,7 @@ class AgentsClient:
         conversation_speed: typing.Optional[float] = OMIT,
         initial_message_delay: typing.Optional[float] = OMIT,
         openai_model_name_override: typing.Optional[str] = OMIT,
+        ask_if_human_present_on_idle: typing.Optional[bool] = OMIT,
         openai_account_connection: typing.Optional[AgentParamsOpenaiAccountConnection] = OMIT,
         run_do_not_call_detection: typing.Optional[bool] = OMIT,
     ) -> Agent:
@@ -133,6 +134,8 @@ class AgentsClient:
 
             - openai_model_name_override: typing.Optional[str].
 
+            - ask_if_human_present_on_idle: typing.Optional[bool].
+
             - openai_account_connection: typing.Optional[AgentParamsOpenaiAccountConnection].
 
             - run_do_not_call_detection: typing.Optional[bool].
@@ -164,6 +167,8 @@ class AgentsClient:
             _request["initial_message_delay"] = initial_message_delay
         if openai_model_name_override is not OMIT:
             _request["openai_model_name_override"] = openai_model_name_override
+        if ask_if_human_present_on_idle is not OMIT:
+            _request["ask_if_human_present_on_idle"] = ask_if_human_present_on_idle
         if openai_account_connection is not OMIT:
             _request["openai_account_connection"] = openai_account_connection
         if run_do_not_call_detection is not OMIT:
@@ -279,6 +284,7 @@ class AsyncAgentsClient:
         conversation_speed: typing.Optional[float] = OMIT,
         initial_message_delay: typing.Optional[float] = OMIT,
         openai_model_name_override: typing.Optional[str] = OMIT,
+        ask_if_human_present_on_idle: typing.Optional[bool] = OMIT,
         openai_account_connection: typing.Optional[AgentParamsOpenaiAccountConnection] = OMIT,
         run_do_not_call_detection: typing.Optional[bool] = OMIT,
     ) -> Agent:
@@ -314,6 +320,8 @@ class AsyncAgentsClient:
 
             - openai_model_name_override: typing.Optional[str].
 
+            - ask_if_human_present_on_idle: typing.Optional[bool].
+
             - openai_account_connection: typing.Optional[AgentParamsOpenaiAccountConnection].
 
             - run_do_not_call_detection: typing.Optional[bool].
@@ -345,6 +353,8 @@ class AsyncAgentsClient:
             _request["initial_message_delay"] = initial_message_delay
         if openai_model_name_override is not OMIT:
             _request["openai_model_name_override"] = openai_model_name_override
+        if ask_if_human_present_on_idle is not OMIT:
+            _request["ask_if_human_present_on_idle"] = ask_if_human_present_on_idle
         if openai_account_connection is not OMIT:
             _request["openai_account_connection"] = openai_account_connection
         if run_do_not_call_detection is not OMIT:
