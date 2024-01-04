@@ -8,9 +8,11 @@ import pydantic
 from ..core.datetime_utils import serialize_datetime
 from .add_to_conference_action_update_params_action_trigger import AddToConferenceActionUpdateParamsActionTrigger
 from .add_to_conference_action_update_params_config import AddToConferenceActionUpdateParamsConfig
+import typing_extensions
 
 
 class AddToConferenceActionUpdateParams(pydantic.BaseModel):
+    type: typing_extensions.Literal["action_add_to_conference"]
     config: typing.Optional[AddToConferenceActionUpdateParamsConfig]
     action_trigger: typing.Optional[AddToConferenceActionUpdateParamsActionTrigger]
 

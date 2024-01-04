@@ -9,6 +9,8 @@ import typing_extensions
 from .dtmf_action_update_params import DtmfActionUpdateParams
 from .end_conversation_action_update_params import EndConversationActionUpdateParams
 from .transfer_call_action_update_params import TransferCallActionUpdateParams
+from .add_to_conference_action_update_params import AddToConferenceActionUpdateParams
+from .set_hold_action_update_params import SetHoldActionUpdateParams
 
 
 class AgentUpdateParamsActionsItemOne_ActionTransferCall(TransferCallActionUpdateParams):
@@ -33,9 +35,23 @@ class AgentUpdateParamsActionsItemOne_ActionDtmf(DtmfActionUpdateParams):
         smart_union = True
         allow_population_by_field_name = True
 
+class AgentUpdateParamsActionsItemOne_ActionAddToConference(AddToConferenceActionUpdateParams):
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+class AgentUpdateParamsActionsItemOne_ActionSetHold(SetHoldActionUpdateParams):
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
 
 AgentUpdateParamsActionsItemOne = typing.Union[
     TransferCallActionUpdateParams,
     EndConversationActionUpdateParams,
     DtmfActionUpdateParams,
+    AddToConferenceActionUpdateParams,
+    SetHoldActionUpdateParams
 ]
