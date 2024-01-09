@@ -3,13 +3,17 @@
 import datetime as dt
 import typing
 
-import pydantic
 import typing_extensions
 
 from ..core.datetime_utils import serialize_datetime
 from .pinecone_vector_database_update_params_api_environment import PineconeVectorDatabaseUpdateParamsApiEnvironment
 from .pinecone_vector_database_update_params_api_key import PineconeVectorDatabaseUpdateParamsApiKey
 from .pinecone_vector_database_update_params_index import PineconeVectorDatabaseUpdateParamsIndex
+
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
 
 
 class PineconeVectorDatabaseUpdateParams(pydantic.BaseModel):

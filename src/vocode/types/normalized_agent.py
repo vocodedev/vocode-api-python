@@ -3,8 +3,6 @@
 import datetime as dt
 import typing
 
-import pydantic
-
 from ..core.datetime_utils import serialize_datetime
 from .interrupt_sensitivity import InterruptSensitivity
 from .language import Language
@@ -13,6 +11,11 @@ from .normalized_agent_ivr_navigation_mode import NormalizedAgentIvrNavigationMo
 from .normalized_agent_openai_account_connection import NormalizedAgentOpenaiAccountConnection
 from .normalized_agent_prompt import NormalizedAgentPrompt
 from .normalized_agent_vector_database import NormalizedAgentVectorDatabase
+
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
 
 
 class NormalizedAgent(pydantic.BaseModel):

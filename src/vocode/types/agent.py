@@ -3,8 +3,6 @@
 import datetime as dt
 import typing
 
-import pydantic
-
 from ..core.datetime_utils import serialize_datetime
 from .agent_actions_item import AgentActionsItem
 from .agent_endpointing_sensitivity import AgentEndpointingSensitivity
@@ -16,6 +14,11 @@ from .open_ai_account_connection import OpenAiAccountConnection
 from .pinecone_vector_database import PineconeVectorDatabase
 from .prompt import Prompt
 from .webhook import Webhook
+
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
 
 
 class Agent(pydantic.BaseModel):

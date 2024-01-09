@@ -4,8 +4,6 @@ import typing
 import urllib.parse
 from json.decoder import JSONDecodeError
 
-import pydantic
-
 from ...core.api_error import ApiError
 from ...core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ...core.jsonable_encoder import jsonable_encoder
@@ -13,18 +11,23 @@ from ...core.remove_none_from_dict import remove_none_from_dict
 from ...errors.unprocessable_entity_error import UnprocessableEntityError
 from ...types.agent import Agent
 from ...types.agent_page import AgentPage
-from ...types.agent_params_actions_item import AgentParamsActionsItem
-from ...types.agent_params_endpointing_sensitivity import AgentParamsEndpointingSensitivity
-from ...types.agent_params_ivr_navigation_mode import AgentParamsIvrNavigationMode
-from ...types.agent_params_openai_account_connection import AgentParamsOpenaiAccountConnection
-from ...types.agent_params_prompt import AgentParamsPrompt
-from ...types.agent_params_vector_database import AgentParamsVectorDatabase
-from ...types.agent_params_voice import AgentParamsVoice
-from ...types.agent_params_webhook import AgentParamsWebhook
 from ...types.agent_update_params import AgentUpdateParams
 from ...types.http_validation_error import HttpValidationError
 from ...types.interrupt_sensitivity import InterruptSensitivity
 from ...types.language import Language
+from .types.agent_params_actions_item import AgentParamsActionsItem
+from .types.agent_params_endpointing_sensitivity import AgentParamsEndpointingSensitivity
+from .types.agent_params_ivr_navigation_mode import AgentParamsIvrNavigationMode
+from .types.agent_params_openai_account_connection import AgentParamsOpenaiAccountConnection
+from .types.agent_params_prompt import AgentParamsPrompt
+from .types.agent_params_vector_database import AgentParamsVectorDatabase
+from .types.agent_params_voice import AgentParamsVoice
+from .types.agent_params_webhook import AgentParamsWebhook
+
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
 
 # this is used as the default value for optional parameters
 OMIT = typing.cast(typing.Any, ...)

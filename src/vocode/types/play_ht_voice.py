@@ -3,11 +3,14 @@
 import datetime as dt
 import typing
 
-import pydantic
-
 from ..core.datetime_utils import serialize_datetime
 from .play_ht_voice_quality import PlayHtVoiceQuality
 from .play_ht_voice_version import PlayHtVoiceVersion
+
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
 
 
 class PlayHtVoice(pydantic.BaseModel):

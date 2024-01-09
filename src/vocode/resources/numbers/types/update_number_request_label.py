@@ -2,6 +2,6 @@
 
 import typing
 
-from .undefined import Undefined
+from ....types.undefined import Undefined
 
 UpdateNumberRequestLabel = typing.Union[str, Undefined]

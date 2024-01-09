@@ -4,8 +4,6 @@ import typing
 import urllib.parse
 from json.decoder import JSONDecodeError
 
-import pydantic
-
 from ...core.api_error import ApiError
 from ...core.client_wrapper import AsyncClientWrapper, SyncClientWrapper
 from ...core.jsonable_encoder import jsonable_encoder
@@ -15,9 +13,14 @@ from ...types.buy_phone_number_request import BuyPhoneNumberRequest
 from ...types.http_validation_error import HttpValidationError
 from ...types.phone_number import PhoneNumber
 from ...types.phone_number_page import PhoneNumberPage
-from ...types.update_number_request_inbound_agent import UpdateNumberRequestInboundAgent
-from ...types.update_number_request_label import UpdateNumberRequestLabel
-from ...types.update_number_request_outbound_only import UpdateNumberRequestOutboundOnly
+from .types.update_number_request_inbound_agent import UpdateNumberRequestInboundAgent
+from .types.update_number_request_label import UpdateNumberRequestLabel
+from .types.update_number_request_outbound_only import UpdateNumberRequestOutboundOnly
+
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
 
 # this is used as the default value for optional parameters
 OMIT = typing.cast(typing.Any, ...)

@@ -3,10 +3,14 @@
 import datetime as dt
 import typing
 
-import pydantic
 import typing_extensions
 
 from ..core.datetime_utils import serialize_datetime
+
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
 
 
 class PineconeVectorDatabaseParams(pydantic.BaseModel):

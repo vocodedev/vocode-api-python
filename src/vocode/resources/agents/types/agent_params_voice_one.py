@@ -6,10 +6,10 @@ import typing
 
 import typing_extensions
 
-from .azure_voice_params import AzureVoiceParams
-from .eleven_labs_voice_params import ElevenLabsVoiceParams
-from .play_ht_voice_params import PlayHtVoiceParams
-from .rime_voice_params import RimeVoiceParams
+from ....types.azure_voice_params import AzureVoiceParams
+from ....types.eleven_labs_voice_params import ElevenLabsVoiceParams
+from ....types.play_ht_voice_params import PlayHtVoiceParams
+from ....types.rime_voice_params import RimeVoiceParams
 
 
 class AgentParamsVoiceOne_VoiceAzure(AzureVoiceParams):

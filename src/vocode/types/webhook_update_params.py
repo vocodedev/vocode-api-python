@@ -3,12 +3,15 @@
 import datetime as dt
 import typing
 
-import pydantic
-
 from ..core.datetime_utils import serialize_datetime
 from .webhook_update_params_method import WebhookUpdateParamsMethod
 from .webhook_update_params_subscriptions import WebhookUpdateParamsSubscriptions
 from .webhook_update_params_url import WebhookUpdateParamsUrl
+
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
 
 
 class WebhookUpdateParams(pydantic.BaseModel):

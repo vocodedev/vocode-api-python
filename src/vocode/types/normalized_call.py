@@ -3,8 +3,6 @@
 import datetime as dt
 import typing
 
-import pydantic
-
 from ..core.datetime_utils import serialize_datetime
 from .call_status import CallStatus
 from .normalized_call_human_detection_result import NormalizedCallHumanDetectionResult
@@ -13,6 +11,11 @@ from .normalized_call_stage import NormalizedCallStage
 from .normalized_call_stage_outcome import NormalizedCallStageOutcome
 from .normalized_call_telephony_account_connection import NormalizedCallTelephonyAccountConnection
 from .normalized_call_telephony_provider import NormalizedCallTelephonyProvider
+
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
 
 
 class NormalizedCall(pydantic.BaseModel):

@@ -3,8 +3,6 @@
 import datetime as dt
 import typing
 
-import pydantic
-
 from ..core.datetime_utils import serialize_datetime
 from .create_call_agent_params_actions_item import CreateCallAgentParamsActionsItem
 from .create_call_agent_params_endpointing_sensitivity import CreateCallAgentParamsEndpointingSensitivity
@@ -16,6 +14,11 @@ from .create_call_agent_params_voice import CreateCallAgentParamsVoice
 from .create_call_agent_params_webhook import CreateCallAgentParamsWebhook
 from .interrupt_sensitivity import InterruptSensitivity
 from .language import Language
+
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
 
 
 class CreateCallAgentParams(pydantic.BaseModel):

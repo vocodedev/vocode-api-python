@@ -3,11 +3,14 @@
 import datetime as dt
 import typing
 
-import pydantic
-
 from ..core.datetime_utils import serialize_datetime
 from .empty_action_config import EmptyActionConfig
 from .set_hold_action_action_trigger import SetHoldActionActionTrigger
+
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
 
 
 class SetHoldAction(pydantic.BaseModel):

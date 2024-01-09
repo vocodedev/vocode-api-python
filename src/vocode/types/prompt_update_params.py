@@ -3,13 +3,16 @@
 import datetime as dt
 import typing
 
-import pydantic
-
 from ..core.datetime_utils import serialize_datetime
 from .prompt_update_params_collect_fields import PromptUpdateParamsCollectFields
 from .prompt_update_params_content import PromptUpdateParamsContent
 from .prompt_update_params_context_endpoint import PromptUpdateParamsContextEndpoint
 from .prompt_update_params_prompt_template import PromptUpdateParamsPromptTemplate
+
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
 
 
 class PromptUpdateParams(pydantic.BaseModel):

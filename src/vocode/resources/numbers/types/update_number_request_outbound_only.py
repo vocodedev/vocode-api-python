@@ -2,6 +2,6 @@
 
 import typing
 
-from .undefined import Undefined
+from ....types.undefined import Undefined
 
 UpdateNumberRequestOutboundOnly = typing.Union[bool, Undefined]

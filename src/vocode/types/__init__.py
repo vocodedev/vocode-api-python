@@ -87,29 +87,6 @@ from .agent_actions_item import (
 from .agent_endpointing_sensitivity import AgentEndpointingSensitivity
 from .agent_ivr_navigation_mode import AgentIvrNavigationMode
 from .agent_page import AgentPage
-from .agent_params_actions_item import AgentParamsActionsItem
-from .agent_params_actions_item_one import (
-    AgentParamsActionsItemOne,
-    AgentParamsActionsItemOne_ActionAddToConference,
-    AgentParamsActionsItemOne_ActionDtmf,
-    AgentParamsActionsItemOne_ActionEndConversation,
-    AgentParamsActionsItemOne_ActionSetHold,
-    AgentParamsActionsItemOne_ActionTransferCall,
-)
-from .agent_params_endpointing_sensitivity import AgentParamsEndpointingSensitivity
-from .agent_params_ivr_navigation_mode import AgentParamsIvrNavigationMode
-from .agent_params_openai_account_connection import AgentParamsOpenaiAccountConnection
-from .agent_params_prompt import AgentParamsPrompt
-from .agent_params_vector_database import AgentParamsVectorDatabase
-from .agent_params_voice import AgentParamsVoice
-from .agent_params_voice_one import (
-    AgentParamsVoiceOne,
-    AgentParamsVoiceOne_VoiceAzure,
-    AgentParamsVoiceOne_VoiceElevenLabs,
-    AgentParamsVoiceOne_VoicePlayHt,
-    AgentParamsVoiceOne_VoiceRime,
-)
-from .agent_params_webhook import AgentParamsWebhook
 from .agent_update_params import AgentUpdateParams
 from .agent_update_params_actions import AgentUpdateParamsActions
 from .agent_update_params_actions_item import AgentUpdateParamsActionsItem
@@ -193,8 +170,6 @@ from .create_call_agent_params_voice_one import (
     CreateCallAgentParamsVoiceOne_VoiceRime,
 )
 from .create_call_agent_params_webhook import CreateCallAgentParamsWebhook
-from .create_call_request_agent import CreateCallRequestAgent
-from .create_call_request_on_no_human_answer import CreateCallRequestOnNoHumanAnswer
 from .dtmf_action import DtmfAction
 from .dtmf_action_action_trigger import (
     DtmfActionActionTrigger,
@@ -365,9 +340,6 @@ from .twilio_account_connection_update_params import TwilioAccountConnectionUpda
 from .twilio_account_connection_update_params_credentials import TwilioAccountConnectionUpdateParamsCredentials
 from .twilio_credentials import TwilioCredentials
 from .undefined import Undefined
-from .update_number_request_inbound_agent import UpdateNumberRequestInboundAgent
-from .update_number_request_label import UpdateNumberRequestLabel
-from .update_number_request_outbound_only import UpdateNumberRequestOutboundOnly
 from .usage import Usage
 from .validation_error import ValidationError
 from .validation_error_loc_item import ValidationErrorLocItem
@@ -473,25 +445,6 @@ __all__ = [
     "AgentEndpointingSensitivity",
     "AgentIvrNavigationMode",
     "AgentPage",
-    "AgentParamsActionsItem",
-    "AgentParamsActionsItemOne",
-    "AgentParamsActionsItemOne_ActionAddToConference",
-    "AgentParamsActionsItemOne_ActionDtmf",
-    "AgentParamsActionsItemOne_ActionEndConversation",
-    "AgentParamsActionsItemOne_ActionSetHold",
-    "AgentParamsActionsItemOne_ActionTransferCall",
-    "AgentParamsEndpointingSensitivity",
-    "AgentParamsIvrNavigationMode",
-    "AgentParamsOpenaiAccountConnection",
-    "AgentParamsPrompt",
-    "AgentParamsVectorDatabase",
-    "AgentParamsVoice",
-    "AgentParamsVoiceOne",
-    "AgentParamsVoiceOne_VoiceAzure",
-    "AgentParamsVoiceOne_VoiceElevenLabs",
-    "AgentParamsVoiceOne_VoicePlayHt",
-    "AgentParamsVoiceOne_VoiceRime",
-    "AgentParamsWebhook",
     "AgentUpdateParams",
     "AgentUpdateParamsActions",
     "AgentUpdateParamsActionsItem",
@@ -565,8 +518,6 @@ __all__ = [
     "CreateCallAgentParamsVoiceOne_VoicePlayHt",
     "CreateCallAgentParamsVoiceOne_VoiceRime",
     "CreateCallAgentParamsWebhook",
-    "CreateCallRequestAgent",
-    "CreateCallRequestOnNoHumanAnswer",
     "DtmfAction",
     "DtmfActionActionTrigger",
     "DtmfActionActionTrigger_ActionTriggerFunctionCall",
@@ -711,9 +662,6 @@ __all__ = [
     "TwilioAccountConnectionUpdateParamsCredentials",
     "TwilioCredentials",
     "Undefined",
-    "UpdateNumberRequestInboundAgent",
-    "UpdateNumberRequestLabel",
-    "UpdateNumberRequestOutboundOnly",
     "Usage",
     "ValidationError",
     "ValidationErrorLocItem",

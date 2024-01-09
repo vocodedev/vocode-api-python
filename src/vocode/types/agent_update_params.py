@@ -3,8 +3,6 @@
 import datetime as dt
 import typing
 
-import pydantic
-
 from ..core.datetime_utils import serialize_datetime
 from .agent_update_params_actions import AgentUpdateParamsActions
 from .agent_update_params_ask_if_human_present_on_idle import AgentUpdateParamsAskIfHumanPresentOnIdle
@@ -24,6 +22,11 @@ from .agent_update_params_run_do_not_call_detection import AgentUpdateParamsRunD
 from .agent_update_params_vector_database import AgentUpdateParamsVectorDatabase
 from .agent_update_params_voice import AgentUpdateParamsVoice
 from .agent_update_params_webhook import AgentUpdateParamsWebhook
+
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
 
 
 class AgentUpdateParams(pydantic.BaseModel):

@@ -14,7 +14,7 @@ class BaseClientWrapper:
         headers: typing.Dict[str, str] = {
             "X-Fern-Language": "Python",
             "X-Fern-SDK-Name": "vocode-api",
-            "X-Fern-SDK-Version": "0.0.34",
+            "X-Fern-SDK-Version": "0.0.37",
         }
         headers["Authorization"] = f"Bearer {self._get_token()}"
         return headers

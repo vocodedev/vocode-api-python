@@ -6,11 +6,11 @@ import typing
 
 import typing_extensions
 
-from .add_to_conference_action_params import AddToConferenceActionParams
-from .dtmf_action_params import DtmfActionParams
-from .end_conversation_action_params import EndConversationActionParams
-from .set_hold_action_params import SetHoldActionParams
-from .transfer_call_action_params import TransferCallActionParams
+from ....types.add_to_conference_action_params import AddToConferenceActionParams
+from ....types.dtmf_action_params import DtmfActionParams
+from ....types.end_conversation_action_params import EndConversationActionParams
+from ....types.set_hold_action_params import SetHoldActionParams
+from ....types.transfer_call_action_params import TransferCallActionParams
 
 
 class AgentParamsActionsItemOne_ActionTransferCall(TransferCallActionParams):
