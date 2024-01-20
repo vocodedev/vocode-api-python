@@ -13,6 +13,7 @@ from ...types.buy_phone_number_request import BuyPhoneNumberRequest
 from ...types.http_validation_error import HttpValidationError
 from ...types.phone_number import PhoneNumber
 from ...types.phone_number_page import PhoneNumberPage
+from .types.update_number_request_example_context import UpdateNumberRequestExampleContext
 from .types.update_number_request_inbound_agent import UpdateNumberRequestInboundAgent
 from .types.update_number_request_label import UpdateNumberRequestLabel
 from .types.update_number_request_outbound_only import UpdateNumberRequestOutboundOnly
@@ -103,6 +104,7 @@ class NumbersClient:
         *,
         phone_number: str,
         outbound_only: typing.Optional[UpdateNumberRequestOutboundOnly] = OMIT,
+        example_context: typing.Optional[UpdateNumberRequestExampleContext] = OMIT,
         label: typing.Optional[UpdateNumberRequestLabel] = OMIT,
         inbound_agent: typing.Optional[UpdateNumberRequestInboundAgent] = OMIT,
     ) -> PhoneNumber:
@@ -112,6 +114,8 @@ class NumbersClient:
 
             - outbound_only: typing.Optional[UpdateNumberRequestOutboundOnly].
 
+            - example_context: typing.Optional[UpdateNumberRequestExampleContext].
+
             - label: typing.Optional[UpdateNumberRequestLabel].
 
             - inbound_agent: typing.Optional[UpdateNumberRequestInboundAgent].
@@ -119,6 +123,8 @@ class NumbersClient:
         _request: typing.Dict[str, typing.Any] = {}
         if outbound_only is not OMIT:
             _request["outbound_only"] = outbound_only
+        if example_context is not OMIT:
+            _request["example_context"] = example_context
         if label is not OMIT:
             _request["label"] = label
         if inbound_agent is not OMIT:
@@ -277,6 +283,7 @@ class AsyncNumbersClient:
         *,
         phone_number: str,
         outbound_only: typing.Optional[UpdateNumberRequestOutboundOnly] = OMIT,
+        example_context: typing.Optional[UpdateNumberRequestExampleContext] = OMIT,
         label: typing.Optional[UpdateNumberRequestLabel] = OMIT,
         inbound_agent: typing.Optional[UpdateNumberRequestInboundAgent] = OMIT,
     ) -> PhoneNumber:
@@ -286,6 +293,8 @@ class AsyncNumbersClient:
 
             - outbound_only: typing.Optional[UpdateNumberRequestOutboundOnly].
 
+            - example_context: typing.Optional[UpdateNumberRequestExampleContext].
+
             - label: typing.Optional[UpdateNumberRequestLabel].
 
             - inbound_agent: typing.Optional[UpdateNumberRequestInboundAgent].
@@ -293,6 +302,8 @@ class AsyncNumbersClient:
         _request: typing.Dict[str, typing.Any] = {}
         if outbound_only is not OMIT:
             _request["outbound_only"] = outbound_only
+        if example_context is not OMIT:
+            _request["example_context"] = example_context
         if label is not OMIT:
             _request["label"] = label
         if inbound_agent is not OMIT:

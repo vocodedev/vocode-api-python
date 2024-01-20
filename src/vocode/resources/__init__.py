@@ -23,7 +23,12 @@ from .agents import (
     AgentParamsWebhook,
 )
 from .calls import CreateCallRequestAgent, CreateCallRequestOnNoHumanAnswer
-from .numbers import UpdateNumberRequestInboundAgent, UpdateNumberRequestLabel, UpdateNumberRequestOutboundOnly
+from .numbers import (
+    UpdateNumberRequestExampleContext,
+    UpdateNumberRequestInboundAgent,
+    UpdateNumberRequestLabel,
+    UpdateNumberRequestOutboundOnly,
+)
 
 __all__ = [
     "AgentParamsActionsItem",
@@ -47,6 +52,7 @@ __all__ = [
     "AgentParamsWebhook",
     "CreateCallRequestAgent",
     "CreateCallRequestOnNoHumanAnswer",
+    "UpdateNumberRequestExampleContext",
     "UpdateNumberRequestInboundAgent",
     "UpdateNumberRequestLabel",
     "UpdateNumberRequestOutboundOnly",
