@@ -1,6 +1,6 @@
-import pytest
+from vocode.client import Vocode
 
-# Get started with writing tests with pytest at https://docs.pytest.org
-@pytest.mark.skip(reason="Unimplemented")
-def test_client() -> None:
-    assert True == True
+
+# Test client instantiation
+def test_client_instantiation() -> None:
+    Vocode(token="....")
