@@ -4,11 +4,14 @@ import datetime as dt
 import typing
 import typing_extensions
 
-import pydantic
-
 from ..core.datetime_utils import serialize_datetime
 from .set_hold_action_update_params_action_trigger import SetHoldActionUpdateParamsActionTrigger
 from .set_hold_action_update_params_config import SetHoldActionUpdateParamsConfig
+
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
 
 
 class SetHoldActionUpdateParams(pydantic.BaseModel):

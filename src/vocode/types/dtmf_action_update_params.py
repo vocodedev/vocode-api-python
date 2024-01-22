@@ -4,10 +4,13 @@ import datetime as dt
 import typing
 import typing_extensions
 
-import pydantic
-
 from ..core.datetime_utils import serialize_datetime
 from .dtmf_action_update_params_config import DtmfActionUpdateParamsConfig
+
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
 
 
 class DtmfActionUpdateParams(pydantic.BaseModel):

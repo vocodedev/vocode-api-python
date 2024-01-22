@@ -3,8 +3,6 @@
 import datetime as dt
 import typing
 
-import pydantic
-
 import typing_extensions
 
 from ..core.datetime_utils import serialize_datetime
@@ -12,6 +10,11 @@ from .eleven_labs_voice_update_params_api_key import ElevenLabsVoiceUpdateParams
 from .eleven_labs_voice_update_params_similarity_boost import ElevenLabsVoiceUpdateParamsSimilarityBoost
 from .eleven_labs_voice_update_params_stability import ElevenLabsVoiceUpdateParamsStability
 from .eleven_labs_voice_update_params_voice_id import ElevenLabsVoiceUpdateParamsVoiceId
+
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
 
 
 class ElevenLabsVoiceUpdateParams(pydantic.BaseModel):

@@ -3,14 +3,17 @@
 import datetime as dt
 import typing
 
-import pydantic
-
 import typing_extensions
 
 from ..core.datetime_utils import serialize_datetime
 from .azure_voice_update_params_pitch import AzureVoiceUpdateParamsPitch
 from .azure_voice_update_params_rate import AzureVoiceUpdateParamsRate
 from .azure_voice_update_params_voice_name import AzureVoiceUpdateParamsVoiceName
+
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
 
 
 class AzureVoiceUpdateParams(pydantic.BaseModel):

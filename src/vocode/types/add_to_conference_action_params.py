@@ -4,11 +4,14 @@ import datetime as dt
 import typing
 import typing_extensions
 
-import pydantic
-
 from ..core.datetime_utils import serialize_datetime
 from .add_to_conference_action_params_action_trigger import AddToConferenceActionParamsActionTrigger
 from .add_to_conference_config import AddToConferenceConfig
+
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
 
 
 class AddToConferenceActionParams(pydantic.BaseModel):

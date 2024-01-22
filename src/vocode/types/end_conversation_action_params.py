@@ -3,12 +3,15 @@
 import datetime as dt
 import typing
 
-import pydantic
-
 import typing_extensions
 
 from ..core.datetime_utils import serialize_datetime
 from .empty_action_config import EmptyActionConfig
+
+try:
+    import pydantic.v1 as pydantic  # type: ignore
+except ImportError:
+    import pydantic  # type: ignore
 
 
 class EndConversationActionParams(pydantic.BaseModel):
