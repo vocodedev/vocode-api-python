@@ -23,6 +23,10 @@ class PlayHtVoice(pydantic.BaseModel):
     speed: typing.Optional[float]
     quality: typing.Optional[PlayHtVoiceQuality]
     temperature: typing.Optional[float]
+    top_p: typing.Optional[float]
+    text_guidance: typing.Optional[float]
+    voice_guidance: typing.Optional[float]
+    experimental_remove_silence: typing.Optional[bool]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

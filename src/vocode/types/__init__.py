@@ -194,6 +194,9 @@ from .eleven_labs_voice import ElevenLabsVoice
 from .eleven_labs_voice_params import ElevenLabsVoiceParams
 from .eleven_labs_voice_update_params import ElevenLabsVoiceUpdateParams
 from .eleven_labs_voice_update_params_api_key import ElevenLabsVoiceUpdateParamsApiKey
+from .eleven_labs_voice_update_params_experimental_input_streaming import (
+    ElevenLabsVoiceUpdateParamsExperimentalInputStreaming,
+)
 from .eleven_labs_voice_update_params_model_id import ElevenLabsVoiceUpdateParamsModelId
 from .eleven_labs_voice_update_params_optimize_streaming_latency import (
     ElevenLabsVoiceUpdateParamsOptimizeStreamingLatency,
@@ -272,10 +275,14 @@ from .play_ht_voice_quality import PlayHtVoiceQuality
 from .play_ht_voice_update_params import PlayHtVoiceUpdateParams
 from .play_ht_voice_update_params_api_key import PlayHtVoiceUpdateParamsApiKey
 from .play_ht_voice_update_params_api_user_id import PlayHtVoiceUpdateParamsApiUserId
+from .play_ht_voice_update_params_experimental_remove_silence import PlayHtVoiceUpdateParamsExperimentalRemoveSilence
 from .play_ht_voice_update_params_quality import PlayHtVoiceUpdateParamsQuality
 from .play_ht_voice_update_params_speed import PlayHtVoiceUpdateParamsSpeed
 from .play_ht_voice_update_params_temperature import PlayHtVoiceUpdateParamsTemperature
+from .play_ht_voice_update_params_text_guidance import PlayHtVoiceUpdateParamsTextGuidance
+from .play_ht_voice_update_params_top_p import PlayHtVoiceUpdateParamsTopP
 from .play_ht_voice_update_params_version import PlayHtVoiceUpdateParamsVersion
+from .play_ht_voice_update_params_voice_guidance import PlayHtVoiceUpdateParamsVoiceGuidance
 from .play_ht_voice_update_params_voice_id import PlayHtVoiceUpdateParamsVoiceId
 from .play_ht_voice_version import PlayHtVoiceVersion
 from .prompt import Prompt
@@ -536,6 +543,7 @@ __all__ = [
     "ElevenLabsVoiceParams",
     "ElevenLabsVoiceUpdateParams",
     "ElevenLabsVoiceUpdateParamsApiKey",
+    "ElevenLabsVoiceUpdateParamsExperimentalInputStreaming",
     "ElevenLabsVoiceUpdateParamsModelId",
     "ElevenLabsVoiceUpdateParamsOptimizeStreamingLatency",
     "ElevenLabsVoiceUpdateParamsSimilarityBoost",
@@ -606,10 +614,14 @@ __all__ = [
     "PlayHtVoiceUpdateParams",
     "PlayHtVoiceUpdateParamsApiKey",
     "PlayHtVoiceUpdateParamsApiUserId",
+    "PlayHtVoiceUpdateParamsExperimentalRemoveSilence",
     "PlayHtVoiceUpdateParamsQuality",
     "PlayHtVoiceUpdateParamsSpeed",
     "PlayHtVoiceUpdateParamsTemperature",
+    "PlayHtVoiceUpdateParamsTextGuidance",
+    "PlayHtVoiceUpdateParamsTopP",
     "PlayHtVoiceUpdateParamsVersion",
+    "PlayHtVoiceUpdateParamsVoiceGuidance",
     "PlayHtVoiceUpdateParamsVoiceId",
     "PlayHtVoiceVersion",
     "Prompt",

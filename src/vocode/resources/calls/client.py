@@ -28,17 +28,30 @@ class CallsClient:
     def __init__(self, *, client_wrapper: SyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    def list_calls(self, *, page: typing.Optional[int] = None, size: typing.Optional[int] = None) -> CallPage:
+    def list_calls(
+        self,
+        *,
+        page: typing.Optional[int] = None,
+        size: typing.Optional[int] = None,
+        sort_column: typing.Optional[str] = None,
+        sort_desc: typing.Optional[bool] = None,
+    ) -> CallPage:
         """
         Parameters:
             - page: typing.Optional[int].
 
             - size: typing.Optional[int].
+
+            - sort_column: typing.Optional[str].
+
+            - sort_desc: typing.Optional[bool].
         """
         _response = self._client_wrapper.httpx_client.request(
             "GET",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/calls/list"),
-            params=remove_none_from_dict({"page": page, "size": size}),
+            params=remove_none_from_dict(
+                {"page": page, "size": size, "sort_column": sort_column, "sort_desc": sort_desc}
+            ),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
@@ -106,6 +119,7 @@ class CallsClient:
         run_do_not_call_detection: typing.Optional[bool] = OMIT,
         hipaa_compliant: typing.Optional[bool] = OMIT,
         context: typing.Optional[typing.Dict[str, str]] = OMIT,
+        telephony_params: typing.Optional[typing.Dict[str, str]] = OMIT,
     ) -> Call:
         """
         Parameters:
@@ -122,6 +136,8 @@ class CallsClient:
             - hipaa_compliant: typing.Optional[bool].
 
             - context: typing.Optional[typing.Dict[str, str]].
+
+            - telephony_params: typing.Optional[typing.Dict[str, str]].
         """
         _request: typing.Dict[str, typing.Any] = {"from_number": from_number, "to_number": to_number, "agent": agent}
         if on_no_human_answer is not OMIT:
@@ -132,6 +148,8 @@ class CallsClient:
             _request["hipaa_compliant"] = hipaa_compliant
         if context is not OMIT:
             _request["context"] = context
+        if telephony_params is not OMIT:
+            _request["telephony_params"] = telephony_params
         _response = self._client_wrapper.httpx_client.request(
             "POST",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/calls/create"),
@@ -177,17 +195,30 @@ class AsyncCallsClient:
     def __init__(self, *, client_wrapper: AsyncClientWrapper):
         self._client_wrapper = client_wrapper
 
-    async def list_calls(self, *, page: typing.Optional[int] = None, size: typing.Optional[int] = None) -> CallPage:
+    async def list_calls(
+        self,
+        *,
+        page: typing.Optional[int] = None,
+        size: typing.Optional[int] = None,
+        sort_column: typing.Optional[str] = None,
+        sort_desc: typing.Optional[bool] = None,
+    ) -> CallPage:
         """
         Parameters:
             - page: typing.Optional[int].
 
             - size: typing.Optional[int].
+
+            - sort_column: typing.Optional[str].
+
+            - sort_desc: typing.Optional[bool].
         """
         _response = await self._client_wrapper.httpx_client.request(
             "GET",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/calls/list"),
-            params=remove_none_from_dict({"page": page, "size": size}),
+            params=remove_none_from_dict(
+                {"page": page, "size": size, "sort_column": sort_column, "sort_desc": sort_desc}
+            ),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
@@ -255,6 +286,7 @@ class AsyncCallsClient:
         run_do_not_call_detection: typing.Optional[bool] = OMIT,
         hipaa_compliant: typing.Optional[bool] = OMIT,
         context: typing.Optional[typing.Dict[str, str]] = OMIT,
+        telephony_params: typing.Optional[typing.Dict[str, str]] = OMIT,
     ) -> Call:
         """
         Parameters:
@@ -271,6 +303,8 @@ class AsyncCallsClient:
             - hipaa_compliant: typing.Optional[bool].
 
             - context: typing.Optional[typing.Dict[str, str]].
+
+            - telephony_params: typing.Optional[typing.Dict[str, str]].
         """
         _request: typing.Dict[str, typing.Any] = {"from_number": from_number, "to_number": to_number, "agent": agent}
         if on_no_human_answer is not OMIT:
@@ -281,6 +315,8 @@ class AsyncCallsClient:
             _request["hipaa_compliant"] = hipaa_compliant
         if context is not OMIT:
             _request["context"] = context
+        if telephony_params is not OMIT:
+            _request["telephony_params"] = telephony_params
         _response = await self._client_wrapper.httpx_client.request(
             "POST",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/calls/create"),

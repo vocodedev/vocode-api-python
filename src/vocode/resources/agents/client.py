@@ -59,17 +59,30 @@ class AgentsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def list_agents(self, *, page: typing.Optional[int] = None, size: typing.Optional[int] = None) -> AgentPage:
+    def list_agents(
+        self,
+        *,
+        page: typing.Optional[int] = None,
+        size: typing.Optional[int] = None,
+        sort_column: typing.Optional[str] = None,
+        sort_desc: typing.Optional[bool] = None,
+    ) -> AgentPage:
         """
         Parameters:
             - page: typing.Optional[int].
 
             - size: typing.Optional[int].
+
+            - sort_column: typing.Optional[str].
+
+            - sort_desc: typing.Optional[bool].
         """
         _response = self._client_wrapper.httpx_client.request(
             "GET",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/agents/list"),
-            params=remove_none_from_dict({"page": page, "size": size}),
+            params=remove_none_from_dict(
+                {"page": page, "size": size, "sort_column": sort_column, "sort_desc": sort_desc}
+            ),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
@@ -104,6 +117,7 @@ class AgentsClient:
         ask_if_human_present_on_idle: typing.Optional[bool] = OMIT,
         openai_account_connection: typing.Optional[AgentParamsOpenaiAccountConnection] = OMIT,
         run_do_not_call_detection: typing.Optional[bool] = OMIT,
+        llm_temperature: typing.Optional[float] = OMIT,
     ) -> Agent:
         """
         Parameters:
@@ -142,6 +156,8 @@ class AgentsClient:
             - openai_account_connection: typing.Optional[AgentParamsOpenaiAccountConnection].
 
             - run_do_not_call_detection: typing.Optional[bool].
+
+            - llm_temperature: typing.Optional[float].
         """
         _request: typing.Dict[str, typing.Any] = {"prompt": prompt, "voice": voice}
         if language is not OMIT:
@@ -176,6 +192,8 @@ class AgentsClient:
             _request["openai_account_connection"] = openai_account_connection
         if run_do_not_call_detection is not OMIT:
             _request["run_do_not_call_detection"] = run_do_not_call_detection
+        if llm_temperature is not OMIT:
+            _request["llm_temperature"] = llm_temperature
         _response = self._client_wrapper.httpx_client.request(
             "POST",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/agents/create"),
@@ -245,17 +263,30 @@ class AsyncAgentsClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def list_agents(self, *, page: typing.Optional[int] = None, size: typing.Optional[int] = None) -> AgentPage:
+    async def list_agents(
+        self,
+        *,
+        page: typing.Optional[int] = None,
+        size: typing.Optional[int] = None,
+        sort_column: typing.Optional[str] = None,
+        sort_desc: typing.Optional[bool] = None,
+    ) -> AgentPage:
         """
         Parameters:
             - page: typing.Optional[int].
 
             - size: typing.Optional[int].
+
+            - sort_column: typing.Optional[str].
+
+            - sort_desc: typing.Optional[bool].
         """
         _response = await self._client_wrapper.httpx_client.request(
             "GET",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/agents/list"),
-            params=remove_none_from_dict({"page": page, "size": size}),
+            params=remove_none_from_dict(
+                {"page": page, "size": size, "sort_column": sort_column, "sort_desc": sort_desc}
+            ),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
@@ -290,6 +321,7 @@ class AsyncAgentsClient:
         ask_if_human_present_on_idle: typing.Optional[bool] = OMIT,
         openai_account_connection: typing.Optional[AgentParamsOpenaiAccountConnection] = OMIT,
         run_do_not_call_detection: typing.Optional[bool] = OMIT,
+        llm_temperature: typing.Optional[float] = OMIT,
     ) -> Agent:
         """
         Parameters:
@@ -328,6 +360,8 @@ class AsyncAgentsClient:
             - openai_account_connection: typing.Optional[AgentParamsOpenaiAccountConnection].
 
             - run_do_not_call_detection: typing.Optional[bool].
+
+            - llm_temperature: typing.Optional[float].
         """
         _request: typing.Dict[str, typing.Any] = {"prompt": prompt, "voice": voice}
         if language is not OMIT:
@@ -362,6 +396,8 @@ class AsyncAgentsClient:
             _request["openai_account_connection"] = openai_account_connection
         if run_do_not_call_detection is not OMIT:
             _request["run_do_not_call_detection"] = run_do_not_call_detection
+        if llm_temperature is not OMIT:
+            _request["llm_temperature"] = llm_temperature
         _response = await self._client_wrapper.httpx_client.request(
             "POST",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/agents/create"),

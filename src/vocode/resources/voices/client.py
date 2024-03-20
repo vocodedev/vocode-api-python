@@ -50,17 +50,30 @@ class VoicesClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    def list_voices(self, *, page: typing.Optional[int] = None, size: typing.Optional[int] = None) -> VoicePage:
+    def list_voices(
+        self,
+        *,
+        page: typing.Optional[int] = None,
+        size: typing.Optional[int] = None,
+        sort_column: typing.Optional[str] = None,
+        sort_desc: typing.Optional[bool] = None,
+    ) -> VoicePage:
         """
         Parameters:
             - page: typing.Optional[int].
 
             - size: typing.Optional[int].
+
+            - sort_column: typing.Optional[str].
+
+            - sort_desc: typing.Optional[bool].
         """
         _response = self._client_wrapper.httpx_client.request(
             "GET",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/voices/list"),
-            params=remove_none_from_dict({"page": page, "size": size}),
+            params=remove_none_from_dict(
+                {"page": page, "size": size, "sort_column": sort_column, "sort_desc": sort_desc}
+            ),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
@@ -148,17 +161,30 @@ class AsyncVoicesClient:
             raise ApiError(status_code=_response.status_code, body=_response.text)
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
-    async def list_voices(self, *, page: typing.Optional[int] = None, size: typing.Optional[int] = None) -> VoicePage:
+    async def list_voices(
+        self,
+        *,
+        page: typing.Optional[int] = None,
+        size: typing.Optional[int] = None,
+        sort_column: typing.Optional[str] = None,
+        sort_desc: typing.Optional[bool] = None,
+    ) -> VoicePage:
         """
         Parameters:
             - page: typing.Optional[int].
 
             - size: typing.Optional[int].
+
+            - sort_column: typing.Optional[str].
+
+            - sort_desc: typing.Optional[bool].
         """
         _response = await self._client_wrapper.httpx_client.request(
             "GET",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/voices/list"),
-            params=remove_none_from_dict({"page": page, "size": size}),
+            params=remove_none_from_dict(
+                {"page": page, "size": size, "sort_column": sort_column, "sort_desc": sort_desc}
+            ),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )

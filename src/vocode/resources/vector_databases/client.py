@@ -51,18 +51,29 @@ class VectorDatabasesClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     def list_vector_databases(
-        self, *, page: typing.Optional[int] = None, size: typing.Optional[int] = None
+        self,
+        *,
+        page: typing.Optional[int] = None,
+        size: typing.Optional[int] = None,
+        sort_column: typing.Optional[str] = None,
+        sort_desc: typing.Optional[bool] = None,
     ) -> VectorDatabasePage:
         """
         Parameters:
             - page: typing.Optional[int].
 
             - size: typing.Optional[int].
+
+            - sort_column: typing.Optional[str].
+
+            - sort_desc: typing.Optional[bool].
         """
         _response = self._client_wrapper.httpx_client.request(
             "GET",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/vector_databases/list"),
-            params=remove_none_from_dict({"page": page, "size": size}),
+            params=remove_none_from_dict(
+                {"page": page, "size": size, "sort_column": sort_column, "sort_desc": sort_desc}
+            ),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )
@@ -151,18 +162,29 @@ class AsyncVectorDatabasesClient:
         raise ApiError(status_code=_response.status_code, body=_response_json)
 
     async def list_vector_databases(
-        self, *, page: typing.Optional[int] = None, size: typing.Optional[int] = None
+        self,
+        *,
+        page: typing.Optional[int] = None,
+        size: typing.Optional[int] = None,
+        sort_column: typing.Optional[str] = None,
+        sort_desc: typing.Optional[bool] = None,
     ) -> VectorDatabasePage:
         """
         Parameters:
             - page: typing.Optional[int].
 
             - size: typing.Optional[int].
+
+            - sort_column: typing.Optional[str].
+
+            - sort_desc: typing.Optional[bool].
         """
         _response = await self._client_wrapper.httpx_client.request(
             "GET",
             urllib.parse.urljoin(f"{self._client_wrapper.get_base_url()}/", "v1/vector_databases/list"),
-            params=remove_none_from_dict({"page": page, "size": size}),
+            params=remove_none_from_dict(
+                {"page": page, "size": size, "sort_column": sort_column, "sort_desc": sort_desc}
+            ),
             headers=self._client_wrapper.get_headers(),
             timeout=60,
         )

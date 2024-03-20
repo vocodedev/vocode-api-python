@@ -42,6 +42,7 @@ class Agent(pydantic.BaseModel):
     ask_if_human_present_on_idle: typing.Optional[bool]
     openai_account_connection: typing.Optional[OpenAiAccountConnection]
     run_do_not_call_detection: typing.Optional[bool]
+    llm_temperature: typing.Optional[float]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

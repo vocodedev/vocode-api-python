@@ -20,6 +20,7 @@ class ElevenLabsVoice(pydantic.BaseModel):
     api_key: typing.Optional[str]
     optimize_streaming_latency: typing.Optional[int]
     model_id: typing.Optional[str]
+    experimental_input_streaming: typing.Optional[bool]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

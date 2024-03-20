@@ -8,6 +8,7 @@ T_Result = typing.TypeVar("T_Result")
 
 class CallStageOutcome(str, enum.Enum):
     HUMAN_UNANSWERED = "human_unanswered"
+    CALL_DID_NOT_CONNECT = "call_did_not_connect"
     HUMAN_DISCONNECTED = "human_disconnected"
     BOT_DISCONNECTED = "bot_disconnected"
     TRANSFER_UNANSWERED = "transfer_unanswered"
@@ -16,6 +17,7 @@ class CallStageOutcome(str, enum.Enum):
     def visit(
         self,
         human_unanswered: typing.Callable[[], T_Result],
+        call_did_not_connect: typing.Callable[[], T_Result],
         human_disconnected: typing.Callable[[], T_Result],
         bot_disconnected: typing.Callable[[], T_Result],
         transfer_unanswered: typing.Callable[[], T_Result],
@@ -23,6 +25,8 @@ class CallStageOutcome(str, enum.Enum):
     ) -> T_Result:
         if self is CallStageOutcome.HUMAN_UNANSWERED:
             return human_unanswered()
+        if self is CallStageOutcome.CALL_DID_NOT_CONNECT:
+            return call_did_not_connect()
         if self is CallStageOutcome.HUMAN_DISCONNECTED:
             return human_disconnected()
         if self is CallStageOutcome.BOT_DISCONNECTED:
