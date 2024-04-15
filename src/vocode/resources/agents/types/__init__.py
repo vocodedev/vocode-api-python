@@ -6,6 +6,7 @@ from .agent_params_actions_item_one import (
     AgentParamsActionsItemOne_ActionAddToConference,
     AgentParamsActionsItemOne_ActionDtmf,
     AgentParamsActionsItemOne_ActionEndConversation,
+    AgentParamsActionsItemOne_ActionExternal,
     AgentParamsActionsItemOne_ActionSetHold,
     AgentParamsActionsItemOne_ActionTransferCall,
 )
@@ -30,6 +31,7 @@ __all__ = [
     "AgentParamsActionsItemOne_ActionAddToConference",
     "AgentParamsActionsItemOne_ActionDtmf",
     "AgentParamsActionsItemOne_ActionEndConversation",
+    "AgentParamsActionsItemOne_ActionExternal",
     "AgentParamsActionsItemOne_ActionSetHold",
     "AgentParamsActionsItemOne_ActionTransferCall",
     "AgentParamsEndpointingSensitivity",

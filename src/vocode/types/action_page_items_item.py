@@ -9,6 +9,7 @@ import typing_extensions
 from .add_to_conference_action import AddToConferenceAction
 from .dtmf_action import DtmfAction
 from .end_conversation_action import EndConversationAction
+from .external_action import ExternalAction
 from .set_hold_action import SetHoldAction
 from .transfer_call_action import TransferCallAction
 
@@ -58,10 +59,20 @@ class ActionPageItemsItem_ActionSetHold(SetHoldAction):
         allow_population_by_field_name = True
 
 
+class ActionPageItemsItem_ActionExternal(ExternalAction):
+    type: typing_extensions.Literal["action_external"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
 ActionPageItemsItem = typing.Union[
     ActionPageItemsItem_ActionTransferCall,
     ActionPageItemsItem_ActionEndConversation,
     ActionPageItemsItem_ActionDtmf,
     ActionPageItemsItem_ActionAddToConference,
     ActionPageItemsItem_ActionSetHold,
+    ActionPageItemsItem_ActionExternal,
 ]

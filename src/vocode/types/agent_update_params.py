@@ -14,6 +14,7 @@ from .agent_update_params_initial_message_delay import AgentUpdateParamsInitialM
 from .agent_update_params_interrupt_sensitivity import AgentUpdateParamsInterruptSensitivity
 from .agent_update_params_ivr_navigation_mode import AgentUpdateParamsIvrNavigationMode
 from .agent_update_params_language import AgentUpdateParamsLanguage
+from .agent_update_params_name import AgentUpdateParamsName
 from .agent_update_params_noise_suppression import AgentUpdateParamsNoiseSuppression
 from .agent_update_params_openai_account_connection import AgentUpdateParamsOpenaiAccountConnection
 from .agent_update_params_openai_model_name_override import AgentUpdateParamsOpenaiModelNameOverride
@@ -30,6 +31,7 @@ except ImportError:
 
 
 class AgentUpdateParams(pydantic.BaseModel):
+    name: typing.Optional[AgentUpdateParamsName]
     prompt: typing.Optional[AgentUpdateParamsPrompt]
     language: typing.Optional[AgentUpdateParamsLanguage]
     actions: typing.Optional[AgentUpdateParamsActions]

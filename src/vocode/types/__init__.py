@@ -27,6 +27,7 @@ from .action_page_items_item import (
     ActionPageItemsItem_ActionAddToConference,
     ActionPageItemsItem_ActionDtmf,
     ActionPageItemsItem_ActionEndConversation,
+    ActionPageItemsItem_ActionExternal,
     ActionPageItemsItem_ActionSetHold,
     ActionPageItemsItem_ActionTransferCall,
 )
@@ -35,6 +36,7 @@ from .action_params_request import (
     ActionParamsRequest_ActionAddToConference,
     ActionParamsRequest_ActionDtmf,
     ActionParamsRequest_ActionEndConversation,
+    ActionParamsRequest_ActionExternal,
     ActionParamsRequest_ActionSetHold,
     ActionParamsRequest_ActionTransferCall,
 )
@@ -43,6 +45,7 @@ from .action_response_model import (
     ActionResponseModel_ActionAddToConference,
     ActionResponseModel_ActionDtmf,
     ActionResponseModel_ActionEndConversation,
+    ActionResponseModel_ActionExternal,
     ActionResponseModel_ActionSetHold,
     ActionResponseModel_ActionTransferCall,
 )
@@ -51,6 +54,7 @@ from .action_update_params_request import (
     ActionUpdateParamsRequest_ActionAddToConference,
     ActionUpdateParamsRequest_ActionDtmf,
     ActionUpdateParamsRequest_ActionEndConversation,
+    ActionUpdateParamsRequest_ActionExternal,
     ActionUpdateParamsRequest_ActionSetHold,
     ActionUpdateParamsRequest_ActionTransferCall,
 )
@@ -81,6 +85,7 @@ from .agent_actions_item import (
     AgentActionsItem_ActionAddToConference,
     AgentActionsItem_ActionDtmf,
     AgentActionsItem_ActionEndConversation,
+    AgentActionsItem_ActionExternal,
     AgentActionsItem_ActionSetHold,
     AgentActionsItem_ActionTransferCall,
 )
@@ -95,6 +100,7 @@ from .agent_update_params_actions_item_one import (
     AgentUpdateParamsActionsItemOne_ActionAddToConference,
     AgentUpdateParamsActionsItemOne_ActionDtmf,
     AgentUpdateParamsActionsItemOne_ActionEndConversation,
+    AgentUpdateParamsActionsItemOne_ActionExternal,
     AgentUpdateParamsActionsItemOne_ActionSetHold,
     AgentUpdateParamsActionsItemOne_ActionTransferCall,
 )
@@ -107,6 +113,7 @@ from .agent_update_params_initial_message_delay import AgentUpdateParamsInitialM
 from .agent_update_params_interrupt_sensitivity import AgentUpdateParamsInterruptSensitivity
 from .agent_update_params_ivr_navigation_mode import AgentUpdateParamsIvrNavigationMode
 from .agent_update_params_language import AgentUpdateParamsLanguage
+from .agent_update_params_name import AgentUpdateParamsName
 from .agent_update_params_noise_suppression import AgentUpdateParamsNoiseSuppression
 from .agent_update_params_openai_account_connection import AgentUpdateParamsOpenaiAccountConnection
 from .agent_update_params_openai_model_name_override import AgentUpdateParamsOpenaiModelNameOverride
@@ -153,6 +160,7 @@ from .create_call_agent_params_actions_item_one import (
     CreateCallAgentParamsActionsItemOne_ActionAddToConference,
     CreateCallAgentParamsActionsItemOne_ActionDtmf,
     CreateCallAgentParamsActionsItemOne_ActionEndConversation,
+    CreateCallAgentParamsActionsItemOne_ActionExternal,
     CreateCallAgentParamsActionsItemOne_ActionSetHold,
     CreateCallAgentParamsActionsItemOne_ActionTransferCall,
 )
@@ -226,6 +234,27 @@ from .end_conversation_action_update_params_action_trigger_zero import (
 )
 from .end_conversation_action_update_params_config import EndConversationActionUpdateParamsConfig
 from .event_type import EventType
+from .external_action import ExternalAction
+from .external_action_action_trigger import (
+    ExternalActionActionTrigger,
+    ExternalActionActionTrigger_ActionTriggerFunctionCall,
+    ExternalActionActionTrigger_ActionTriggerPhraseBased,
+)
+from .external_action_config import ExternalActionConfig
+from .external_action_params import ExternalActionParams
+from .external_action_params_action_trigger import (
+    ExternalActionParamsActionTrigger,
+    ExternalActionParamsActionTrigger_ActionTriggerFunctionCall,
+    ExternalActionParamsActionTrigger_ActionTriggerPhraseBased,
+)
+from .external_action_update_params import ExternalActionUpdateParams
+from .external_action_update_params_action_trigger import ExternalActionUpdateParamsActionTrigger
+from .external_action_update_params_action_trigger_zero import (
+    ExternalActionUpdateParamsActionTriggerZero,
+    ExternalActionUpdateParamsActionTriggerZero_ActionTriggerFunctionCall,
+    ExternalActionUpdateParamsActionTriggerZero_ActionTriggerPhraseBased,
+)
+from .external_action_update_params_config import ExternalActionUpdateParamsConfig
 from .function_call_action_trigger import FunctionCallActionTrigger
 from .function_call_action_trigger_config import FunctionCallActionTriggerConfig
 from .http_method import HttpMethod
@@ -296,8 +325,11 @@ from .prompt_update_params_content import PromptUpdateParamsContent
 from .prompt_update_params_context_endpoint import PromptUpdateParamsContextEndpoint
 from .prompt_update_params_prompt_template import PromptUpdateParamsPromptTemplate
 from .rime_voice import RimeVoice
+from .rime_voice_model_id import RimeVoiceModelId
 from .rime_voice_params import RimeVoiceParams
+from .rime_voice_params_model_id import RimeVoiceParamsModelId
 from .rime_voice_update_params import RimeVoiceUpdateParams
+from .rime_voice_update_params_model_id import RimeVoiceUpdateParamsModelId
 from .rime_voice_update_params_speaker import RimeVoiceUpdateParamsSpeaker
 from .rime_voice_update_params_speed_alpha import RimeVoiceUpdateParamsSpeedAlpha
 from .set_hold_action import SetHoldAction
@@ -407,24 +439,28 @@ __all__ = [
     "ActionPageItemsItem_ActionAddToConference",
     "ActionPageItemsItem_ActionDtmf",
     "ActionPageItemsItem_ActionEndConversation",
+    "ActionPageItemsItem_ActionExternal",
     "ActionPageItemsItem_ActionSetHold",
     "ActionPageItemsItem_ActionTransferCall",
     "ActionParamsRequest",
     "ActionParamsRequest_ActionAddToConference",
     "ActionParamsRequest_ActionDtmf",
     "ActionParamsRequest_ActionEndConversation",
+    "ActionParamsRequest_ActionExternal",
     "ActionParamsRequest_ActionSetHold",
     "ActionParamsRequest_ActionTransferCall",
     "ActionResponseModel",
     "ActionResponseModel_ActionAddToConference",
     "ActionResponseModel_ActionDtmf",
     "ActionResponseModel_ActionEndConversation",
+    "ActionResponseModel_ActionExternal",
     "ActionResponseModel_ActionSetHold",
     "ActionResponseModel_ActionTransferCall",
     "ActionUpdateParamsRequest",
     "ActionUpdateParamsRequest_ActionAddToConference",
     "ActionUpdateParamsRequest_ActionDtmf",
     "ActionUpdateParamsRequest_ActionEndConversation",
+    "ActionUpdateParamsRequest_ActionExternal",
     "ActionUpdateParamsRequest_ActionSetHold",
     "ActionUpdateParamsRequest_ActionTransferCall",
     "AddToConferenceAction",
@@ -447,6 +483,7 @@ __all__ = [
     "AgentActionsItem_ActionAddToConference",
     "AgentActionsItem_ActionDtmf",
     "AgentActionsItem_ActionEndConversation",
+    "AgentActionsItem_ActionExternal",
     "AgentActionsItem_ActionSetHold",
     "AgentActionsItem_ActionTransferCall",
     "AgentEndpointingSensitivity",
@@ -459,6 +496,7 @@ __all__ = [
     "AgentUpdateParamsActionsItemOne_ActionAddToConference",
     "AgentUpdateParamsActionsItemOne_ActionDtmf",
     "AgentUpdateParamsActionsItemOne_ActionEndConversation",
+    "AgentUpdateParamsActionsItemOne_ActionExternal",
     "AgentUpdateParamsActionsItemOne_ActionSetHold",
     "AgentUpdateParamsActionsItemOne_ActionTransferCall",
     "AgentUpdateParamsAskIfHumanPresentOnIdle",
@@ -470,6 +508,7 @@ __all__ = [
     "AgentUpdateParamsInterruptSensitivity",
     "AgentUpdateParamsIvrNavigationMode",
     "AgentUpdateParamsLanguage",
+    "AgentUpdateParamsName",
     "AgentUpdateParamsNoiseSuppression",
     "AgentUpdateParamsOpenaiAccountConnection",
     "AgentUpdateParamsOpenaiModelNameOverride",
@@ -511,6 +550,7 @@ __all__ = [
     "CreateCallAgentParamsActionsItemOne_ActionAddToConference",
     "CreateCallAgentParamsActionsItemOne_ActionDtmf",
     "CreateCallAgentParamsActionsItemOne_ActionEndConversation",
+    "CreateCallAgentParamsActionsItemOne_ActionExternal",
     "CreateCallAgentParamsActionsItemOne_ActionSetHold",
     "CreateCallAgentParamsActionsItemOne_ActionTransferCall",
     "CreateCallAgentParamsEndpointingSensitivity",
@@ -565,6 +605,21 @@ __all__ = [
     "EndConversationActionUpdateParamsActionTriggerZero_ActionTriggerPhraseBased",
     "EndConversationActionUpdateParamsConfig",
     "EventType",
+    "ExternalAction",
+    "ExternalActionActionTrigger",
+    "ExternalActionActionTrigger_ActionTriggerFunctionCall",
+    "ExternalActionActionTrigger_ActionTriggerPhraseBased",
+    "ExternalActionConfig",
+    "ExternalActionParams",
+    "ExternalActionParamsActionTrigger",
+    "ExternalActionParamsActionTrigger_ActionTriggerFunctionCall",
+    "ExternalActionParamsActionTrigger_ActionTriggerPhraseBased",
+    "ExternalActionUpdateParams",
+    "ExternalActionUpdateParamsActionTrigger",
+    "ExternalActionUpdateParamsActionTriggerZero",
+    "ExternalActionUpdateParamsActionTriggerZero_ActionTriggerFunctionCall",
+    "ExternalActionUpdateParamsActionTriggerZero_ActionTriggerPhraseBased",
+    "ExternalActionUpdateParamsConfig",
     "FunctionCallActionTrigger",
     "FunctionCallActionTriggerConfig",
     "HttpMethod",
@@ -635,8 +690,11 @@ __all__ = [
     "PromptUpdateParamsContextEndpoint",
     "PromptUpdateParamsPromptTemplate",
     "RimeVoice",
+    "RimeVoiceModelId",
     "RimeVoiceParams",
+    "RimeVoiceParamsModelId",
     "RimeVoiceUpdateParams",
+    "RimeVoiceUpdateParamsModelId",
     "RimeVoiceUpdateParamsSpeaker",
     "RimeVoiceUpdateParamsSpeedAlpha",
     "SetHoldAction",

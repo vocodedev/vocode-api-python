@@ -99,6 +99,7 @@ class AgentsClient:
     def create_agent(
         self,
         *,
+        name: typing.Optional[str] = OMIT,
         prompt: AgentParamsPrompt,
         language: typing.Optional[Language] = OMIT,
         actions: typing.Optional[typing.List[AgentParamsActionsItem]] = OMIT,
@@ -121,6 +122,8 @@ class AgentsClient:
     ) -> Agent:
         """
         Parameters:
+            - name: typing.Optional[str].
+
             - prompt: AgentParamsPrompt.
 
             - language: typing.Optional[Language].
@@ -160,6 +163,8 @@ class AgentsClient:
             - llm_temperature: typing.Optional[float].
         """
         _request: typing.Dict[str, typing.Any] = {"prompt": prompt, "voice": voice}
+        if name is not OMIT:
+            _request["name"] = name
         if language is not OMIT:
             _request["language"] = language
         if actions is not OMIT:
@@ -303,6 +308,7 @@ class AsyncAgentsClient:
     async def create_agent(
         self,
         *,
+        name: typing.Optional[str] = OMIT,
         prompt: AgentParamsPrompt,
         language: typing.Optional[Language] = OMIT,
         actions: typing.Optional[typing.List[AgentParamsActionsItem]] = OMIT,
@@ -325,6 +331,8 @@ class AsyncAgentsClient:
     ) -> Agent:
         """
         Parameters:
+            - name: typing.Optional[str].
+
             - prompt: AgentParamsPrompt.
 
             - language: typing.Optional[Language].
@@ -364,6 +372,8 @@ class AsyncAgentsClient:
             - llm_temperature: typing.Optional[float].
         """
         _request: typing.Dict[str, typing.Any] = {"prompt": prompt, "voice": voice}
+        if name is not OMIT:
+            _request["name"] = name
         if language is not OMIT:
             _request["language"] = language
         if actions is not OMIT:

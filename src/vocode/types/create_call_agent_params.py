@@ -22,6 +22,7 @@ except ImportError:
 
 
 class CreateCallAgentParams(pydantic.BaseModel):
+    name: typing.Optional[str]
     prompt: CreateCallAgentParamsPrompt
     language: typing.Optional[Language]
     actions: typing.Optional[typing.List[CreateCallAgentParamsActionsItem]]

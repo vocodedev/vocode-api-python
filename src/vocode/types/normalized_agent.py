@@ -21,6 +21,7 @@ except ImportError:
 class NormalizedAgent(pydantic.BaseModel):
     id: str
     user_id: str
+    name: typing.Optional[str]
     prompt: NormalizedAgentPrompt
     language: typing.Optional[Language]
     actions: typing.List[str]

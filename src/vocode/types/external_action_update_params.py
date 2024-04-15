@@ -4,7 +4,8 @@ import datetime as dt
 import typing
 
 from ..core.datetime_utils import serialize_datetime
-from .twilio_credentials import TwilioCredentials
+from .external_action_update_params_action_trigger import ExternalActionUpdateParamsActionTrigger
+from .external_action_update_params_config import ExternalActionUpdateParamsConfig
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -12,12 +13,9 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class TwilioAccountConnection(pydantic.BaseModel):
-    id: str
-    user_id: str
-    credentials: TwilioCredentials
-    steering_pool: typing.Optional[typing.List[str]]
-    account_supports_any_caller_id: typing.Optional[bool]
+class ExternalActionUpdateParams(pydantic.BaseModel):
+    config: typing.Optional[ExternalActionUpdateParamsConfig]
+    action_trigger: typing.Optional[ExternalActionUpdateParamsActionTrigger]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

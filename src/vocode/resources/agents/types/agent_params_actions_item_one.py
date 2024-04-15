@@ -9,6 +9,7 @@ import typing_extensions
 from ....types.add_to_conference_action_params import AddToConferenceActionParams
 from ....types.dtmf_action_params import DtmfActionParams
 from ....types.end_conversation_action_params import EndConversationActionParams
+from ....types.external_action_params import ExternalActionParams
 from ....types.set_hold_action_params import SetHoldActionParams
 from ....types.transfer_call_action_params import TransferCallActionParams
 
@@ -58,10 +59,20 @@ class AgentParamsActionsItemOne_ActionSetHold(SetHoldActionParams):
         allow_population_by_field_name = True
 
 
+class AgentParamsActionsItemOne_ActionExternal(ExternalActionParams):
+    type: typing_extensions.Literal["action_external"]
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
 AgentParamsActionsItemOne = typing.Union[
     AgentParamsActionsItemOne_ActionTransferCall,
     AgentParamsActionsItemOne_ActionEndConversation,
     AgentParamsActionsItemOne_ActionDtmf,
     AgentParamsActionsItemOne_ActionAddToConference,
     AgentParamsActionsItemOne_ActionSetHold,
+    AgentParamsActionsItemOne_ActionExternal,
 ]

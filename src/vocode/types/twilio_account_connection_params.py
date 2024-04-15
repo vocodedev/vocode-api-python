@@ -14,6 +14,8 @@ except ImportError:
 
 class TwilioAccountConnectionParams(pydantic.BaseModel):
     credentials: TwilioCredentials
+    steering_pool: typing.Optional[typing.List[str]]
+    account_supports_any_caller_id: typing.Optional[bool]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

@@ -24,6 +24,7 @@ except ImportError:
 class Agent(pydantic.BaseModel):
     id: str
     user_id: str
+    name: typing.Optional[str]
     prompt: Prompt
     language: typing.Optional[Language]
     actions: typing.List[AgentActionsItem]
