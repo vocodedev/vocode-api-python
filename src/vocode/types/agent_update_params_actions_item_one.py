@@ -55,7 +55,7 @@ class AgentUpdateParamsActionsItemOne_ActionSetHold(SetHoldActionUpdateParams):
         allow_population_by_field_name = True
 
 
-class AgentUpdateParamsActionsItemOne_ActionExternalAction(ExternalActionUpdateParams):
+class AgentUpdateParamsActionsItemOne_ActionExternal(ExternalActionUpdateParams):
     class Config:
         frozen = True
         smart_union = True

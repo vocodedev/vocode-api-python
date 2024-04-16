@@ -56,7 +56,7 @@ class CreateCallAgentParamsActionsItemOne_ActionSetHold(SetHoldActionParams):
         allow_population_by_field_name = True
 
 
-class CreateCallAgentParamsActionsItemOne_ActionExternalAction(ExternalActionParams):
+class CreateCallAgentParamsActionsItemOne_ActionExternal(ExternalActionParams):
 
     class Config:
         frozen = True

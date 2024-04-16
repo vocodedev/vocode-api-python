@@ -52,7 +52,7 @@ class ActionParamsRequest_ActionSetHold(SetHoldActionParams):
         allow_population_by_field_name = True
 
 
-class ActionParamsRequest_ActionExternalAction(ExternalActionParams):
+class ActionParamsRequest_ActionExternal(ExternalActionParams):
 
     class Config:
         frozen = True
