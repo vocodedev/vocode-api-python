@@ -23,9 +23,7 @@ class ActionUpdateParamsRequest_ActionTransferCall(TransferCallActionUpdateParam
         allow_population_by_field_name = True
 
 
-class ActionUpdateParamsRequest_ActionEndConversation(
-    EndConversationActionUpdateParams
-):
+class ActionUpdateParamsRequest_ActionEndConversation(EndConversationActionUpdateParams):
     type: typing_extensions.Literal["action_end_conversation"]
 
     class Config:
@@ -43,9 +41,7 @@ class ActionUpdateParamsRequest_ActionDtmf(DtmfActionUpdateParams):
         allow_population_by_field_name = True
 
 
-class ActionUpdateParamsRequest_ActionAddToConference(
-    AddToConferenceActionUpdateParams
-):
+class ActionUpdateParamsRequest_ActionAddToConference(AddToConferenceActionUpdateParams):
     type: typing_extensions.Literal["action_add_to_conference"]
 
     class Config:
@@ -73,10 +69,10 @@ class ActionUpdateParamsRequest_ActionExternal(ExternalActionUpdateParams):
 
 
 ActionUpdateParamsRequest = typing.Union[
-    TransferCallActionUpdateParams,
-    EndConversationActionUpdateParams,
-    DtmfActionUpdateParams,
-    AddToConferenceActionUpdateParams,
-    SetHoldActionUpdateParams,
-    ExternalActionUpdateParams,
+    ActionUpdateParamsRequest_ActionTransferCall,
+    ActionUpdateParamsRequest_ActionEndConversation,
+    ActionUpdateParamsRequest_ActionDtmf,
+    ActionUpdateParamsRequest_ActionAddToConference,
+    ActionUpdateParamsRequest_ActionSetHold,
+    ActionUpdateParamsRequest_ActionExternal,
 ]
