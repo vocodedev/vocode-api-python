@@ -4,13 +4,12 @@ from __future__ import annotations
 
 import typing
 
-import typing_extensions
-
+from .add_to_conference_action_params import AddToConferenceActionParams
 from .dtmf_action_params import DtmfActionParams
 from .end_conversation_action_params import EndConversationActionParams
-from .transfer_call_action_params import TransferCallActionParams
-from .add_to_conference_action_params import AddToConferenceActionParams
+from .external_action_params import ExternalActionParams
 from .set_hold_action_params import SetHoldActionParams
+from .transfer_call_action_params import TransferCallActionParams
 
 
 class CreateCallAgentParamsActionsItemOne_ActionTransferCall(TransferCallActionParams):
@@ -21,7 +20,9 @@ class CreateCallAgentParamsActionsItemOne_ActionTransferCall(TransferCallActionP
         allow_population_by_field_name = True
 
 
-class CreateCallAgentParamsActionsItemOne_ActionEndConversation(EndConversationActionParams):
+class CreateCallAgentParamsActionsItemOne_ActionEndConversation(
+    EndConversationActionParams
+):
 
     class Config:
         frozen = True
@@ -36,19 +37,31 @@ class CreateCallAgentParamsActionsItemOne_ActionDtmf(DtmfActionParams):
         smart_union = True
         allow_population_by_field_name = True
 
-class CreateCallAgentParamsActionsItemOne_ActionAddToConference(AddToConferenceActionParams):
+
+class CreateCallAgentParamsActionsItemOne_ActionAddToConference(
+    AddToConferenceActionParams
+):
 
     class Config:
         frozen = True
         smart_union = True
         allow_population_by_field_name = True
 
+
 class CreateCallAgentParamsActionsItemOne_ActionSetHold(SetHoldActionParams):
-    
-        class Config:
-            frozen = True
-            smart_union = True
-            allow_population_by_field_name = True
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
+
+class CreateCallAgentParamsActionsItemOne_ActionExternal(ExternalActionParams):
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
 
 
 CreateCallAgentParamsActionsItemOne = typing.Union[
@@ -56,5 +69,6 @@ CreateCallAgentParamsActionsItemOne = typing.Union[
     EndConversationActionParams,
     DtmfActionParams,
     AddToConferenceActionParams,
-    SetHoldActionParams
+    SetHoldActionParams,
+    ExternalActionParams,
 ]

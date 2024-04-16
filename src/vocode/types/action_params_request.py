@@ -4,13 +4,12 @@ from __future__ import annotations
 
 import typing
 
-import typing_extensions
-
+from .add_to_conference_action_params import AddToConferenceActionParams
 from .dtmf_action_params import DtmfActionParams
 from .end_conversation_action_params import EndConversationActionParams
-from .transfer_call_action_params import TransferCallActionParams
-from .add_to_conference_action_params import AddToConferenceActionParams
+from .external_action_params import ExternalActionParams
 from .set_hold_action_params import SetHoldActionParams
+from .transfer_call_action_params import TransferCallActionParams
 
 
 class ActionParamsRequest_ActionTransferCall(TransferCallActionParams):
@@ -36,6 +35,7 @@ class ActionParamsRequest_ActionDtmf(DtmfActionParams):
         smart_union = True
         allow_population_by_field_name = True
 
+
 class ActionParamsRequest_ActionAddToConference(AddToConferenceActionParams):
 
     class Config:
@@ -43,18 +43,28 @@ class ActionParamsRequest_ActionAddToConference(AddToConferenceActionParams):
         smart_union = True
         allow_population_by_field_name = True
 
+
 class ActionParamsRequest_ActionSetHold(SetHoldActionParams):
 
     class Config:
         frozen = True
         smart_union = True
         allow_population_by_field_name = True
-        
+
+
+class ActionParamsRequest_ActionExternal(ExternalActionParams):
+
+    class Config:
+        frozen = True
+        smart_union = True
+        allow_population_by_field_name = True
+
 
 ActionParamsRequest = typing.Union[
     TransferCallActionParams,
     EndConversationActionParams,
     DtmfActionParams,
     AddToConferenceActionParams,
-    SetHoldActionParams
+    SetHoldActionParams,
+    ExternalActionParams,
 ]
