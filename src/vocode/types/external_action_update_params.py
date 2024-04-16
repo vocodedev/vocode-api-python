@@ -3,8 +3,12 @@
 import datetime as dt
 import typing
 
+import typing_extensions
+
 from ..core.datetime_utils import serialize_datetime
-from .external_action_update_params_action_trigger import ExternalActionUpdateParamsActionTrigger
+from .external_action_update_params_action_trigger import (
+    ExternalActionUpdateParamsActionTrigger,
+)
 from .external_action_update_params_config import ExternalActionUpdateParamsConfig
 
 try:
@@ -14,15 +18,24 @@ except ImportError:
 
 
 class ExternalActionUpdateParams(pydantic.BaseModel):
+    type: typing_extensions.Literal["action_external"]
     config: typing.Optional[ExternalActionUpdateParamsConfig]
     action_trigger: typing.Optional[ExternalActionUpdateParamsActionTrigger]
 
     def json(self, **kwargs: typing.Any) -> str:
-        kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
+        kwargs_with_defaults: typing.Any = {
+            "by_alias": True,
+            "exclude_unset": True,
+            **kwargs,
+        }
         return super().json(**kwargs_with_defaults)
 
     def dict(self, **kwargs: typing.Any) -> typing.Dict[str, typing.Any]:
-        kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
+        kwargs_with_defaults: typing.Any = {
+            "by_alias": True,
+            "exclude_unset": True,
+            **kwargs,
+        }
         return super().dict(**kwargs_with_defaults)
 
     class Config:
