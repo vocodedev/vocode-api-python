@@ -151,6 +151,11 @@ from .call_page import CallPage
 from .call_stage import CallStage
 from .call_stage_outcome import CallStageOutcome
 from .call_status import CallStatus
+from .call_telephony_metadata import (
+    CallTelephonyMetadata,
+    CallTelephonyMetadata_TelephonyMetadataTwilio,
+    CallTelephonyMetadata_TelephonyMetadataVonage,
+)
 from .call_telephony_provider import CallTelephonyProvider
 from .collect_field import CollectField
 from .create_call_agent_params import CreateCallAgentParams
@@ -273,6 +278,11 @@ from .normalized_call_on_no_human_answer import NormalizedCallOnNoHumanAnswer
 from .normalized_call_stage import NormalizedCallStage
 from .normalized_call_stage_outcome import NormalizedCallStageOutcome
 from .normalized_call_telephony_account_connection import NormalizedCallTelephonyAccountConnection
+from .normalized_call_telephony_metadata import (
+    NormalizedCallTelephonyMetadata,
+    NormalizedCallTelephonyMetadata_TelephonyMetadataTwilio,
+    NormalizedCallTelephonyMetadata_TelephonyMetadataVonage,
+)
 from .normalized_call_telephony_provider import NormalizedCallTelephonyProvider
 from .normalized_phone_number import NormalizedPhoneNumber
 from .normalized_phone_number_telephony_account_connection import NormalizedPhoneNumberTelephonyAccountConnection
@@ -378,6 +388,7 @@ from .twilio_account_connection_params import TwilioAccountConnectionParams
 from .twilio_account_connection_update_params import TwilioAccountConnectionUpdateParams
 from .twilio_account_connection_update_params_credentials import TwilioAccountConnectionUpdateParamsCredentials
 from .twilio_credentials import TwilioCredentials
+from .twilio_telephony_metadata import TwilioTelephonyMetadata
 from .undefined import Undefined
 from .usage import Usage
 from .validation_error import ValidationError
@@ -412,6 +423,7 @@ from .voice_update_params_request import (
     VoiceUpdateParamsRequest_VoicePlayHt,
     VoiceUpdateParamsRequest_VoiceRime,
 )
+from .vonage_telephony_metadata import VonageTelephonyMetadata
 from .webhook import Webhook
 from .webhook_page import WebhookPage
 from .webhook_params import WebhookParams
@@ -542,6 +554,9 @@ __all__ = [
     "CallStage",
     "CallStageOutcome",
     "CallStatus",
+    "CallTelephonyMetadata",
+    "CallTelephonyMetadata_TelephonyMetadataTwilio",
+    "CallTelephonyMetadata_TelephonyMetadataVonage",
     "CallTelephonyProvider",
     "CollectField",
     "CreateCallAgentParams",
@@ -638,6 +653,9 @@ __all__ = [
     "NormalizedCallStage",
     "NormalizedCallStageOutcome",
     "NormalizedCallTelephonyAccountConnection",
+    "NormalizedCallTelephonyMetadata",
+    "NormalizedCallTelephonyMetadata_TelephonyMetadataTwilio",
+    "NormalizedCallTelephonyMetadata_TelephonyMetadataVonage",
     "NormalizedCallTelephonyProvider",
     "NormalizedPhoneNumber",
     "NormalizedPhoneNumberTelephonyAccountConnection",
@@ -731,6 +749,7 @@ __all__ = [
     "TwilioAccountConnectionUpdateParams",
     "TwilioAccountConnectionUpdateParamsCredentials",
     "TwilioCredentials",
+    "TwilioTelephonyMetadata",
     "Undefined",
     "Usage",
     "ValidationError",
@@ -757,6 +776,7 @@ __all__ = [
     "VoiceUpdateParamsRequest_VoiceElevenLabs",
     "VoiceUpdateParamsRequest_VoicePlayHt",
     "VoiceUpdateParamsRequest_VoiceRime",
+    "VonageTelephonyMetadata",
     "Webhook",
     "WebhookPage",
     "WebhookParams",

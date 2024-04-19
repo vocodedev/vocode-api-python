@@ -10,6 +10,7 @@ from .call_on_no_human_answer import CallOnNoHumanAnswer
 from .call_stage import CallStage
 from .call_stage_outcome import CallStageOutcome
 from .call_status import CallStatus
+from .call_telephony_metadata import CallTelephonyMetadata
 from .call_telephony_provider import CallTelephonyProvider
 from .twilio_account_connection import TwilioAccountConnection
 
@@ -31,6 +32,7 @@ class Call(pydantic.BaseModel):
     telephony_id: typing.Optional[str]
     stage: typing.Optional[CallStage]
     stage_outcome: typing.Optional[CallStageOutcome]
+    telephony_metadata: typing.Optional[CallTelephonyMetadata]
     to_number: str
     from_number: str
     agent: Agent

@@ -17,6 +17,8 @@ class ActionPage(pydantic.BaseModel):
     page: int
     size: int
     has_more: bool
+    total: int
+    total_is_estimated: bool
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

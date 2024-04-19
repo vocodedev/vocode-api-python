@@ -4,7 +4,6 @@ import datetime as dt
 import typing
 
 from ..core.datetime_utils import serialize_datetime
-from .voice_page_items_item import VoicePageItemsItem
 
 try:
     import pydantic.v1 as pydantic  # type: ignore
@@ -12,13 +11,12 @@ except ImportError:
     import pydantic  # type: ignore
 
 
-class VoicePage(pydantic.BaseModel):
-    items: typing.List[VoicePageItemsItem]
-    page: int
-    size: int
-    has_more: bool
-    total: int
-    total_is_estimated: bool
+class TwilioTelephonyMetadata(pydantic.BaseModel):
+    call_sid: typing.Optional[str]
+    call_status: typing.Optional[str]
+    transfer_call_sid: typing.Optional[str]
+    transfer_call_status: typing.Optional[str]
+    conference_sid: typing.Optional[str]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

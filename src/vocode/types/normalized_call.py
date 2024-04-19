@@ -10,6 +10,7 @@ from .normalized_call_on_no_human_answer import NormalizedCallOnNoHumanAnswer
 from .normalized_call_stage import NormalizedCallStage
 from .normalized_call_stage_outcome import NormalizedCallStageOutcome
 from .normalized_call_telephony_account_connection import NormalizedCallTelephonyAccountConnection
+from .normalized_call_telephony_metadata import NormalizedCallTelephonyMetadata
 from .normalized_call_telephony_provider import NormalizedCallTelephonyProvider
 
 try:
@@ -30,6 +31,7 @@ class NormalizedCall(pydantic.BaseModel):
     telephony_id: typing.Optional[str]
     stage: typing.Optional[NormalizedCallStage]
     stage_outcome: typing.Optional[NormalizedCallStageOutcome]
+    telephony_metadata: typing.Optional[NormalizedCallTelephonyMetadata]
     to_number: str
     from_number: str
     agent: str
