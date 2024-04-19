@@ -6,6 +6,7 @@ import typing
 import typing_extensions
 
 from ..core.datetime_utils import serialize_datetime
+from .transfer_call_action_action_trigger import TransferCallActionActionTrigger
 from .transfer_call_config import TransferCallConfig
 
 try:
@@ -17,6 +18,7 @@ except ImportError:
 class TransferCallActionParams(pydantic.BaseModel):
     type: typing_extensions.Literal["action_transfer_call"]
     config: TransferCallConfig
+    action_trigger: typing.Optional[TransferCallActionActionTrigger]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}

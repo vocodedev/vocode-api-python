@@ -5,6 +5,7 @@ import typing
 import typing_extensions
 
 from ..core.datetime_utils import serialize_datetime
+from .end_conversation_action_action_trigger import EndConversationActionActionTrigger
 from .end_conversation_action_update_params_config import EndConversationActionUpdateParamsConfig
 
 try:
@@ -16,6 +17,7 @@ except ImportError:
 class EndConversationActionUpdateParams(pydantic.BaseModel):
     type: typing_extensions.Literal["action_end_conversation"]
     config: typing.Optional[EndConversationActionUpdateParamsConfig]
+    action_trigger: typing.Optional[EndConversationActionActionTrigger]
 
     def json(self, **kwargs: typing.Any) -> str:
         kwargs_with_defaults: typing.Any = {"by_alias": True, "exclude_unset": True, **kwargs}
