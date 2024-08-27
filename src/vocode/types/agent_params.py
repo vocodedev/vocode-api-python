@@ -40,6 +40,7 @@ class AgentParams(UniversalBaseModel):
     run_do_not_call_detection: typing.Optional[bool] = None
     llm_fallback: typing.Optional[InternalLlmFallback] = None
     deepgram_keywords: typing.Optional[typing.Dict[str, typing.Optional[AgentParamsDeepgramKeywordsValue]]] = None
+    idle_time_seconds: typing.Optional[int] = None
     llm_temperature: typing.Optional[float] = None
 
     if IS_PYDANTIC_V2:

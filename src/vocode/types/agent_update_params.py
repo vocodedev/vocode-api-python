@@ -23,6 +23,7 @@ from .agent_update_params_openai_account_connection import AgentUpdateParamsOpen
 from .agent_update_params_run_do_not_call_detection import AgentUpdateParamsRunDoNotCallDetection
 from .agent_update_params_llm_fallback import AgentUpdateParamsLlmFallback
 from .agent_update_params_deepgram_keywords import AgentUpdateParamsDeepgramKeywords
+from .agent_update_params_idle_time_seconds import AgentUpdateParamsIdleTimeSeconds
 from ..core.pydantic_utilities import IS_PYDANTIC_V2
 import pydantic
 
@@ -49,6 +50,7 @@ class AgentUpdateParams(UniversalBaseModel):
     run_do_not_call_detection: typing.Optional[AgentUpdateParamsRunDoNotCallDetection] = None
     llm_fallback: typing.Optional[AgentUpdateParamsLlmFallback] = None
     deepgram_keywords: typing.Optional[AgentUpdateParamsDeepgramKeywords] = None
+    idle_time_seconds: typing.Optional[AgentUpdateParamsIdleTimeSeconds] = None
 
     if IS_PYDANTIC_V2:
         model_config: typing.ClassVar[pydantic.ConfigDict] = pydantic.ConfigDict(extra="allow", frozen=True)  # type: ignore # Pydantic v2

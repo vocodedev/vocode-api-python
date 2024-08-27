@@ -42,6 +42,7 @@ class CreateCallAgentParams(UniversalBaseModel):
     deepgram_keywords: typing.Optional[
         typing.Dict[str, typing.Optional[CreateCallAgentParamsDeepgramKeywordsValue]]
     ] = None
+    idle_time_seconds: typing.Optional[int] = None
     llm_temperature: typing.Optional[float] = None
 
     if IS_PYDANTIC_V2:

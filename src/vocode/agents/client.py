@@ -43,6 +43,7 @@ from ..types.agent_update_params_openai_account_connection import AgentUpdatePar
 from ..types.agent_update_params_run_do_not_call_detection import AgentUpdateParamsRunDoNotCallDetection
 from ..types.agent_update_params_llm_fallback import AgentUpdateParamsLlmFallback
 from ..types.agent_update_params_deepgram_keywords import AgentUpdateParamsDeepgramKeywords
+from ..types.agent_update_params_idle_time_seconds import AgentUpdateParamsIdleTimeSeconds
 from ..core.client_wrapper import AsyncClientWrapper
 
 # this is used as the default value for optional parameters
@@ -206,6 +207,7 @@ class AgentsClient:
         run_do_not_call_detection: typing.Optional[bool] = OMIT,
         llm_fallback: typing.Optional[InternalLlmFallback] = OMIT,
         deepgram_keywords: typing.Optional[typing.Dict[str, typing.Optional[AgentParamsDeepgramKeywordsValue]]] = OMIT,
+        idle_time_seconds: typing.Optional[int] = OMIT,
         llm_temperature: typing.Optional[float] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> Agent:
@@ -254,6 +256,8 @@ class AgentsClient:
 
         deepgram_keywords : typing.Optional[typing.Dict[str, typing.Optional[AgentParamsDeepgramKeywordsValue]]]
 
+        idle_time_seconds : typing.Optional[int]
+
         llm_temperature : typing.Optional[float]
 
         request_options : typing.Optional[RequestOptions]
@@ -301,6 +305,7 @@ class AgentsClient:
                 "run_do_not_call_detection": run_do_not_call_detection,
                 "llm_fallback": llm_fallback,
                 "deepgram_keywords": deepgram_keywords,
+                "idle_time_seconds": idle_time_seconds,
                 "llm_temperature": llm_temperature,
             },
             request_options=request_options,
@@ -355,6 +360,7 @@ class AgentsClient:
         run_do_not_call_detection: typing.Optional[AgentUpdateParamsRunDoNotCallDetection] = OMIT,
         llm_fallback: typing.Optional[AgentUpdateParamsLlmFallback] = OMIT,
         deepgram_keywords: typing.Optional[AgentUpdateParamsDeepgramKeywords] = OMIT,
+        idle_time_seconds: typing.Optional[AgentUpdateParamsIdleTimeSeconds] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> Agent:
         """
@@ -404,6 +410,8 @@ class AgentsClient:
 
         deepgram_keywords : typing.Optional[AgentUpdateParamsDeepgramKeywords]
 
+        idle_time_seconds : typing.Optional[AgentUpdateParamsIdleTimeSeconds]
+
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
 
@@ -451,6 +459,7 @@ class AgentsClient:
                 "run_do_not_call_detection": run_do_not_call_detection,
                 "llm_fallback": llm_fallback,
                 "deepgram_keywords": deepgram_keywords,
+                "idle_time_seconds": idle_time_seconds,
             },
             request_options=request_options,
             omit=OMIT,
@@ -653,6 +662,7 @@ class AsyncAgentsClient:
         run_do_not_call_detection: typing.Optional[bool] = OMIT,
         llm_fallback: typing.Optional[InternalLlmFallback] = OMIT,
         deepgram_keywords: typing.Optional[typing.Dict[str, typing.Optional[AgentParamsDeepgramKeywordsValue]]] = OMIT,
+        idle_time_seconds: typing.Optional[int] = OMIT,
         llm_temperature: typing.Optional[float] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> Agent:
@@ -700,6 +710,8 @@ class AsyncAgentsClient:
         llm_fallback : typing.Optional[InternalLlmFallback]
 
         deepgram_keywords : typing.Optional[typing.Dict[str, typing.Optional[AgentParamsDeepgramKeywordsValue]]]
+
+        idle_time_seconds : typing.Optional[int]
 
         llm_temperature : typing.Optional[float]
 
@@ -756,6 +768,7 @@ class AsyncAgentsClient:
                 "run_do_not_call_detection": run_do_not_call_detection,
                 "llm_fallback": llm_fallback,
                 "deepgram_keywords": deepgram_keywords,
+                "idle_time_seconds": idle_time_seconds,
                 "llm_temperature": llm_temperature,
             },
             request_options=request_options,
@@ -810,6 +823,7 @@ class AsyncAgentsClient:
         run_do_not_call_detection: typing.Optional[AgentUpdateParamsRunDoNotCallDetection] = OMIT,
         llm_fallback: typing.Optional[AgentUpdateParamsLlmFallback] = OMIT,
         deepgram_keywords: typing.Optional[AgentUpdateParamsDeepgramKeywords] = OMIT,
+        idle_time_seconds: typing.Optional[AgentUpdateParamsIdleTimeSeconds] = OMIT,
         request_options: typing.Optional[RequestOptions] = None,
     ) -> Agent:
         """
@@ -858,6 +872,8 @@ class AsyncAgentsClient:
         llm_fallback : typing.Optional[AgentUpdateParamsLlmFallback]
 
         deepgram_keywords : typing.Optional[AgentUpdateParamsDeepgramKeywords]
+
+        idle_time_seconds : typing.Optional[AgentUpdateParamsIdleTimeSeconds]
 
         request_options : typing.Optional[RequestOptions]
             Request-specific configuration.
@@ -914,6 +930,7 @@ class AsyncAgentsClient:
                 "run_do_not_call_detection": run_do_not_call_detection,
                 "llm_fallback": llm_fallback,
                 "deepgram_keywords": deepgram_keywords,
+                "idle_time_seconds": idle_time_seconds,
             },
             request_options=request_options,
             omit=OMIT,

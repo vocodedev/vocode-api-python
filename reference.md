@@ -1507,6 +1507,14 @@ client.agents.create_agent(
 <dl>
 <dd>
 
+**idle_time_seconds:** `typing.Optional[int]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **llm_temperature:** `typing.Optional[float]` 
     
 </dd>
@@ -1732,6 +1740,14 @@ client.agents.update_agent(
 <dd>
 
 **deepgram_keywords:** `typing.Optional[AgentUpdateParamsDeepgramKeywords]` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**idle_time_seconds:** `typing.Optional[AgentUpdateParamsIdleTimeSeconds]` 
     
 </dd>
 </dl>

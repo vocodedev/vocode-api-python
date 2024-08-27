@@ -50,6 +50,7 @@ from .agent_update_params_conversation_speed import AgentUpdateParamsConversatio
 from .agent_update_params_deepgram_keywords import AgentUpdateParamsDeepgramKeywords
 from .agent_update_params_deepgram_keywords_zero_value import AgentUpdateParamsDeepgramKeywordsZeroValue
 from .agent_update_params_endpointing_sensitivity import AgentUpdateParamsEndpointingSensitivity
+from .agent_update_params_idle_time_seconds import AgentUpdateParamsIdleTimeSeconds
 from .agent_update_params_initial_message import AgentUpdateParamsInitialMessage
 from .agent_update_params_initial_message_delay import AgentUpdateParamsInitialMessageDelay
 from .agent_update_params_interrupt_sensitivity import AgentUpdateParamsInterruptSensitivity
@@ -309,6 +310,7 @@ __all__ = [
     "AgentUpdateParamsDeepgramKeywords",
     "AgentUpdateParamsDeepgramKeywordsZeroValue",
     "AgentUpdateParamsEndpointingSensitivity",
+    "AgentUpdateParamsIdleTimeSeconds",
     "AgentUpdateParamsInitialMessage",
     "AgentUpdateParamsInitialMessageDelay",
     "AgentUpdateParamsInterruptSensitivity",
